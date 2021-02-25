@@ -16,7 +16,7 @@ public class TestService {
     @Resource
     private TestMapper testMapper;
 
-    public List<Test> list(){
-        return testMapper.list();
+    public Test list(){
+        return testMapper.selectByPrimaryKey("1");
     }
 }
