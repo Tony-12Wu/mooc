@@ -1,26 +1,77 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="main-container">
+    <div class="main-content">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="login-container">
+            <div class="center">
+              <h2>
+                <i class="ace-icon fa fa-leaf green"></i>
+                <span class="blue" id="id-text2">管理员登陆   </span>
+              </h2>
+            </div>
+
+            <div class="space-6"></div>
+
+            <div class="position-relative">
+              <div id="login-box" class="login-box visible widget-box no-border">
+                <div class="widget-body">
+                  <div class="widget-main">
+                    <h4 class="header blue lighter bigger">
+                      <i class="ace-icon fa fa-coffee green"></i>
+                      请输入账号和密码
+                    </h4>
+
+                    <div class="space-6"></div>
+
+                    <form>
+                      <fieldset>
+                        <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="text" class="form-control" placeholder="账号" />
+															<i class="ace-icon fa fa-user"></i>
+														</span>
+                        </label>
+
+                        <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="password" class="form-control" placeholder="密码" />
+															<i class="ace-icon fa fa-lock"></i>
+														</span>
+                        </label>
+
+                        <div class="space"></div>
+
+                        <div class="clearfix">
+                          <label class="inline">
+                            <input type="checkbox" class="ace" />
+                            <span class="lbl">记住我</span>
+                          </label>
+
+                          <button type="button" class="width-35 pull-right btn btn-sm btn-primary">
+                            <i class="ace-icon fa fa-key"></i>
+                            <span class="bigger-110">登陆</span>
+                          </button>
+                        </div>
+
+                        <div class="space-4"></div>
+                      </fieldset>
+                    </form>
+                  </div>
+                </div><!-- /.widget-body -->
+              </div><!-- /.signup-box -->
+            </div><!-- /.position-relative -->
+          </div>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.main-content -->
+  </div><!-- /.main-container -->
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+    $('body').attr('class', 'login-layout light-login');
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
