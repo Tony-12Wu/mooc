@@ -72,9 +72,14 @@
 </template>
 
 <script>
-  $('body').attr('class', 'login-layout light-login');
+
 export default {
   name: 'login',
+    mounted: function () {
+        $('body').removeClass('skin');
+        $('body').attr('class', 'login-layout light-login');
+        //console.log('login');
+    },
     methods: {
       login () {
           this.$router.push("/admin")
