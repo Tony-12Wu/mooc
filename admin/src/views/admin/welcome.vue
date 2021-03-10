@@ -7,7 +7,6 @@
     export default {
         name: 'weclome',
         mounted: function () {
-           this.$parent.activeSidebar("welcome-sidebar");
         },
         methods: {
         }
