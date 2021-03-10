@@ -1,80 +1,87 @@
 <template>
-  <table id="simple-table" class="table  table-bordered table-hover">
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>名称</th>
-      <th>课程ID</th>
-      <th>操作</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!--数据绑定 -->
-    <tr v-for="chapter in chapters">
-      <td>{{chapter.id}}</td>
-      <td>{{chapter.name}}</td>
-      <td>{{chapter.courseId}}</td>
+  <div>
+    <p>
+      <button v-on:click="list" class="btn btn-white btn-default btn-round">
+        <i class="ace-icon fa fa-refresh"></i>
+        刷新
+      </button>
+    </p>
 
-      <td class="hidden-480">
-        <span class="label label-sm label-warning">Expiring</span>
-      </td>
+    <table id="simple-table" class="table  table-bordered table-hover">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>名称</th>
+        <th>课程ID</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!--数据绑定 -->
+      <tr v-for="chapter in chapters">
+        <td>{{chapter.id}}</td>
+        <td>{{chapter.name}}</td>
+        <td>{{chapter.courseId}}</td>
 
-      <td>
-        <div class="hidden-sm hidden-xs btn-group">
-          <button class="btn btn-xs btn-success">
-            <i class="ace-icon fa fa-check bigger-120"></i>
-          </button>
-
-          <button class="btn btn-xs btn-info">
-            <i class="ace-icon fa fa-pencil bigger-120"></i>
-          </button>
-
-          <button class="btn btn-xs btn-danger">
-            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-          </button>
-
-          <button class="btn btn-xs btn-warning">
-            <i class="ace-icon fa fa-flag bigger-120"></i>
-          </button>
-        </div>
-
-        <div class="hidden-md hidden-lg">
-          <div class="inline pos-rel">
-            <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-              <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+        <td>
+          <div class="hidden-sm hidden-xs btn-group">
+            <button class="btn btn-xs btn-success">
+              <i class="ace-icon fa fa-check bigger-120"></i>
             </button>
 
-            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-              <li>
-                <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+            <button class="btn btn-xs btn-info">
+              <i class="ace-icon fa fa-pencil bigger-120"></i>
+            </button>
+
+            <button class="btn btn-xs btn-danger">
+              <i class="ace-icon fa fa-trash-o bigger-120"></i>
+            </button>
+
+            <button class="btn btn-xs btn-warning">
+              <i class="ace-icon fa fa-flag bigger-120"></i>
+            </button>
+          </div>
+
+          <div class="hidden-md hidden-lg">
+            <div class="inline pos-rel">
+              <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+              </button>
+
+              <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                <li>
+                  <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
                                   <span class="blue">
                                     <i class="ace-icon fa fa-search-plus bigger-120"></i>
                                   </span>
-                </a>
-              </li>
+                  </a>
+                </li>
 
-              <li>
-                <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                <li>
+                  <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
                                   <span class="green">
                                     <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
                                   </span>
-                </a>
-              </li>
+                  </a>
+                </li>
 
-              <li>
-                <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                <li>
+                  <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
                                   <span class="red">
                                     <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                   </span>
-                </a>
-              </li>
-            </ul>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+
 </template>
 
 <script>
