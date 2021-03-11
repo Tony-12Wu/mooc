@@ -9,6 +9,7 @@ import com.course.server.util.CopyUtil;
 import com.course.server.util.UuidUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.util.StringUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -36,9 +37,25 @@ public class ChapterService {
     }
 
     public ChapterDto save(ChapterDto chapterDto){
-        chapterDto.setId(UuidUtil.getShortUuid());
         Chapter chapter = CopyUtil.copy(chapterDto, Chapter.class);
-        chapterMapper.insert(chapter);
-        return chapterDto;
+        if (StringUtil.isEmpty(chapter.getId())){
+            chapter = insert(chapter);
+        }else {
+            chapter = update(chapter);
+        }
+        return CopyUtil.copy(chapter, ChapterDto.class);
     }
+
+    private Chapter insert(Chapter chapter){
+        chapter.setId(UuidUtil.getShortUuid());
+        chapterMapper.insert(chapter);
+        return chapter;
+    }
+
+    private Chapter update(Chapter chapter){
+        chapterMapper.updateByPrimaryKey(chapter);
+        return chapter;
+    }
+
+
 }
