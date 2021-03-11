@@ -2,6 +2,7 @@ package com.course.business.controller.admin;
 
 import com.course.server.dto.ChapterDto;
 import com.course.server.dto.PageDto;
+import com.course.server.dto.ResponseDto;
 import com.course.server.service.ChapterService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,9 +23,11 @@ public class ChapterController {
     private ChapterService chapterService;
 
     @RequestMapping("/list")
-    public PageDto list(@RequestBody PageDto pageDto){
+    public ResponseDto list(@RequestBody PageDto pageDto){
+        ResponseDto responseDto = new ResponseDto();
         chapterService.list(pageDto);
-        return pageDto;
+        responseDto.setContent(pageDto);
+        return responseDto;
     }
 
     @RequestMapping("/success1")
@@ -33,8 +36,10 @@ public class ChapterController {
     }
 
     @PostMapping("/save")
-    public ChapterDto save(@RequestBody ChapterDto chapterDto){
-        chapterService.save(chapterDto);
-        return chapterDto;
+    public ResponseDto save(@RequestBody ChapterDto chapterDto){
+        ChapterDto chapterDto1 = chapterService.save(chapterDto);
+        ResponseDto responseDto = new ResponseDto();
+        responseDto.setContent(chapterDto1);
+        return responseDto;
     }
 }
