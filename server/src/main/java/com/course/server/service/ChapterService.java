@@ -46,6 +46,10 @@ public class ChapterService {
         return CopyUtil.copy(chapter, ChapterDto.class);
     }
 
+    public void delete(String id){
+        chapterMapper.deleteByPrimaryKey(id);
+    }
+
     private Chapter insert(Chapter chapter){
         chapter.setId(UuidUtil.getShortUuid());
         chapterMapper.insert(chapter);
