@@ -1,7 +1,6 @@
 package com.course.server.config;
 
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.PropertyPreFilter;
 import com.alibaba.fastjson.support.spring.PropertyPreFilters;
 import com.course.server.util.UuidUtil;
 import org.aspectj.lang.JoinPoint;

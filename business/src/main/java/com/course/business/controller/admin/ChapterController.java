@@ -8,7 +8,6 @@ import com.course.server.util.ValidatorUtil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @author JT
@@ -22,6 +21,11 @@ public class ChapterController {
     @Resource
     private ChapterService chapterService;
 
+    /**
+     * 查询列表
+     * @param pageDto
+     * @return
+     */
     @PostMapping("/list")
     public ResponseDto list(@RequestBody PageDto pageDto){
         ResponseDto responseDto = new ResponseDto();
@@ -30,11 +34,11 @@ public class ChapterController {
         return responseDto;
     }
 
-    @RequestMapping("/success1")
-    public String success(){
-        return "success1";
-    }
-
+    /**
+     * 保存，有id时更新，无id时更新
+     * @param chapterDto
+     * @return
+     */
     @PostMapping("/save")
     public ResponseDto save(@RequestBody ChapterDto chapterDto){
         //数据校验
@@ -48,6 +52,11 @@ public class ChapterController {
         return responseDto;
     }
 
+    /**
+     * 根据id删除
+     * @param id
+     * @return
+     */
     @DeleteMapping("/delete/{id}")
     public ResponseDto delete(@PathVariable String id){
         chapterService.delete(id);

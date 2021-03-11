@@ -137,18 +137,26 @@
         },
         methods: {
             /**
-             * 点击【新增】
+             * 点击【新增】按钮
              */
             add() {
                 let _this = this;
                 _this.chapter = {};
                 $('#form-model').modal('show');
             },
+            /**
+             * 点击【编辑】按钮
+             * @param chapter
+             */
             edit(chapter) {
                 let _this = this;
                 _this.chapter = $.extend({}, chapter);
                 $('#form-model').modal('show');
             },
+            /**
+             * 列表查询
+             * @param page
+             */
             list(page) {
                 let _this = this;
                 Loading.show();
@@ -157,12 +165,14 @@
                     size: _this.$refs.pagination.size,
                 }).then((response)=>{
                     Loading.hide();
-                    console.log("查询大章列表结果:", response.data);
                     let resp = response.data;
                     _this.chapters = resp.content.list;
                     _this.$refs.pagination.render(page, resp.content.total);
                 })
             },
+            /**
+             * 点击【保存】按钮
+             */
             save() {
                 let _this = this;
                 //保存检验
@@ -175,7 +185,6 @@
                 Loading.show();
                 _this.$ajax.post('http://127.0.0.1:9000/business/admin/chapter/save',_this.chapter).then((response)=>{
                     Loading.hide();
-                    console.log("新增/更新大章列表结果:", response.data);
                     let resp = response.data;
                     if (resp.success) {
                         $('#form-model').modal('hide');
@@ -186,13 +195,16 @@
                     }
                 })
             },
+            /**
+             * 点击【删除】按钮
+             * @param id
+             */
             del(id) {
                 let _this = this;
                 Confirm.show("删除大章数据后不可恢复，确认删除？", function () {
                     Loading.show();
                     _this.$ajax.delete('http://127.0.0.1:9000/business/admin/chapter/delete/' + id).then((response)=>{
                         Loading.hide();
-                        console.log("删除大章列表结果:", response.data);
                         let resp = response.data;
                         if (resp.success) {
                             _this.list(1);
