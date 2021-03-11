@@ -130,7 +130,7 @@
         },
         mounted: function () {
             let _this = this;
-            //设置初始分页条数10条
+            //设置初始分页条数8条
             _this.$refs.pagination.size = 10 ,
             _this.list(1);
 
@@ -174,13 +174,31 @@
             },
             del(id) {
                 let _this = this;
-                _this.$ajax.delete('http://127.0.0.1:9000/business/admin/chapter/delete/' + id).then((response)=>{
-                    console.log("删除大章列表结果:", response.data);
-                    let resp = response.data;
-                    if (resp.success) {
-                        _this.list(1);
+                Swal.fire({
+                    title: '确认删除吗?',
+                    text: "确认删除该数据吗，删除后不可恢复!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '确认!'
+                }).then((result) => {
+                    _this.$ajax.delete('http://127.0.0.1:9000/business/admin/chapter/delete/' + id).then((response)=>{
+                        console.log("删除大章列表结果:", response.data);
+                        let resp = response.data;
+                        if (resp.success) {
+                            _this.list(1);
+                        }
+                    })
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            '删除!',
+                            '该数据已被删除！',
+                            '删除成功'
+                        )
                     }
                 })
+
             },
 
 
