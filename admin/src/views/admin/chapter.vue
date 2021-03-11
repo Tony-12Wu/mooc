@@ -169,6 +169,7 @@
                     if (resp.success) {
                         $('#form-model').modal('hide');
                         _this.list(1);
+                        toast.success("保存成功！");
                     }
                 })
             },
@@ -188,15 +189,9 @@
                         let resp = response.data;
                         if (resp.success) {
                             _this.list(1);
+                            toast.success("删除成功！")
                         }
                     })
-                    if (result.isConfirmed) {
-                        Swal.fire(
-                            '删除!',
-                            '该数据已被删除！',
-                            '删除成功'
-                        )
-                    }
                 })
 
             },
