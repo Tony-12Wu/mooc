@@ -10,6 +10,9 @@ import java.math.BigDecimal;
 </#if>
 </#list>
 
+/**
+* @author JT
+*/
 public class ${Domain}Dto {
 
     <#list fieldList as field>

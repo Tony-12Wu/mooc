@@ -20,6 +20,9 @@ import java.util.Date;
     </#if>
 </#list>
 
+/**
+* @author JT
+*/
 @Service
 public class ${Domain}Service {
 

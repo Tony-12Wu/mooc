@@ -8,15 +8,21 @@ import java.lang.reflect.Method;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author JT
+ */
 public class EnumGenerator {
-//    static String path = "admin\\public\\static\\js\\enums.js";
-    static String path = "web\\public\\static\\js\\enums.js";
+    /**
+     *    static String path = "web\\public\\static\\js\\enums.js";
+     */
+    static String path = "admin\\public\\static\\js\\enums.js";
 
     public static void main(String[] args) {
         StringBuffer bufferObject = new StringBuffer();
         StringBuffer bufferArray = new StringBuffer();
         long begin = System.currentTimeMillis();
         try {
+            //将需要生成的枚举类放这里
             toJson(SectionChargeEnum.class, bufferObject, bufferArray);
             toJson(YesNoEnum.class, bufferObject, bufferArray);
             toJson(CourseLevelEnum.class, bufferObject, bufferArray);
