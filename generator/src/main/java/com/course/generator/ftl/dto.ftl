@@ -11,8 +11,8 @@ import java.math.BigDecimal;
 </#list>
 
 /**
-* @author JT
-*/
+ * @author JT
+ */
 public class ${Domain}Dto {
 
     <#list fieldList as field>

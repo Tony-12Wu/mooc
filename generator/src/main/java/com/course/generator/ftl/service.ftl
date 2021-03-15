@@ -21,8 +21,8 @@ import java.util.Date;
 </#list>
 
 /**
-* @author JT
-*/
+ * @author JT
+ */
 @Service
 public class ${Domain}Service {
 

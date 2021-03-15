@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 /**
-* @author JT
-*/
+ * @author JT
+ */
 @RestController
 @RequestMapping("/admin/${domain}")
 public class ${Domain}Controller {
