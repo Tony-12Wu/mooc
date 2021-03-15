@@ -6,11 +6,10 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="summary" jdbcType="VARCHAR" property="summary" />
     <result column="time" jdbcType="INTEGER" property="time" />
-    <result column="price" jdbcType="DECIMAL" property="price" />
     <result column="image" jdbcType="VARCHAR" property="image" />
-    <result column="level" jdbcType="CHAR" property="level" />
-    <result column="charge" jdbcType="CHAR" property="charge" />
+    <result column="online" jdbcType="CHAR" property="online" />
     <result column="status" jdbcType="CHAR" property="status" />
+    <result column="category" jdbcType="CHAR" property="category" />
     <result column="enroll" jdbcType="INTEGER" property="enroll" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
     <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
@@ -75,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, `name`, summary, `time`, price, image, `level`, charge, `status`, enroll, sort, 
-    create_at, update_at
+    id, `name`, summary, `time`, image, `online`, `status`, category, enroll, sort, create_at, 
+    update_at
   </sql>
   <select id="selectByExample" parameterType="com.course.server.domain.CourseExample" resultMap="BaseResultMap">
     select
@@ -110,15 +109,13 @@
   </delete>
   <insert id="insert" parameterType="com.course.server.domain.Course">
     insert into course (id, `name`, summary, 
-      `time`, price, image, 
-      `level`, charge, `status`, enroll, 
-      sort, create_at, update_at
-      )
+      `time`, image, `online`, `status`, 
+      category, enroll, sort, 
+      create_at, update_at)
     values (#{id,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, 
-      #{time,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{image,jdbcType=VARCHAR}, 
-      #{level,jdbcType=CHAR}, #{charge,jdbcType=CHAR}, #{status,jdbcType=CHAR}, #{enroll,jdbcType=INTEGER}, 
-      #{sort,jdbcType=INTEGER}, #{createAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP}
-      )
+      #{time,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, #{online,jdbcType=CHAR}, #{status,jdbcType=CHAR}, 
+      #{category,jdbcType=CHAR}, #{enroll,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}, 
+      #{createAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.course.server.domain.Course">
     insert into course
@@ -135,20 +132,17 @@
       <if test="time != null">
         `time`,
       </if>
-      <if test="price != null">
-        price,
-      </if>
       <if test="image != null">
         image,
       </if>
-      <if test="level != null">
-        `level`,
-      </if>
-      <if test="charge != null">
-        charge,
+      <if test="online != null">
+        `online`,
       </if>
       <if test="status != null">
         `status`,
+      </if>
+      <if test="category != null">
+        category,
       </if>
       <if test="enroll != null">
         enroll,
@@ -176,20 +170,17 @@
       <if test="time != null">
         #{time,jdbcType=INTEGER},
       </if>
-      <if test="price != null">
-        #{price,jdbcType=DECIMAL},
-      </if>
       <if test="image != null">
         #{image,jdbcType=VARCHAR},
       </if>
-      <if test="level != null">
-        #{level,jdbcType=CHAR},
-      </if>
-      <if test="charge != null">
-        #{charge,jdbcType=CHAR},
+      <if test="online != null">
+        #{online,jdbcType=CHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=CHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=CHAR},
       </if>
       <if test="enroll != null">
         #{enroll,jdbcType=INTEGER},
@@ -226,20 +217,17 @@
       <if test="record.time != null">
         `time` = #{record.time,jdbcType=INTEGER},
       </if>
-      <if test="record.price != null">
-        price = #{record.price,jdbcType=DECIMAL},
-      </if>
       <if test="record.image != null">
         image = #{record.image,jdbcType=VARCHAR},
       </if>
-      <if test="record.level != null">
-        `level` = #{record.level,jdbcType=CHAR},
-      </if>
-      <if test="record.charge != null">
-        charge = #{record.charge,jdbcType=CHAR},
+      <if test="record.online != null">
+        `online` = #{record.online,jdbcType=CHAR},
       </if>
       <if test="record.status != null">
         `status` = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.category != null">
+        category = #{record.category,jdbcType=CHAR},
       </if>
       <if test="record.enroll != null">
         enroll = #{record.enroll,jdbcType=INTEGER},
@@ -264,11 +252,10 @@
       `name` = #{record.name,jdbcType=VARCHAR},
       summary = #{record.summary,jdbcType=VARCHAR},
       `time` = #{record.time,jdbcType=INTEGER},
-      price = #{record.price,jdbcType=DECIMAL},
       image = #{record.image,jdbcType=VARCHAR},
-      `level` = #{record.level,jdbcType=CHAR},
-      charge = #{record.charge,jdbcType=CHAR},
+      `online` = #{record.online,jdbcType=CHAR},
       `status` = #{record.status,jdbcType=CHAR},
+      category = #{record.category,jdbcType=CHAR},
       enroll = #{record.enroll,jdbcType=INTEGER},
       sort = #{record.sort,jdbcType=INTEGER},
       create_at = #{record.createAt,jdbcType=TIMESTAMP},
@@ -289,20 +276,17 @@
       <if test="time != null">
         `time` = #{time,jdbcType=INTEGER},
       </if>
-      <if test="price != null">
-        price = #{price,jdbcType=DECIMAL},
-      </if>
       <if test="image != null">
         image = #{image,jdbcType=VARCHAR},
       </if>
-      <if test="level != null">
-        `level` = #{level,jdbcType=CHAR},
-      </if>
-      <if test="charge != null">
-        charge = #{charge,jdbcType=CHAR},
+      <if test="online != null">
+        `online` = #{online,jdbcType=CHAR},
       </if>
       <if test="status != null">
         `status` = #{status,jdbcType=CHAR},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=CHAR},
       </if>
       <if test="enroll != null">
         enroll = #{enroll,jdbcType=INTEGER},
@@ -324,11 +308,10 @@
     set `name` = #{name,jdbcType=VARCHAR},
       summary = #{summary,jdbcType=VARCHAR},
       `time` = #{time,jdbcType=INTEGER},
-      price = #{price,jdbcType=DECIMAL},
       image = #{image,jdbcType=VARCHAR},
-      `level` = #{level,jdbcType=CHAR},
-      charge = #{charge,jdbcType=CHAR},
+      `online` = #{online,jdbcType=CHAR},
       `status` = #{status,jdbcType=CHAR},
+      category = #{category,jdbcType=CHAR},
       enroll = #{enroll,jdbcType=INTEGER},
       sort = #{sort,jdbcType=INTEGER},
       create_at = #{createAt,jdbcType=TIMESTAMP},

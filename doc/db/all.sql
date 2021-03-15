@@ -47,11 +47,10 @@ create table course (
     name varchar(50) not null comment '名称',
     summary varchar(2000) comment '概述',
     time int default 0 comment '时长|单位秒',
-    price decimal(8,2) default 0.00 comment '价格(元)',
     image varchar(100) comment '封面',
-    level char(1) comment '级别|枚举[CourseLevelEnum]: ONE("1","初级"), TOW("2","中级"), THREE("3","高级")',
-    charge char(1) comment '收费|枚举[CourseChargeEnum]: CHARGE("C","收费"), FREE("F","免费")',
+    online char(1) comment '线上|枚举[CourseOnlineEnum]: ONLINE("0","线上"), Offline("1","线下")',
     status char(1) comment '状态|枚举[CourseStatusEnum]: PUBLISH("P","发布"), DRAFT("D","草稿")',
+    category char(1) comment '类别|枚举[CourseCategoryEnum]: PUBLIC_ELECTIVE("0","校公选课"), PUBLIC_COMPULSORY("2","校公共必修课"), MAJOR_REQUIRED("3","专业必修课"),DEGREE("4","学位课")',
     enroll integer default 0 comment '报名数',
     sort int comment '顺序',
     create_at datetime(3) comment '创建时间',
@@ -59,5 +58,5 @@ create table course (
     primary key (id)
 )engine = innodb default charset = utf8mb4 comment = '课程表';
 
-insert into course (id, name, summary, time, price, image, level, charge, status, enroll, sort, create_at, update_at) values
-('00000001', '测试课程', '测试课程的概述', '1000', '10', '', '1', 'C', 'P', '100', '1', now(), now())
+insert into course (id, name, summary, time, image, online, status, category, enroll, sort, create_at, update_at) values
+('00000001', '测试课程', '测试课程的概述', '1000',  '', '0', 'P', '0', '100', '1', now(), now())

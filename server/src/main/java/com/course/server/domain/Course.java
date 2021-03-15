@@ -1,11 +1,7 @@
 package com.course.server.domain;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
-/**
- * @author JT
- */
 public class Course {
     private String id;
 
@@ -15,15 +11,13 @@ public class Course {
 
     private Integer time;
 
-    private BigDecimal price;
-
     private String image;
 
-    private String level;
-
-    private String charge;
+    private String online;
 
     private String status;
+
+    private String category;
 
     private Integer enroll;
 
@@ -65,14 +59,6 @@ public class Course {
         this.time = time;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
     public String getImage() {
         return image;
     }
@@ -81,20 +67,12 @@ public class Course {
         this.image = image;
     }
 
-    public String getLevel() {
-        return level;
+    public String getOnline() {
+        return online;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
-    public String getCharge() {
-        return charge;
-    }
-
-    public void setCharge(String charge) {
-        this.charge = charge;
+    public void setOnline(String online) {
+        this.online = online;
     }
 
     public String getStatus() {
@@ -103,6 +81,14 @@ public class Course {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public Integer getEnroll() {
@@ -147,11 +133,10 @@ public class Course {
         sb.append(", name=").append(name);
         sb.append(", summary=").append(summary);
         sb.append(", time=").append(time);
-        sb.append(", price=").append(price);
         sb.append(", image=").append(image);
-        sb.append(", level=").append(level);
-        sb.append(", charge=").append(charge);
+        sb.append(", online=").append(online);
         sb.append(", status=").append(status);
+        sb.append(", category=").append(category);
         sb.append(", enroll=").append(enroll);
         sb.append(", sort=").append(sort);
         sb.append(", createAt=").append(createAt);

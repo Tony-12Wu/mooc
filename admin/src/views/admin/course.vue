@@ -21,13 +21,13 @@
               <div class="caption">
                 <div class="clearfix">
                   <span class="pull-right label label-primary info-label">
-                    {{COURSE_LEVEL | optionKV(course.level)}}
-                  </span>
-                  <span class="pull-right label label-primary info-label">
-                    {{COURSE_CHARGE | optionKV(course.charge)}}
+                    {{COURSE_CATEGORY | optionKV(course.category)}}
                   </span>
                   <span class="pull-right label label-primary info-label">
                     {{COURSE_STATUS | optionKV(course.status)}}
+                  </span>
+                  <span class="pull-right label label-primary info-label">
+                    {{COURSE_ONLINE | optionKV(course.online)}}
                   </span>
                 </div>
 
@@ -39,7 +39,7 @@
                 </p>
                 <p>{{course.summary}}</p>
                 <p>
-                  <span class="badge badge-info">课程id：{{course.id}}</span>
+                  <span class="badge badge-info">id：{{course.id}}</span>
                   <span class="badge badge-info">时长：{{course.time}}</span>
                   <span class="badge badge-info">排序：{{course.sort}}</span>
                 </p>
@@ -134,34 +134,17 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">价格(元)</label>
-                                            <div class="col-sm-10">
-                                                <input v-model="course.price" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
                                             <label class="col-sm-2 control-label">封面</label>
                                             <div class="col-sm-10">
                                                 <input v-model="course.image" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">级别</label>
+                                            <label class="col-sm-2 control-label">线上</label>
                                             <div class="col-sm-10">
                                                 <!-- 枚举下拉框 -->
-                                                <select v-model="course.level" class="form-control">
-                                                    <option v-for="o in COURSE_LEVEL" v-bind:value="o.key">
-                                                        {{o.value}}
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">收费</label>
-                                            <div class="col-sm-10">
-                                                <!-- 枚举下拉框 -->
-                                                <select v-model="course.charge" class="form-control">
-                                                    <option v-for="o in COURSE_CHARGE" v-bind:value="o.key">
+                                                <select v-model="course.online" class="form-control">
+                                                    <option v-for="o in COURSE_ONLINE" v-bind:value="o.key">
                                                         {{o.value}}
                                                     </option>
                                                 </select>
@@ -177,6 +160,17 @@
                                                     </option>
                                                 </select>
                                             </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="col-sm-2 control-label">类别</label>
+                                          <div class="col-sm-10">
+                                            <!-- 枚举下拉框 -->
+                                            <select v-model="course.category" class="form-control">
+                                              <option v-for="o in COURSE_CATEGORY" v-bind:value="o.key">
+                                                {{o.value}}
+                                              </option>
+                                            </select>
+                                          </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">报名数</label>
@@ -224,9 +218,9 @@
             return {
             course: {},
             courses: [],
-            COURSE_LEVEL: COURSE_LEVEL,
-            COURSE_CHARGE: COURSE_CHARGE,
+            COURSE_ONLINE: COURSE_ONLINE,
             COURSE_STATUS: COURSE_STATUS,
+            COURSE_CATEGORY:COURSE_CATEGORY,
             }
         },
         mounted: function () {

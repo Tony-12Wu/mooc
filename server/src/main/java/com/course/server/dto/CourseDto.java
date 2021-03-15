@@ -1,12 +1,12 @@
 package com.course.server.dto;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * @author JT
  */
+
 public class CourseDto {
 
     /**
@@ -30,29 +30,24 @@ public class CourseDto {
     private Integer time;
 
     /**
-     * 价格(元)
-     */
-    private BigDecimal price;
-
-    /**
      * 封面
      */
     private String image;
 
     /**
-     * 级别|枚举[CourseLevelEnum]: ONE("1","初级"), TOW("2","中级"), THREE("3","高级")
+     * 线上|枚举[CourseOnlineEnum]: ONLINE("0","线上"), Offline("1","线下")
      */
-    private String level;
-
-    /**
-     * 收费|枚举[CourseChargeEnum]: CHARGE("C","收费"), FREE("F","免费")
-     */
-    private String charge;
+    private String online;
 
     /**
      * 状态|枚举[CourseStatusEnum]: PUBLISH("P","发布"), DRAFT("D","草稿")
      */
     private String status;
+
+    /**
+     * 类别|枚举[CourseCategoryEnum]: PUBLIC_ELECTIVE("0","校公选课"), PUBLIC_COMPULSORY("2","校公共必修课"), MAJOR_REQUIRED("3","专业必修课"),DEGREE("4","学位课")
+     */
+    private String category;
 
     /**
      * 报名数
@@ -108,14 +103,6 @@ public class CourseDto {
         this.time = time;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
     public String getImage() {
         return image;
     }
@@ -124,20 +111,12 @@ public class CourseDto {
         this.image = image;
     }
 
-    public String getLevel() {
-        return level;
+    public String getOnline() {
+        return online;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
-    public String getCharge() {
-        return charge;
-    }
-
-    public void setCharge(String charge) {
-        this.charge = charge;
+    public void setOnline(String online) {
+        this.online = online;
     }
 
     public String getStatus() {
@@ -146,6 +125,14 @@ public class CourseDto {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public Integer getEnroll() {
@@ -191,11 +178,10 @@ public class CourseDto {
         sb.append(", name=").append(name);
         sb.append(", summary=").append(summary);
         sb.append(", time=").append(time);
-        sb.append(", price=").append(price);
         sb.append(", image=").append(image);
-        sb.append(", level=").append(level);
-        sb.append(", charge=").append(charge);
+        sb.append(", online=").append(online);
         sb.append(", status=").append(status);
+        sb.append(", category=").append(category);
         sb.append(", enroll=").append(enroll);
         sb.append(", sort=").append(sort);
         sb.append(", createAt=").append(createAt);

@@ -4,16 +4,16 @@ package com.course.server.enums;
  * @author JT
  */
 
-public enum CourseChargeEnum {
+public enum CourseOnlineEnum {
 
-    CHARGE("C", "收费"),
-    FREE("F", "免费");
+    ONLINE("0","线上"),
+    Offline("1","线下");
 
     private String code;
 
     private String desc;
 
-    CourseChargeEnum(String code, String desc) {
+    CourseOnlineEnum(String code, String desc) {
         this.code = code;
         this.desc = desc;
     }
