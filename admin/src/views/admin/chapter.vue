@@ -1,6 +1,12 @@
 <template>
   <div>
+    <h3>{{course.name}}</h3>
     <p>
+      <router-link to="/business/course" class="btn btn-white btn-default btn-round">
+        <i class="ace-icon fa fa-arrow-left"></i>
+        返回课程
+      </router-link>
+      &nbsp;
       <button v-on:click="add()" class="btn btn-white btn-default btn-round">
         <i class="ace-icon fa fa-edit"></i>
         新增
@@ -123,15 +129,18 @@
         data: function() {
             return {
                 chapter: {},
-                chapters: [
-
-                ]
+                chapters: [],
+                course: {},
             }
         },
         mounted: function () {
             let _this = this;
-            //设置初始分页条数8条
-            _this.$refs.pagination.size = 10 ,
+            //设置初始分页条数
+            _this.$refs.pagination.size = 10,
+            _this.course = SessionStorage.get("course") || {};
+            if (Tool.isEmpty(_this.course)) {
+                _this.$route.push("/welcome");
+            }
             _this.list(1);
 
         },
