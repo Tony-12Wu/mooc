@@ -1,5 +1,8 @@
 package com.course.server.dto;
 
+/**
+ * @author JT
+ */
 public class ChapterDto {
     private String id;
 
