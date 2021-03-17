@@ -38,7 +38,7 @@ let optionKVArray = (list, key) =>  {
 };
 
 /**
- * 时长格式化
+ * 时长格式化过滤
  * @param value 例如：36000
  * @returns {string} 例如：10:00:00
  */
