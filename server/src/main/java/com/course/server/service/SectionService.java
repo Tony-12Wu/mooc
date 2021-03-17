@@ -1,9 +1,9 @@
 package com.course.server.service;
 
+import com.course.server.domain.Course;
 import com.course.server.domain.Section;
 import com.course.server.domain.SectionExample;
 import com.course.server.dto.SectionDto;
-import com.course.server.dto.PageDto;
 import com.course.server.dto.SectionPageDto;
 import com.course.server.mapper.SectionMapper;
 import com.course.server.util.CopyUtil;
@@ -26,6 +26,9 @@ public class SectionService {
     @Resource
     private SectionMapper sectionMapper;
 
+    @Resource
+    private CourseService courseService;
+
     /**
      * 列表查询
      */
@@ -37,7 +40,7 @@ public class SectionService {
             criteria.andCourseIdEqualTo(sectionPageDto.getCourseId());
         }
         if (!StringUtils.isEmpty(sectionPageDto.getChapterId())){
-            criteria.andCourseIdEqualTo(sectionPageDto.getChapterId());
+            criteria.andChapterIdEqualTo(sectionPageDto.getChapterId());
         }
         sectionExample.setOrderByClause("sort asc");
         List<Section> sectionList = sectionMapper.selectByExample(sectionExample);
@@ -57,6 +60,7 @@ public class SectionService {
         } else {
             this.update(section);
         }
+        courseService.updateTime(sectionDto.getCourseId());
     }
 
     /**

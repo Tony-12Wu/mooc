@@ -2,6 +2,9 @@ package com.course.server.dto;
 
 import java.util.List;
 
+/**
+ * @author JT
+ */
 public class PageDto<T> {
 
     /**

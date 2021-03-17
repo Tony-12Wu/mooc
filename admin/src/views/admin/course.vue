@@ -35,7 +35,8 @@
                   <a href="#" class="blue">{{course.name}}</a>
                 </h3>
                 <p>
-                  <span class="blue bolder bigger-150">已有{{course.enroll}}人报名&nbsp;</span>
+                  <span v-show="!course.enroll" class="blue bolder bigger-150">暂未有人报名&nbsp;</span>
+                  <span v-show="course.enroll" class="blue bolder bigger-150">已有{{course.enroll}}人报名&nbsp;</span>
                 </p>
                 <p>{{course.summary}}</p>
                 <p>
