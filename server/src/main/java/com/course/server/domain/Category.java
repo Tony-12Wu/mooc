@@ -1,5 +1,8 @@
 package com.course.server.domain;
 
+/**
+ * @author JT
+ */
 public class Category {
     private String id;
 
