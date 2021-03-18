@@ -18,7 +18,7 @@
                     <thead>
                     <tr>
                         <th>id</th>
-                        <th>名称</th>
+                        <th>一级菜单名称</th>
                         <th>顺序</th>
                         <th>操作</th>
                     </tr>
@@ -55,7 +55,7 @@
                     <thead>
                     <tr>
                         <th>id</th>
-                        <th>名称</th>
+                        <th>二级菜单名称</th>
                         <th>顺序</th>
                         <th>操作</th>
                     </tr>
@@ -93,24 +93,24 @@
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal">
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">父分类</label>
-                                            <div class="col-sm-10">
-                                                <p class="form-control-static">{{active.name || "无"}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">名称</label>
-                                            <div class="col-sm-10">
-                                                <input v-model="category.name" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">顺序</label>
-                                            <div class="col-sm-10">
-                                                <input v-model="category.sort" class="form-control">
-                                            </div>
-                                        </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">父分类</label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">{{active.name || "无"}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">名称</label>
+                                <div class="col-sm-10">
+                                    <input v-model="category.name" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">顺序</label>
+                                <div class="col-sm-10">
+                                    <input v-model="category.sort" class="form-control">
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">
