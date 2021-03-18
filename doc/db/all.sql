@@ -97,3 +97,12 @@ insert into category (id, parent, name, sort) VALUES ('00000402', '00000400', '�
 insert into category (id, parent, name, sort) VALUES ('00000403', '00000400', '机器学习', 403);
 insert into category (id, parent, name, sort) VALUES ('00000404', '00000400', '深度学习', 404);
 insert into category (id, parent, name, sort) VALUES ('00000405', '00000400', '数据挖掘', 405);
+
+-- 课程分类表
+drop table if exists `course_category`;
+create table `course_category` (
+    `id` char(8) not null default '' comment 'id',
+    `course_id` char(8) comment '课程|course.id',
+    `category_id` char(8) comment '分类|category.id',
+    primary key (`id`)
+)engine = innodb default charset = utf8mb4 comment ='课程分类';

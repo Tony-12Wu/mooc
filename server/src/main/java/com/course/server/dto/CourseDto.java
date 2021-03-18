@@ -1,6 +1,8 @@
 package com.course.server.dto;
 
 import java.util.Date;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
@@ -71,8 +73,21 @@ public class CourseDto {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateAt;
 
+    /**
+     * 分类
+     */
+    private List<CategoryDto> categorys;
+
     public String getId() {
         return id;
+    }
+
+    public List<CategoryDto> getCategorys() {
+        return categorys;
+    }
+
+    public void setCategorys(List<CategoryDto> categorys) {
+        this.categorys = categorys;
     }
 
     public void setId(String id) {
@@ -167,26 +182,23 @@ public class CourseDto {
         this.updateAt = updateAt;
     }
 
-
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", summary=").append(summary);
+        final StringBuffer sb = new StringBuffer("CourseDto{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", summary='").append(summary).append('\'');
         sb.append(", time=").append(time);
-        sb.append(", image=").append(image);
-        sb.append(", online=").append(online);
-        sb.append(", status=").append(status);
-        sb.append(", category=").append(category);
+        sb.append(", image='").append(image).append('\'');
+        sb.append(", online='").append(online).append('\'');
+        sb.append(", status='").append(status).append('\'');
+        sb.append(", category='").append(category).append('\'');
         sb.append(", enroll=").append(enroll);
         sb.append(", sort=").append(sort);
         sb.append(", createAt=").append(createAt);
         sb.append(", updateAt=").append(updateAt);
-        sb.append("]");
+        sb.append(", categorys=").append(categorys);
+        sb.append('}');
         return sb.toString();
     }
 
