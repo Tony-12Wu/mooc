@@ -145,6 +145,7 @@
                 _this.$route.push("/welcome");
             }
             _this.list(1);
+            this.$parent.activeSidebar("business-course-sidebar");
 
         },
         methods: {

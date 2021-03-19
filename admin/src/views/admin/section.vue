@@ -9,6 +9,11 @@
       </h4>
       <hr>
         <p>
+            <router-link to="/business/chapter" class="btn btn-white btn-default btn-round">
+              <i class="ace-icon fa fa-arrow-left"></i>
+              返回大章
+            </router-link>
+            &nbsp;
             <button v-on:click="add()" class="btn btn-white btn-default btn-round">
                 <i class="ace-icon fa fa-edit"></i>
                 新增
@@ -151,7 +156,7 @@
             _this.chapter = chapter;
             _this.list(1);
             // sidebar激活样式方法一
-            // this.$parent.activeSidebar("business-section-sidebar");
+            this.$parent.activeSidebar("business-course-sidebar");
 
         },
         methods: {
