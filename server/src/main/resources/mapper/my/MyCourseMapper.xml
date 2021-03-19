@@ -27,7 +27,7 @@
         where c.id = #{courseId}
     </update>
 
-<!--    <update id="updateSort" parameterType="com.course.server.dto.SortDto">
+    <update id="updateSort" parameterType="com.course.server.dto.SortDto">
         update course set `sort`= #{newSort} where id = #{id}
     </update>
 
@@ -41,6 +41,6 @@
         <![CDATA[
         update course set `sort`= (`sort`-1) where `sort` <= #{newSort} and `sort` >= #{oldSort} and id != #{id}
         ]]>
-    </update>-->
+    </update>
 
 </mapper>
