@@ -8,7 +8,6 @@
     <result column="chapter_id" jdbcType="CHAR" property="chapterId" />
     <result column="video" jdbcType="VARCHAR" property="video" />
     <result column="time" jdbcType="INTEGER" property="time" />
-    <result column="charge" jdbcType="CHAR" property="charge" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
     <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
@@ -72,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, course_id, chapter_id, video, `time`, charge, sort, created_at, updated_at
+    id, title, course_id, chapter_id, video, `time`, sort, created_at, updated_at
   </sql>
   <select id="selectByExample" parameterType="com.course.server.domain.SectionExample" resultMap="BaseResultMap">
     select
@@ -106,12 +105,11 @@
   </delete>
   <insert id="insert" parameterType="com.course.server.domain.Section">
     insert into section (id, title, course_id, 
-      chapter_id, video, `time`, 
-      charge, sort, created_at, 
+      chapter_id, video, `time`, sort, created_at,
       updated_at)
     values (#{id,jdbcType=CHAR}, #{title,jdbcType=VARCHAR}, #{courseId,jdbcType=CHAR}, 
       #{chapterId,jdbcType=CHAR}, #{video,jdbcType=VARCHAR}, #{time,jdbcType=INTEGER}, 
-      #{charge,jdbcType=CHAR}, #{sort,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{sort,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP},
       #{updatedAt,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.course.server.domain.Section">
@@ -134,9 +132,6 @@
       </if>
       <if test="time != null">
         `time`,
-      </if>
-      <if test="charge != null">
-        charge,
       </if>
       <if test="sort != null">
         sort,
@@ -166,9 +161,6 @@
       </if>
       <if test="time != null">
         #{time,jdbcType=INTEGER},
-      </if>
-      <if test="charge != null">
-        #{charge,jdbcType=CHAR},
       </if>
       <if test="sort != null">
         #{sort,jdbcType=INTEGER},
@@ -208,9 +200,6 @@
       <if test="record.time != null">
         `time` = #{record.time,jdbcType=INTEGER},
       </if>
-      <if test="record.charge != null">
-        charge = #{record.charge,jdbcType=CHAR},
-      </if>
       <if test="record.sort != null">
         sort = #{record.sort,jdbcType=INTEGER},
       </if>
@@ -233,7 +222,6 @@
       chapter_id = #{record.chapterId,jdbcType=CHAR},
       video = #{record.video,jdbcType=VARCHAR},
       `time` = #{record.time,jdbcType=INTEGER},
-      charge = #{record.charge,jdbcType=CHAR},
       sort = #{record.sort,jdbcType=INTEGER},
       created_at = #{record.createdAt,jdbcType=TIMESTAMP},
       updated_at = #{record.updatedAt,jdbcType=TIMESTAMP}
@@ -259,9 +247,6 @@
       <if test="time != null">
         `time` = #{time,jdbcType=INTEGER},
       </if>
-      <if test="charge != null">
-        charge = #{charge,jdbcType=CHAR},
-      </if>
       <if test="sort != null">
         sort = #{sort,jdbcType=INTEGER},
       </if>
@@ -281,7 +266,6 @@
       chapter_id = #{chapterId,jdbcType=CHAR},
       video = #{video,jdbcType=VARCHAR},
       `time` = #{time,jdbcType=INTEGER},
-      charge = #{charge,jdbcType=CHAR},
       sort = #{sort,jdbcType=INTEGER},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
       updated_at = #{updatedAt,jdbcType=TIMESTAMP}

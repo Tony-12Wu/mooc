@@ -30,13 +30,12 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
             <tr>
-                                        <th>ID</th>
-                        <th>标题</th>
-                        <th>视频</th>
-                        <th>时长</th>
-                        <th>收费</th>
-                        <th>顺序</th>
-                <th>操作</th>
+              <th>ID</th>
+              <th>标题</th>
+              <th>视频</th>
+              <th>时长</th>
+              <th>顺序</th>
+              <th>操作</th>
             </tr>
             </thead>
 
@@ -46,7 +45,6 @@
                             <td>{{section.title}}</td>
                             <td>{{section.video}}</td>
                             <td>{{section.time | formatSecond}}</td>
-                            <td>{{SECTION_CHARGE | optionKV(section.charge)}}</td>
                             <td>{{section.sort}}</td>
                 <td>
                     <div class="hidden-sm hidden-xs btn-group">
@@ -72,51 +70,42 @@
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal">
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">标题</label>
-                                            <div class="col-sm-10">
-                                                <input v-model="section.title" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">课程</label>
-                                            <div class="col-sm-10">
-                                              <p class="form-control-static">{{course.name}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">大章</label>
-                                            <div class="col-sm-10">
-                                              <p class="form-control-static">{{chapter.name}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">视频</label>
-                                            <div class="col-sm-10">
-                                                <input v-model="section.video" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">时长</label>
-                                            <div class="col-sm-10">
-                                                <input v-model="section.time" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">收费</label>
-                                            <div class="col-sm-10">
-                                              <!-- 枚举下拉框 -->
-                                              <select v-model="section.charge" class="form-control">
-                                                <option v-for="o in SECTION_CHARGE" v-bind:value="o.key">{{o.value}}</option>
-                                              </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">顺序</label>
-                                            <div class="col-sm-10">
-                                                <input v-model="section.sort" class="form-control">
-                                            </div>
-                                        </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">标题</label>
+                                <div class="col-sm-10">
+                                    <input v-model="section.title" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">课程</label>
+                                <div class="col-sm-10">
+                                  <p class="form-control-static">{{course.name}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">大章</label>
+                                <div class="col-sm-10">
+                                  <p class="form-control-static">{{chapter.name}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">视频</label>
+                                <div class="col-sm-10">
+                                    <input v-model="section.video" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">时长</label>
+                                <div class="col-sm-10">
+                                    <input v-model="section.time" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">顺序</label>
+                                <div class="col-sm-10">
+                                    <input v-model="section.sort" class="form-control">
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -137,12 +126,11 @@
         name: "business-section",
         data: function () {
             return {
-            section: {},
-            sections: [],
-            SECTION_CHARGE: SECTION_CHARGE,
-            course: {},
-            chapter: {},
-        }
+                section: {},
+                sections: [],
+                course: {},
+                chapter: {},
+            }
         },
         mounted: function () {
             let _this = this;

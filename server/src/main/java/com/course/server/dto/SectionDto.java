@@ -39,11 +39,6 @@ public class SectionDto {
     private Integer time;
 
     /**
-     * 收费|c 收费; F 免费
-     */
-    private String charge;
-
-    /**
      * 顺序
      */
     private Integer sort;
@@ -108,14 +103,6 @@ public class SectionDto {
         this.time = time;
     }
 
-    public String getCharge() {
-        return charge;
-    }
-
-    public void setCharge(String charge) {
-        this.charge = charge;
-    }
-
     public Integer getSort() {
         return sort;
     }
@@ -153,7 +140,6 @@ public class SectionDto {
         sb.append(", chapterId=").append(chapterId);
         sb.append(", video=").append(video);
         sb.append(", time=").append(time);
-        sb.append(", charge=").append(charge);
         sb.append(", sort=").append(sort);
         sb.append(", createdAt=").append(createdAt);
         sb.append(", updatedAt=").append(updatedAt);

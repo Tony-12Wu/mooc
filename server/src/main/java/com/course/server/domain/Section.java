@@ -18,8 +18,6 @@ public class Section {
 
     private Integer time;
 
-    private String charge;
-
     private Integer sort;
 
     private Date createdAt;
@@ -74,14 +72,6 @@ public class Section {
         this.time = time;
     }
 
-    public String getCharge() {
-        return charge;
-    }
-
-    public void setCharge(String charge) {
-        this.charge = charge;
-    }
-
     public Integer getSort() {
         return sort;
     }
@@ -118,7 +108,6 @@ public class Section {
         sb.append(", chapterId=").append(chapterId);
         sb.append(", video=").append(video);
         sb.append(", time=").append(time);
-        sb.append(", charge=").append(charge);
         sb.append(", sort=").append(sort);
         sb.append(", createdAt=").append(createdAt);
         sb.append(", updatedAt=").append(updatedAt);

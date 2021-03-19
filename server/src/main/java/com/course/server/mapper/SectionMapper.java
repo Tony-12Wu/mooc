@@ -5,6 +5,9 @@ import com.course.server.domain.SectionExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+/**
+ * @author JT
+ */
 public interface SectionMapper {
     long countByExample(SectionExample example);
 
