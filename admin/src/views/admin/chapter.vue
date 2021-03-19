@@ -140,7 +140,7 @@
             let _this = this;
             //设置初始分页条数
             _this.$refs.pagination.size = 10,
-            _this.course = SessionStorage.get("course") || {};
+            _this.course = SessionStorage.get(SESSION_KEY_COURSE) || {};
             if (Tool.isEmpty(_this.course)) {
                 _this.$route.push("/welcome");
             }
