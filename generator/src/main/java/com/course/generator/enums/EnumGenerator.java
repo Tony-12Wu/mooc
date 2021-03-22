@@ -23,7 +23,7 @@ public class EnumGenerator {
         long begin = System.currentTimeMillis();
         try {
             //将需要生成的枚举类放这里
-            toJson(SectionChargeEnum.class, bufferObject, bufferArray);
+            //toJson(SectionChargeEnum.class, bufferObject, bufferArray);
             toJson(CourseOnlineEnum.class, bufferObject, bufferArray);
             toJson(CourseStatusEnum.class, bufferObject, bufferArray);
             toJson(CourseCategoryEnum.class, bufferObject, bufferArray);
