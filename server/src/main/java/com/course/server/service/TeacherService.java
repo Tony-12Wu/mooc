@@ -2,6 +2,9 @@ package com.course.server.service;
 
 import com.course.server.domain.Teacher;
 import com.course.server.domain.TeacherExample;
+import com.course.server.domain.Teacher;
+import com.course.server.domain.TeacherExample;
+import com.course.server.dto.TeacherDto;
 import com.course.server.dto.TeacherDto;
 import com.course.server.dto.PageDto;
 import com.course.server.mapper.TeacherMapper;
@@ -35,6 +38,15 @@ public class TeacherService {
         pageDto.setTotal(pageInfo.getTotal());
         List<TeacherDto> teacherDtoList = CopyUtil.copyList(teacherList, TeacherDto.class);
         pageDto.setList(teacherDtoList);
+    }
+
+    /**
+     * 查询所有
+     */
+    public List<TeacherDto> all( ) {
+        TeacherExample categoryExample = new TeacherExample();
+        List<Teacher> teacherList = teacherMapper.selectByExample(categoryExample);
+        return CopyUtil.copyList(teacherList, TeacherDto.class);
     }
 
     /**

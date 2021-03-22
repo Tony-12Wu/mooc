@@ -58,6 +58,9 @@ create table course (
     primary key (id)
 )engine = innodb default charset = utf8mb4 comment = '课程表';
 
+-- 表已存在且有数据，再执行原来的sql会清空历史数据
+alter table course add column (`teacher_id` char(8) comment '讲师|teacher.id');
+
 insert into course (id, name, summary, time, image, online, status, category, enroll, sort, create_at, update_at) values
 ('00000001', '测试课程', '测试课程的概述', '1000',  '', '0', 'P', '0', '100', '1', now(), now());
 
