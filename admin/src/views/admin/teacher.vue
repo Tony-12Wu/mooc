@@ -84,13 +84,12 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">头像</label>
                                 <div class="col-sm-10">
-                                    <button type="button" v-on:click="selectImage()" class="btn btn-white btn-default btn-round">
-                                        <i class="ace-icon fa fa-edit"></i>
-                                        头像上传
-                                    </button>
-                                    <input class="hidden" type="file" v-on:change="uploadImage()" id="file-upload-input">
+                                    <file v-bind:input-id="'image-upload'"
+                                              v-bind:text="'上传头像'"
+                                              v-bind:suffixs="['jpg', 'jpeg', 'png']"
+                                              v-bind:after-upload="afterUpload"></file>
                                     <div v-show="teacher.image" class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <img v-bind:src="teacher.image" class="img-responsive">
                                         </div>
                                     </div>
@@ -128,9 +127,10 @@
 
 <script>
     import Pagination from "../../components/pagination";
+    import File from "../../components/file";
 
     export default {
-        components: {Pagination},
+        components: {Pagination, File},
         name: "business-teacher",
         data: function () {
             return {
@@ -235,26 +235,11 @@
                 });
             },
 
-            /**
-             * 图片上传
-             */
-            uploadImage() {
+            afterUpload(resp) {
                 let _this = this;
-                let formData = new window.FormData();
-                formData.append('file',document.querySelector('#file-upload-input').files[0]);
-                Loading.show();
-                _this.$ajax.post(process.env.VUE_APP_SERVER + '/file/admin/upload', formData).then((response)=>{
-                    Loading.hide();
-                    let resp = response.data;
-                    let image = resp.content;
-                    console.log("头像地址：", image);
-                    _this.teacher.image = image;
-                });
+                let image = resp.content;
+                _this.teacher.image = image;
             },
-
-            selectImage() {
-                $("#file-upload-input").trigger("click");
-            }
 
         }
     }
