@@ -74,6 +74,8 @@ public class CourseService {
      */
     private void insert(Course course) {
         Date now = new Date();
+        course.setCreateAt(now);
+        course.setUpdateAt(now);
         course.setId(UuidUtil.getShortUuid());
         courseMapper.insert(course);
     }
@@ -82,6 +84,7 @@ public class CourseService {
      * 更新
      */
     private void update(Course course) {
+        course.setUpdateAt(new Date());
         courseMapper.updateByPrimaryKey(course);
     }
 

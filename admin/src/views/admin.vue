@@ -419,12 +419,20 @@
                 <b class="arrow"></b>
               </li>
               <li class="" id = "business-teacher-sidebar">
-                <router-link to="/business/teacher">
+              <router-link to="/business/teacher">
+                <i class="menu-icon fa fa-caret-right"></i>
+                讲师管理
+              </router-link>
+              <b class="arrow"></b>
+              </li>
+              <li class="" id = "business-file-sidebar">
+                <router-link to="/file/file">
                   <i class="menu-icon fa fa-caret-right"></i>
-                  讲师管理
+                  文件管理
                 </router-link>
                 <b class="arrow"></b>
               </li>
+
 <!--              <li class="" id = "business-chapter-sidebar">
                 <router-link to="/business/chapter">
                   <i class="menu-icon fa fa-caret-right"></i>
