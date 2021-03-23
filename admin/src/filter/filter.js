@@ -74,7 +74,7 @@ function PrefixInteger(num, length) {
 }
 
 /**
- * 格式化文件大小
+ *  格式化文件大小
  * @param value
  * @returns {string}
  */
