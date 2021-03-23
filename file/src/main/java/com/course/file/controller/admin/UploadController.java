@@ -48,7 +48,7 @@ public class UploadController {
         String suffix = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
 
         //如果文件不存在则创建, 根据枚举实例名（TEACHER）创建目录
-        String dir = fileUseEnum.name().toUpperCase();
+        String dir = fileUseEnum.name().toLowerCase();
         File fullDir = new File(FILE_PATH + dir);
         if (!fullDir.exists()) {
             fullDir.mkdir();

@@ -77,6 +77,21 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                              <label class="col-sm-2 control-label">视频</label>
+                              <div class="col-sm-10">
+                                <file v-bind:input-id="'video-upload'"
+                                      v-bind:text="'上传视频'"
+                                      v-bind:suffixs="['mp4']"
+                                      v-bind:use="FILE_USE.COURSE.key"
+                                      v-bind:after-upload="afterUpload"></file>
+                                <div v-show="section.video" class="row">
+                                  <div class="col-md-9">
+                                    <video v-bind:src="section.video" id ="video" controls="controls"></video>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label">课程</label>
                                 <div class="col-sm-10">
                                   <p class="form-control-static">{{course.name}}</p>
@@ -86,12 +101,6 @@
                                 <label class="col-sm-2 control-label">大章</label>
                                 <div class="col-sm-10">
                                   <p class="form-control-static">{{chapter.name}}</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">视频</label>
-                                <div class="col-sm-10">
-                                    <input v-model="section.video" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -120,9 +129,11 @@
 
 <script>
     import Pagination from "../../components/pagination";
+    import File from "../../components/file";
+
 
     export default {
-        components: {Pagination},
+        components: {Pagination, File},
         name: "business-section",
         data: function () {
             return {
@@ -130,6 +141,7 @@
                 sections: [],
                 course: {},
                 chapter: {},
+                FILE_USE: FILE_USE,
             }
         },
         mounted: function () {
@@ -232,7 +244,22 @@
                         }
                     })
                 });
-            }
+            },
+
+            afterUpload(resp) {
+                let _this = this;
+                let video = resp.content.path;
+                _this.section.video = video;
+            },
+
         }
     }
 </script>
+
+<style scoped>
+  video {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+  }
+</style>
