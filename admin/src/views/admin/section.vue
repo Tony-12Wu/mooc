@@ -250,6 +250,18 @@
                 let _this = this;
                 let video = resp.content.path;
                 _this.section.video = video;
+                _this.getTime();
+            },
+
+            /**
+             * 获取时长
+             */
+            getTime() {
+                let _this = this;
+                setTimeout(function () {
+                    let ele = document.getElementById("video");
+                    _this.section.time = parseInt(ele.duration, 10);
+                }, 1000);
             },
 
         }
