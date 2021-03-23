@@ -536,18 +536,24 @@
             login () {
                 this.$router.push("/admin")
             },
-            activeSidebar:function (id) {
+            /**
+             * 菜单激活样式，id是当前点击的菜单的id
+             * @param id
+             */
+            activeSidebar: function (id) {
                 // 兄弟菜单去掉active样式，自身增加active样式
                 $("#" + id).siblings().removeClass("active");
                 $("#" + id).siblings().find("li").removeClass("active");
                 $("#" + id).addClass("active");
+
                 // 如果有父菜单，父菜单的兄弟菜单去掉open active，父菜单增加open active
                 let parentLi = $("#" + id).parents("li");
                 if (parentLi) {
                     parentLi.siblings().removeClass("open active");
+                    parentLi.siblings().find("li").removeClass("active");
                     parentLi.addClass("open active");
                 }
-            }
+            },
 
         }
     }
