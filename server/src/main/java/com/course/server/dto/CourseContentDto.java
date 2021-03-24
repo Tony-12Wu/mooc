@@ -6,15 +6,9 @@ package com.course.server.dto;
  */
 public class CourseContentDto {
 
-    /**
-     * id
-     */
     private String id;
 
-    /**
-     * 课程内容
-     */
-    private String courseContent;
+    private String content;
 
     public String getId() {
         return id;
@@ -24,14 +18,13 @@ public class CourseContentDto {
         this.id = id;
     }
 
-    public String getCourseContent() {
-        return courseContent;
+    public String getContent() {
+        return content;
     }
 
-    public void setCourseContent(String courseContent) {
-        this.courseContent = courseContent;
+    public void setContent(String content) {
+        this.content = content;
     }
-
 
     @Override
     public String toString() {
@@ -40,9 +33,11 @@ public class CourseContentDto {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", courseContent=").append(courseContent);
+        sb.append(", content=").append(content);
         sb.append("]");
         return sb.toString();
     }
+
+
 
 }

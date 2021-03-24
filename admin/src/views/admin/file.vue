@@ -18,6 +18,7 @@
                 <th>文件名</th>
                 <th>后缀</th>
                 <th>大小</th>
+                <th>更新时间</th>
                 <th>用途</th>
             </tr>
             </thead>
@@ -29,6 +30,7 @@
                 <td>{{file.name}}</td>
                 <td>{{file.suffix}}</td>
                 <td>{{file.size | formatFileSize}}</td>
+                <td>{{file.updatedAt}}</td>
                 <td>{{FILE_USE | optionKV(file.use)}}</td>
             </tr>
             </tbody>

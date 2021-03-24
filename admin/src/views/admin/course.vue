@@ -59,9 +59,9 @@
                   <button v-on:click="toChapter(course)" class="btn btn-white btn-xs btn-info btn-round">
                     大章
                   </button>&nbsp;
-<!--                  <button v-on:click="toContent(course)" class="btn btn-white btn-xs btn-info btn-round">
+                  <button v-on:click="toContent(course)" class="btn btn-white btn-xs btn-info btn-round">
                     内容
-                  </button>&nbsp;-->
+                  </button>&nbsp;
                   <button v-on:click="openSortModal(course)" class="btn btn-white btn-xs btn-info btn-round">
                     排序
                   </button>&nbsp;
@@ -234,31 +234,8 @@
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-
-<!--        <div id="course-content-model" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">内容编辑</h4>
-            </div>
-            <div class="modal-body">
-              <form class="form-horizontal">
-                <div class="form-group">
-                  <div class="col-lg-12">
-                    <div id="content"></div>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-              <button v-on:click="save()" type="button" class="btn btn-primary">保存</button>
-            </div>
-          </div>&lt;!&ndash; /.modal-content &ndash;&gt;
-        </div>&lt;!&ndash; /.modal-dialog &ndash;&gt;
-      </div>&lt;!&ndash; /.modal &ndash;&gt;-->
     </div>
+
 </template>
 
 <script>
@@ -282,6 +259,7 @@
                     oldSort: 0,
                     newSort: 0
                 },
+                saveContentLabel: "",
                 teachers: [],
                 FILE_USE: FILE_USE,
             }
@@ -511,6 +489,15 @@
                 let _this = this;
                 let image = resp.content.path;
                 _this.course.image = image;
+            },
+
+            /**
+             * 点击【内容】
+             */
+            toContent(course) {
+                let _this = this;
+                SessionStorage.set(SESSION_KEY_COURSE, course);
+                _this.$router.push("/business/content");
             },
 
         }

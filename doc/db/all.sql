@@ -114,7 +114,7 @@ create table `course_category` (
 drop table if exists `course_content`;
 create table `course_content` (
     `id` char(8) not null default '' comment 'id',
-    `course_content` mediumtext not null comment '课程内容',
+    `content` mediumtext not null comment '课程内容',
     primary key (`id`)
 )engine = innodb default charset = utf8mb4 comment ='课程内容';
 
@@ -145,3 +145,14 @@ create table `file` (
     primary key (`id`),
     unique key `path_unique` (`path`)
 )engine = innodb default charset = utf8mb4 comment ='文件';
+
+-- 课程内容文件表
+drop table if exists `course_content_file`;
+create table `course_content_file` (
+    `id` char(8) not null default '' comment 'id',
+    `course_id` varchar(100) not null comment '课程id',
+    `url` varchar(100) comment '地址',
+    `name` varchar(100) comment '文件名',
+    `size` int comment '大小|字节B',
+    primary key (`id`)
+)engine = innodb default charset = utf8mb4 comment ='课程内容文件';
