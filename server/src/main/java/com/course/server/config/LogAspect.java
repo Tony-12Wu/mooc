@@ -92,7 +92,7 @@ public class LogAspect {
             }
             arguments[i] = args[i];
         }
-        // 排除字段，敏感字段或太长的字段不显示
+        // 排除字段，敏感字段或太长的字段不显示，不打印文件转成base64的字符串
         String[] excludeProperties = {"shard"};
         PropertyPreFilters filters = new PropertyPreFilters();
         PropertyPreFilters.MySimplePropertyPreFilter excludefilter = filters.addFilter();

@@ -102,6 +102,7 @@
           'size': file.size,
           'key': key62
         };
+        console.info("入参：" + JSON.stringify(param));
 
         _this.check(param);
       },
@@ -113,6 +114,7 @@
        */
       check (param) {
         let _this = this;
+        // '/file/admin/check/' + param.key
         _this.$ajax.get(process.env.VUE_APP_SERVER + '/file/admin/check/' + param.key).then((response)=>{
           let resp = response.data;
           if (resp.success) {
@@ -127,6 +129,7 @@
               _this.afterUpload(resp);
               $("#" + _this.inputId + "-input").val("");
             }  else {
+                // 从下个分片开始上传，递归调用upload（）方法
               param.shardIndex = obj.shardIndex + 1;
               console.log("找到文件记录，从分片" + param.shardIndex + "开始上传");
               _this.upload(param);
@@ -150,23 +153,23 @@
         // 将图片转为base64进行传输
         let fileReader = new FileReader();
 
-        Progress.show(parseInt((shardIndex - 1) * 100 / shardTotal));
+        //Progress.show(parseInt((shardIndex - 1) * 100 / shardTotal));
         fileReader.onload = function (e) {
           let base64 = e.target.result;
           // console.log("base64:", base64);
 
           param.shard = base64;
-
-          _this.$ajax.post(process.env.VUE_APP_SERVER + '/file/admin/' + _this.url, param).then((response) => {
+            //集成OSS后路径 '/file/admin/' + _this.url
+          _this.$ajax.post(process.env.VUE_APP_SERVER + '/file/admin/upload', param).then((response) => {
             let resp = response.data;
             console.log("上传文件成功：", resp);
-            Progress.show(parseInt(shardIndex * 100 / shardTotal));
+            //Progress.show(parseInt(shardIndex * 100 / shardTotal));
             if (shardIndex < shardTotal) {
               // 上传下一个分片
               param.shardIndex = param.shardIndex + 1;
               _this.upload(param);
             } else {
-              Progress.hide();
+              //Progress.hide();
               _this.afterUpload(resp);
               $("#" + _this.inputId + "-input").val("");
             }
