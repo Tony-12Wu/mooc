@@ -59,7 +59,7 @@ public class UploadController {
         String shardBase64 = fileDto.getShard();
         MultipartFile shard = Base64ToMultipartFile.base64ToMultipart(shardBase64);
 
-        // 保存文件到本地
+        // 根据use获取枚举类
         FileUseEnum useEnum = FileUseEnum.getByCode(use);
 
         //如果文件夹不存在则创建
@@ -85,23 +85,26 @@ public class UploadController {
                 .toString(); // course\6sfSqfOwzmik4A4icMYuUe.mp4.1，代表第一块分片
         String fullPath = FILE_PATH + localPath;
         File dest = new File(fullPath);
+        //每次上传一个分片，前端递归调用upload方法上传所有分片
         shard.transferTo(dest);
         LOG.info(dest.getAbsolutePath());
 
-        LOG.info("保存文件记录开始");
+        LOG.info("保存文件记录至数据库开始");
         fileDto.setPath(path);
         fileService.save(fileDto);
 
+        //返回给前端的路径使用配置文件里的file.domain路径，进行路径过滤，防止暴露真正的路径
         ResponseDto responseDto = new ResponseDto();
         fileDto.setPath(FILE_DOMAIN + path);
         responseDto.setContent(fileDto);
-
+        // 当上传的分片数等于分片总数时，上传完成，进行分片合并
         if (fileDto.getShardIndex().equals(fileDto.getShardTotal())) {
             this.merge(fileDto);
         }
         return responseDto;
     }
 
+    // 合并分片
     public void merge(FileDto fileDto) throws Exception {
         LOG.info("合并分片开始");
         //http://127.0.0.1:9000/file/f/course\6sfSqfOwzmik4A4icMYuUe.mp4
@@ -109,6 +112,7 @@ public class UploadController {
         //course\6sfSqfOwzmik4A4icMYuUe.mp4
         path = path.replace(FILE_DOMAIN, "");
         Integer shardTotal = fileDto.getShardTotal();
+        //使用真实文件路径进行分片合并
         File newFile = new File(FILE_PATH + path);
         //文件追加写入
         FileOutputStream outputStream = new FileOutputStream(newFile, true);
@@ -140,6 +144,7 @@ public class UploadController {
         }
         LOG.info("合并分片结束");
 
+        //调用JVM垃圾回收方法，清理内存留出空间进行删除分片
         System.gc();
         Thread.sleep(1000);
 
@@ -159,6 +164,9 @@ public class UploadController {
         LOG.info("检查上传分片开始：{}", key);
         ResponseDto responseDto = new ResponseDto();
         FileDto fileDto = fileService.findByKey(key);
+        if(fileDto != null){
+            fileDto.setPath(FILE_PATH + fileDto.getPath());
+        }
         responseDto.setContent(fileDto);
         return responseDto;
     }
