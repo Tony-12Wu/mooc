@@ -92,7 +92,7 @@ public class OssController {
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
 
         ObjectMetadata meta = new ObjectMetadata();
-// 指定上传的内容类型。
+        // 指定上传的内容类型。
         meta.setContentType("text/plain");
 
         // 通过AppendObjectRequest设置多个参数。
@@ -113,7 +113,7 @@ public class OssController {
         // 第一次追加。
         // 设置文件的追加位置。
 //        appendObjectRequest.setPosition(0L);
-        appendObjectRequest.setPosition((long) ((shardIndex - 1) * shardSize));
+        appendObjectRequest.setPosition((long) ((shardIndex-1) * shardSize));
         AppendObjectResult appendObjectResult = ossClient.appendObject(appendObjectRequest);
         // 文件的64位CRC值。此值根据ECMA-182标准计算得出。
         System.out.println(appendObjectResult.getObjectCRC());

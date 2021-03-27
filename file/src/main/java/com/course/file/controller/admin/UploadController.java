@@ -2,6 +2,7 @@ package com.course.file.controller.admin;
 
 
 import com.alibaba.fastjson.JSON;
+import com.aliyuncs.DefaultAcsClient;
 import com.course.server.dto.FileDto;
 import com.course.server.dto.ResponseDto;
 import com.course.server.enums.FileUseEnum;
@@ -34,8 +35,17 @@ public class UploadController {
     @Value("${file.domain}")
     private String FILE_DOMAIN;
 
+    @Value("${oss.domain}")
+    private String OSS_DOMAIN;
+
     @Value("${file.path}")
     private String FILE_PATH;
+
+    @Value("${vod.accessKeyId}")
+    private String accessKeyId;
+
+    @Value("${vod.accessKeySecret}")
+    private String accessKeySecret;
 
 /*
     @Value("${oss.domain}")
@@ -104,7 +114,9 @@ public class UploadController {
         return responseDto;
     }
 
-    // 合并分片
+    /**
+     *    合并分片, big-file分片上传不会调用此方法， oss会自动合成分片
+      */
     public void merge(FileDto fileDto) throws Exception {
         LOG.info("合并分片开始");
         //http://127.0.0.1:9000/file/f/course\6sfSqfOwzmik4A4icMYuUe.mp4
@@ -164,11 +176,13 @@ public class UploadController {
         LOG.info("检查上传分片开始：{}", key);
         ResponseDto responseDto = new ResponseDto();
         FileDto fileDto = fileService.findByKey(key);
-        if(fileDto != null){
-            fileDto.setPath(FILE_DOMAIN + fileDto.getPath());
+        if(fileDto != null && fileDto.getShardIndex().equals(fileDto.getShardTotal())){
+            fileDto.setPath(OSS_DOMAIN + fileDto.getPath());
         }
         responseDto.setContent(fileDto);
         return responseDto;
+
+
     }
 
 /*    @GetMapping("/check/{key}")

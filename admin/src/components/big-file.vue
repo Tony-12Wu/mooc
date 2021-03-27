@@ -25,7 +25,7 @@
         default: ""
       },
       shardSize: {
-        default: 50 * 1024
+        default: 100 * 1024
       },
       url: {
         default: "oss-append"
