@@ -3,11 +3,13 @@ package com.course.file.controller.admin;
 
 import com.alibaba.fastjson.JSON;
 import com.aliyuncs.DefaultAcsClient;
+import com.aliyuncs.vod.model.v20170321.GetMezzanineInfoResponse;
 import com.course.server.dto.FileDto;
 import com.course.server.dto.ResponseDto;
 import com.course.server.enums.FileUseEnum;
 import com.course.server.service.FileService;
 import com.course.server.util.Base64ToMultipartFile;
+import com.course.server.util.VodUtil;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
