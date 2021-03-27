@@ -6,11 +6,11 @@
     </h4>
     <hr>
 
-    <file v-bind:input-id="'content-file-upload'"
+    <big-file v-bind:input-id="'content-file-upload'"
           v-bind:text="'上传文件'"
           v-bind:suffixs="['jpg', 'jpeg', 'png', 'mp4']"
           v-bind:use="FILE_USE.COURSE.key"
-          v-bind:after-upload="afterUploadContentFile"></file>
+          v-bind:after-upload="afterUploadContentFile"></big-file>
     <br>
     <table id="file-table" class="table  table-bordered table-hover">
       <thead>
@@ -67,9 +67,9 @@
 </template>
 
 <script>
-  import File from "../../components/file";
+  import BigFile from "../../components/big-file";
   export default {
-    components: {File},
+    components: {BigFile},
     name: "business-course-content",
     data: function() {
       return {

@@ -165,7 +165,7 @@ public class UploadController {
         ResponseDto responseDto = new ResponseDto();
         FileDto fileDto = fileService.findByKey(key);
         if(fileDto != null){
-            fileDto.setPath(FILE_PATH + fileDto.getPath());
+            fileDto.setPath(FILE_DOMAIN + fileDto.getPath());
         }
         responseDto.setContent(fileDto);
         return responseDto;
