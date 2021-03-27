@@ -13,6 +13,9 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import org.springframework.web.reactive.config.CorsRegistry;
 import org.springframework.web.util.pattern.PathPatternParser;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 /**
  * @author JT
  */
@@ -22,11 +25,12 @@ public class GatewayApplication {
 
 	private static final Logger LOG = LoggerFactory.getLogger(GatewayApplication.class);
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnknownHostException {
 		SpringApplication app = new SpringApplication(GatewayApplication.class);
 		Environment env = app.run(args).getEnvironment();
 		LOG.info("启动成功！");
-		LOG.info("Gateway地址：\thttp://127.0.0.1:{}",env.getProperty("server.port"));
+		LOG.info("Gateway本地地址：\thttp://localhost:{}", env.getProperty("server.port"));
+		LOG.info("Gateway外网地址：\thttp://{}:{}", InetAddress.getLocalHost().getHostAddress(), env.getProperty("server.port"));
 	}
 	/**
 	 * 配置跨域

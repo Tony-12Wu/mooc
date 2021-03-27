@@ -7,6 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.core.env.Environment;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 /**
  * @author JT
  */
@@ -18,11 +21,12 @@ public class EurekaApplication {
 //	public static void main(String[] args) {
 //		SpringApplication.run(EurekaApplication.class, args);
 //	}
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnknownHostException {
 		SpringApplication app = new SpringApplication(EurekaApplication.class);
 		Environment env = app.run(args).getEnvironment();
 		LOG.info("启动成功！");
-		LOG.info("Eureka地址：\thttp://127.0.0.1:{}",env.getProperty("server.port"));
+		LOG.info("Eureka本地地址：\thttp://localhost:{}", env.getProperty("server.port"));
+		LOG.info("Eureka外网地址：\thttp://{}:{}", InetAddress.getLocalHost().getHostAddress(), env.getProperty("server.port"));
 	}
 
 }

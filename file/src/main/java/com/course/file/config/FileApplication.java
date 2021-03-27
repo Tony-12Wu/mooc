@@ -9,6 +9,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 /**
  * @author JT
  */
@@ -20,11 +23,12 @@ public class FileApplication {
 
 	private static final Logger LOG = LoggerFactory.getLogger(FileApplication.class);
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnknownHostException {
 		SpringApplication app = new SpringApplication(FileApplication.class);
 		Environment env = app.run(args).getEnvironment();
 		LOG.info("启动成功！");
-		LOG.info("File地址：\thttp://127.0.0.1:{}",env.getProperty("server.port"));
+		LOG.info("File本地地址：\thttp://localhost:{}", env.getProperty("server.port"));
+		LOG.info("File外网地址：\thttp://{}:{}", InetAddress.getLocalHost().getHostAddress(), env.getProperty("server.port"));
 	}
 
 }
