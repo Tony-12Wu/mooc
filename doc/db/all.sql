@@ -163,3 +163,17 @@ create table `course_content_file` (
     `size` int comment '大小|字节B',
     primary key (`id`)
 )engine = innodb default charset = utf8mb4 comment ='课程内容文件';
+
+-- 用户表
+drop table if exists `user`;
+create table `user` (
+   `id` char(8) not null default '' comment 'id',
+   `name` varchar(50) comment '昵称',
+   `login_name` varchar(50) not null comment '账号名',
+   `password` char(32) not null comment '密码',
+   `power` int comment '权限 | 0为超级管理员，1位普通管理员',
+   primary key (`id`),
+   unique key `login_name_unique` (`login_name`)
+)engine = innodb default charset = utf8mb4 comment ='用户';
+
+insert into user (id, name, login_name, password, power) VALUES ('10000000', '+T', '2017764315', '2017764315','0');

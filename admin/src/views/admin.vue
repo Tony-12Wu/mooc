@@ -373,19 +373,21 @@
             <b class="arrow"></b>
 
             <ul class="submenu">
-              <li class="">
-                <a href="tables.html">
+              <li class="" id="system-user-sidebar">
+                <a href="#">
+                  <router-link to="/system/user">
                   <i class="menu-icon fa fa-caret-right"></i>
                   用户管理
+                  </router-link>
                 </a>
-
                 <b class="arrow"></b>
               </li>
-
               <li class="">
-                <a href="jqgrid.html">
+                <a href="#">
+                  <router-link to="/system/course">
                   <i class="menu-icon fa fa-caret-right"></i>
                   权限管理
+                  </router-link>
                 </a>
 
                 <b class="arrow"></b>
