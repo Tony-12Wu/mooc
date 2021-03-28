@@ -518,7 +518,7 @@
             // sidebar激活样式方法二
             _this.activeSidebar(_this.$route.name.replace("/", "-") + "-sidebar");
             $.getScript('/ace/assets/js/ace.min.js');
-            _this.loginUser =SessionStorage.get("USER");
+            _this.loginUser = Tool.getLoginUser();
         },
         watch: {
             $route: {

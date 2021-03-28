@@ -98,8 +98,15 @@ export default {
          */
         login() {
             let _this = this;
-            let passwordShow =_this.user.password;
-            _this.user.password = hex_md5(_this.user.password + KEY);
+            //将明文存在本地缓存里
+            //let passwordShow =_this.user.password;
+
+            // 如果密码是从缓存带出的，不需要重新加密
+            let md5 = hex_md5(_this.user.password);
+            let rememberUser = LocalStorage.get(LOCAL_KEY_REMEMBER_USER) || {};
+            if(md5 !== rememberUser.md5){
+                _this.user.password = hex_md5(_this.user.password + KEY);
+            }
             Loading.show();
             _this.$ajax.post(process.env.VUE_APP_SERVER + '/system/admin/user/login', _this.user).then((response) => {
                 Loading.hide();
@@ -108,18 +115,22 @@ export default {
                     let loginUser = resp.content;
                     console.info("登录成功:", loginUser);
                     Tool.setLoginUser(loginUser);
+                    //判断记住我
                     if(_this.remember){
+                        // 保存密码密文，并保存密文md5，用于检测密码是否被重新输入过
+                        let md5 = hex_md5(_this.user.password);
                         LocalStorage.set(LOCAL_KEY_REMEMBER_USER, {
                             loginName: loginUser.loginName,
-                            password: passwordShow
-                        })
+                            password: _this.user.password,
+                            md5: md5,
+                        });
                     }else{
-                        LocalStorage.set(LOCAL_KEY_REMEMBER_USER, null)
+                        LocalStorage.set(LOCAL_KEY_REMEMBER_USER, null);
                     }
 
-                    _this.$router.push("/welcome")
+                    _this.$router.push("/welcome");
                 } else {
-                    Toast.warning(resp.message)
+                    Toast.warning(resp.message);
                 }
             })
         },
