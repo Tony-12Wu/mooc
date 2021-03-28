@@ -280,10 +280,10 @@
 
             <li class="light-blue dropdown-modal">
               <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                <img class="nav-user-photo" src="../../public/ace/assets/images/avatars/user.jpg" alt="Jason's Photo" />
-                <span class="user-info">
-									<small>Welcome,</small>
-									Jason
+                <i class="ace-icon glyphicon glyphicon-user"></i>
+                <span class="user-info" >
+									<small>&ensp;管理员</small>
+                   &ensp;{{loginUser.loginName}}
 								</span>
 
                 <i class="ace-icon fa fa-caret-down"></i>
@@ -506,6 +506,11 @@
 <script>
     export default {
         name: 'admin',
+        data: function () {
+            return {
+                loginUser: {},
+            }
+        },
         mounted: function () {
             let _this = this;
             $('body').removeClass('login-layout light-login');
@@ -513,6 +518,7 @@
             // sidebar激活样式方法二
             _this.activeSidebar(_this.$route.name.replace("/", "-") + "-sidebar");
             $.getScript('/ace/assets/js/ace.min.js');
+            _this.loginUser =SessionStorage.get("USER");
         },
         watch: {
             $route: {
