@@ -2,6 +2,7 @@ package com.course.server.service;
 
 import com.course.server.domain.User;
 import com.course.server.domain.UserExample;
+import com.course.server.dto.LoginUserDto;
 import com.course.server.dto.UserDto;
 import com.course.server.dto.PageDto;
 import com.course.server.exception.BusinessException;
@@ -11,6 +12,8 @@ import com.course.server.util.CopyUtil;
 import com.course.server.util.UuidUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -23,6 +26,8 @@ import java.util.List;
  */
 @Service
 public class UserService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
     @Resource
     private UserMapper userMapper;
@@ -103,4 +108,25 @@ public class UserService {
         user.setPassword(userDto.getPassword());
         userMapper.updateByPrimaryKeySelective(user);
     }
+
+    /**
+     *  登录
+     */
+    public LoginUserDto login(UserDto userDto) {
+        User user = this.selectByLoginName(userDto.getLoginName());
+        if (user == null){
+            LOG.info("用户名不存在，{}",userDto.getLoginName());
+            throw new BusinessException(BusinessExceptionCode.LOGIN_USER_ERROR);
+        }else {
+            if (user.getPassword().equals(userDto.getPassword())){
+                //登录成功
+                return CopyUtil.copy(user, LoginUserDto.class);
+            }else{
+                LOG.info("密码不对！");
+                throw new BusinessException(BusinessExceptionCode.LOGIN_USER_ERROR);
+            }
+
+        }
+    }
+
 }
