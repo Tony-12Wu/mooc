@@ -17,7 +17,7 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
             <tr>
-                                <th>id</th>
+                <th>id</th>
                 <th>昵称</th>
                 <th>账号名</th>
                 <th>密码</th>
@@ -66,7 +66,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">账号名</label>
                                 <div class="col-sm-10">
-                                    <input v-model="user.loginName" class="form-control">
+                                    <input v-model="user.loginName" v-bind:disabled="user.id" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
