@@ -39,6 +39,17 @@
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
                         </label>
+                        <!-- 图形验证码 -->
+                        <label class="block clearfix">
+                          <span class="block input-icon input-icon-right">
+                            <div class="input-group">
+                              <input v-model="user.imageCode" type="text" class="form-control" placeholder="验证码">
+                              <span class="input-group-addon" id="basic-addon2">
+                                <img v-on:click="loadImageCode()" id="image-code" alt="验证码"/>
+                              </span>
+                            </div>
+                          </span>
+                        </label>
 
                         <div class="space"></div>
 
@@ -85,11 +96,14 @@ export default {
         let _this = this;
         $('body').removeClass('skin');
         $('body').attr('class', 'login-layout light-login');
+
         //console.log('login');
         let rememberUser = LocalStorage.get(LOCAL_KEY_REMEMBER_USER);
         if (rememberUser) {
             _this.user = rememberUser;
         }
+        // 初始时加载一次验证码图片
+        _this.loadImageCode();
     },
     methods: {
 
@@ -131,11 +145,27 @@ export default {
                     _this.$router.push("/welcome");
                 } else {
                     Toast.warning(resp.message);
+                    _this.user.password = "";
+                    _this.loadImageCode();
                 }
             })
+        },
+
+        /**
+         * 加载图形验证码
+         */
+        loadImageCode: function () {
+            let _this = this;
+            _this.imageCodeToken = Tool.uuid(8);
+            $('#image-code').attr('src', process.env.VUE_APP_SERVER + '/system/admin/kaptcha/image-code/' + _this.imageCodeToken);
         },
     }
 }
 </script>
+<style scoped>
+  .input-group-addon {
+    padding: 0;
+  }
+</style>
 
 
