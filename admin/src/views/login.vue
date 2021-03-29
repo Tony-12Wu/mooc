@@ -89,7 +89,8 @@ export default {
     data: function () {
         return {
             user: {},
-            remember: true
+            remember: true,
+            imageCodeToken: ""
         }
     },
     mounted: function () {
@@ -121,6 +122,7 @@ export default {
             if(md5 !== rememberUser.md5){
                 _this.user.password = hex_md5(_this.user.password + KEY);
             }
+            _this.user.imageCodeToken = _this.imageCodeToken;
             Loading.show();
             _this.$ajax.post(process.env.VUE_APP_SERVER + '/system/admin/user/login', _this.user).then((response) => {
                 Loading.hide();

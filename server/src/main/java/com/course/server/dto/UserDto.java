@@ -26,10 +26,38 @@ public class UserDto {
      */
     private String password;
 
+
+    /**
+     * 验证码
+     */
+    private String imageCode;
+
+    /**
+     * 图片验证码token
+     */
+    private String imageCodeToken;
+
     /**
      * 权限 | 0为超级管理员，1位普通管理员
      */
     private Integer power;
+
+
+    public String getImageCode() {
+        return imageCode;
+    }
+
+    public void setImageCode(String imageCode) {
+        this.imageCode = imageCode;
+    }
+
+    public String getImageCodeToken() {
+        return imageCodeToken;
+    }
+
+    public void setImageCodeToken(String imageCodeToken) {
+        this.imageCodeToken = imageCodeToken;
+    }
 
     public String getId() {
         return id;
@@ -74,16 +102,15 @@ public class UserDto {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", loginName=").append(loginName);
-        sb.append(", password=").append(password);
+        final StringBuffer sb = new StringBuffer("UserDto{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", loginName='").append(loginName).append('\'');
+        sb.append(", password='").append(password).append('\'');
+        sb.append(", imageCode='").append(imageCode).append('\'');
+        sb.append(", imageCodeToken='").append(imageCodeToken).append('\'');
         sb.append(", power=").append(power);
-        sb.append("]");
+        sb.append('}');
         return sb.toString();
     }
 
