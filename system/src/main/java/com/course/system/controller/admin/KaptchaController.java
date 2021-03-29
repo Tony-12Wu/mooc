@@ -41,9 +41,9 @@ public class KaptchaController {
             String createText = defaultKaptcha.createText();
 
             // 将生成的验证码放入会话缓存中，后续验证的时候用到
-            request.getSession().setAttribute(imageCodeToken, createText);
-            // 将生成的验证码放入redis缓存中，后续验证的时候用到
-            //redisTemplate.opsForValue().set(imageCodeToken, createText, 300, TimeUnit.SECONDS);
+            //request.getSession().setAttribute(imageCodeToken, createText);
+            // 将生成的验证码放入redis缓存中，后续验证的时候用到, 超过300秒改缓存会被清空
+            redisTemplate.opsForValue().set(imageCodeToken, createText, 300, TimeUnit.SECONDS);
 
             // 使用验证码字符串生成验证码图片
             BufferedImage challenge = defaultKaptcha.createImage(createText);

@@ -69,7 +69,7 @@
             <groupId>com.github.penggle</groupId>
             <artifactId>kaptcha</artifactId>
         </dependency>
-        <!-- redis -->
+        <!-- redis 版本自动根据spring的版本 父pom不需要添加 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
