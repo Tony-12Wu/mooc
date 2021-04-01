@@ -177,3 +177,24 @@ create table `user` (
 )engine = innodb default charset = utf8mb4 comment ='用户';
 
 insert into user (id, name, login_name, password, power) VALUES ('10000000', '+T', '2017764315', '2017764315','0');
+
+-- 资源表
+drop table if exists `resource`;
+create table `resource` (
+    `id` char(6) not null default '' comment 'id',
+    `name` varchar(100) not null comment '名称|菜单或按钮',
+    `page` varchar(50) null comment '页面|路由',
+    `request` char(200) null comment '请求|接口',
+    `parent` char(6) comment '父id',
+    primary key (`id`)
+)engine = innodb default charset = utf8mb4 comment ='资源';
+
+insert into resource (id, name, page, request, parent) VALUES ('01','系统管理','','','');
+insert into resource (id, name, page, request, parent) VALUES ('0101','用户管理','/system/user','','01');
+insert into resource (id, name, page, request, parent) VALUES ('010101','保存','','["/system/admin/user/list","/system/admin/user/save"]','0101');
+insert into resource (id, name, page, request, parent) VALUES ('010102','删除','','["/system/admin/user/delete"]','0101');
+insert into resource (id, name, page, request, parent) VALUES ('010103','重置密码','','["/system/admin/user/save-password"]','0101');
+insert into resource (id, name, page, request, parent) VALUES ('0102','资源管理','/system/resource','','01');
+insert into resource (id, name, page, request, parent) VALUES ('010201','保存/显示','','["/system/admin/resource"]','0102');
+insert into resource (id, name, page, request, parent) VALUES ('0103','角色管理','/system/role','','01');
+insert into resource (id, name, page, request, parent) VALUES ('010301','角色/权限管理','','["/system/admin/role"]','0103');
