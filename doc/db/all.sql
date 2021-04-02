@@ -198,3 +198,17 @@ insert into resource (id, name, page, request, parent) VALUES ('0102','资源管
 insert into resource (id, name, page, request, parent) VALUES ('010201','保存/显示','','["/system/admin/resource"]','0102');
 insert into resource (id, name, page, request, parent) VALUES ('0103','角色管理','/system/role','','01');
 insert into resource (id, name, page, request, parent) VALUES ('010301','角色/权限管理','','["/system/admin/role"]','0103');
+
+-- 角色表
+drop table if exists `role`;
+create table `role` (
+    `id` char(8) not null default '' comment 'id',
+    `name` varchar(50) not null comment '角色',
+    `desc` varchar(100) not null comment '描述',
+    primary key (`id`)
+)engine = innodb default charset = utf8mb4 comment ='角色';
+
+insert into role  values ('00000000', '系统管理员', '管理用户、角色权限');
+insert into role  values ('00000001', '维护管理员', '维护资源');
+insert into role  values ('00000002', '业务管理员', '负责维护业务');
+insert into role  values ('00000003', '讲师管理员', '负责讲师业务和课程业务');
