@@ -5,6 +5,7 @@ import com.course.server.dto.PageDto;
 import com.course.server.dto.RoleDto;
 import com.course.server.mapper.RoleMapper;
 import com.course.server.mapper.RoleResourceMapper;
+import com.course.server.mapper.RoleUserMapper;
 import com.course.server.util.CopyUtil;
 import com.course.server.util.UuidUtil;
 import com.github.pagehelper.PageHelper;
@@ -28,8 +29,8 @@ public class RoleService {
     @Resource
     private RoleResourceMapper roleResourceMapper;
 
-    //@Resource
-    //private RoleUserMapper roleUserMapper;
+    @Resource
+    private RoleUserMapper roleUserMapper;
 
     /**
      * 列表查询
@@ -116,9 +117,9 @@ public class RoleService {
         return resourceIdList;
     }
 
-/*    *//**
+    /**
      * 按角色保存用户
-     *//*
+     */
     public void saveUser(RoleDto roleDto) {
         String roleId = roleDto.getId();
         List<String> userIdList = roleDto.getUserIds();
@@ -137,10 +138,10 @@ public class RoleService {
         }
     }
 
-    *//**
+    /**
      * 按角色加载用户
      * @param roleId
-     *//*
+     */
     public List<String> listUser(String roleId) {
         RoleUserExample example = new RoleUserExample();
         example.createCriteria().andRoleIdEqualTo(roleId);
@@ -150,5 +151,5 @@ public class RoleService {
             userIdList.add(roleUserList.get(i).getUserId());
         }
         return userIdList;
-    }*/
+    }
 }
