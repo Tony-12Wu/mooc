@@ -1,9 +1,8 @@
 package com.course.server.dto;
 
 
-/**
- * @author JT
- */
+import java.util.List;
+
 public class RoleDto {
 
     /**
@@ -20,6 +19,10 @@ public class RoleDto {
      * 描述
      */
     private String desc;
+
+    private List<String> resourceIds;
+
+    private List<String> userIds;
 
     public String getId() {
         return id;
@@ -45,17 +48,31 @@ public class RoleDto {
         this.desc = desc;
     }
 
+    public List<String> getResourceIds() {
+        return resourceIds;
+    }
+
+    public void setResourceIds(List<String> resourceIds) {
+        this.resourceIds = resourceIds;
+    }
+
+    public List<String> getUserIds() {
+        return userIds;
+    }
+
+    public void setUserIds(List<String> userIds) {
+        this.userIds = userIds;
+    }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", desc=").append(desc);
-        sb.append("]");
+        final StringBuffer sb = new StringBuffer("RoleDto{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", desc='").append(desc).append('\'');
+        sb.append(", resourceIds=").append(resourceIds);
+        sb.append(", userIds=").append(userIds);
+        sb.append('}');
         return sb.toString();
     }
 
