@@ -1,5 +1,9 @@
 package com.course.server.exception;
 
+/**
+ * @author jtwur
+ */
+
 public enum BusinessExceptionCode {
 
     MEMBER_NOT_EXIST("会员不存在"),

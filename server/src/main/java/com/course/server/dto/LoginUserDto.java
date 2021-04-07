@@ -1,8 +1,11 @@
 package com.course.server.dto;
 
 
+import java.util.HashSet;
+import java.util.List;
+
 /**
- * @author JT
+ * @author jtwur
  */
 public class LoginUserDto {
 
@@ -12,32 +15,29 @@ public class LoginUserDto {
     private String id;
 
     /**
-     * 昵称
-     */
-    private String name;
-
-    /**
-     * 账号名
+     * 登陆名
      */
     private String loginName;
 
     /**
-     * 权限 | 0为超级管理员，1位普通管理员
+     * 昵称
      */
-    private Integer power;
+    private String name;
 
     /**
      * 登录凭证
      */
     private String token;
 
-    public String getToken() {
-        return token;
-    }
+    /**
+     * 所有资源，用于前端界面控制
+     */
+    private List<ResourceDto> resources;
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+    /**
+     * 所有资源中的请求，用于后端接口拦截
+     */
+    private HashSet<String> requests;
 
     public String getId() {
         return id;
@@ -45,14 +45,6 @@ public class LoginUserDto {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getLoginName() {
@@ -63,23 +55,47 @@ public class LoginUserDto {
         this.loginName = loginName;
     }
 
-    public Integer getPower() {
-        return power;
+    public String getName() {
+        return name;
     }
 
-    public void setPower(Integer power) {
-        this.power = power;
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public List<ResourceDto> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<ResourceDto> resources) {
+        this.resources = resources;
+    }
+
+    public HashSet<String> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(HashSet<String> requests) {
+        this.requests = requests;
+    }
 
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("LoginUserDto{");
         sb.append("id='").append(id).append('\'');
-        sb.append(", name='").append(name).append('\'');
         sb.append(", loginName='").append(loginName).append('\'');
-        sb.append(", power=").append(power);
+        sb.append(", name='").append(name).append('\'');
         sb.append(", token='").append(token).append('\'');
+        sb.append(", resources=").append(resources);
+        sb.append(", requests=").append(requests);
         sb.append('}');
         return sb.toString();
     }
