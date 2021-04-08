@@ -6,7 +6,6 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="login_name" jdbcType="VARCHAR" property="loginName" />
     <result column="password" jdbcType="CHAR" property="password" />
-    <result column="power" jdbcType="INTEGER" property="power" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, `name`, login_name, `password`, `power`
+    id, `name`, login_name, `password`
   </sql>
   <select id="selectByExample" parameterType="com.course.server.domain.UserExample" resultMap="BaseResultMap">
     select
@@ -101,9 +100,9 @@
   </delete>
   <insert id="insert" parameterType="com.course.server.domain.User">
     insert into user (id, `name`, login_name, 
-      `password`, `power`)
+      `password`)
     values (#{id,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, 
-      #{password,jdbcType=CHAR}, #{power,jdbcType=INTEGER})
+      #{password,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.course.server.domain.User">
     insert into user
@@ -120,9 +119,6 @@
       <if test="password != null">
         `password`,
       </if>
-      <if test="power != null">
-        `power`,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -136,9 +132,6 @@
       </if>
       <if test="password != null">
         #{password,jdbcType=CHAR},
-      </if>
-      <if test="power != null">
-        #{power,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -163,9 +156,6 @@
       <if test="record.password != null">
         `password` = #{record.password,jdbcType=CHAR},
       </if>
-      <if test="record.power != null">
-        `power` = #{record.power,jdbcType=INTEGER},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -176,8 +166,7 @@
     set id = #{record.id,jdbcType=CHAR},
       `name` = #{record.name,jdbcType=VARCHAR},
       login_name = #{record.loginName,jdbcType=VARCHAR},
-      `password` = #{record.password,jdbcType=CHAR},
-      `power` = #{record.power,jdbcType=INTEGER}
+      `password` = #{record.password,jdbcType=CHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -194,9 +183,6 @@
       <if test="password != null">
         `password` = #{password,jdbcType=CHAR},
       </if>
-      <if test="power != null">
-        `power` = #{power,jdbcType=INTEGER},
-      </if>
     </set>
     where id = #{id,jdbcType=CHAR}
   </update>
@@ -204,8 +190,7 @@
     update user
     set `name` = #{name,jdbcType=VARCHAR},
       login_name = #{loginName,jdbcType=VARCHAR},
-      `password` = #{password,jdbcType=CHAR},
-      `power` = #{power,jdbcType=INTEGER}
+      `password` = #{password,jdbcType=CHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
 </mapper>

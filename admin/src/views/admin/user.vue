@@ -1,12 +1,12 @@
 <template>
     <div>
         <p>
-            <button v-on:click="add()" class="btn btn-white btn-default btn-round">
+            <button v-show="hasResource('010101')" v-on:click="add()" class="btn btn-white btn-default btn-round">
                 <i class="ace-icon fa fa-edit"></i>
                 新增
             </button>
             &nbsp;
-            <button v-on:click="list(1)" class="btn btn-white btn-default btn-round">
+            <button v-show="hasResource('010101')" v-on:click="list(1)" class="btn btn-white btn-default btn-round">
                 <i class="ace-icon fa fa-refresh"></i>
                 刷新
             </button>
@@ -21,7 +21,6 @@
                 <th>昵称</th>
                 <th>账号名</th>
                 <th>密码</th>
-                <th>权限 </th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -32,7 +31,6 @@
                 <td>{{user.name}}</td>
                 <td>{{user.loginName}}</td>
                 <td>{{user.password}}</td>
-                <td>{{user.power}}</td>
                 <td>
                     <div class="hidden-sm hidden-xs btn-group">
                         <button v-show="hasResource('010103')" v-on:click="editPassword(user)" class="btn btn-xs btn-info">
@@ -76,12 +74,6 @@
                                 <label class="col-sm-2 control-label">密码</label>
                                 <div class="col-sm-10">
                                     <input v-model="user.password" type="password" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">权限 </label>
-                                <div class="col-sm-10">
-                                    <input v-model="user.power" class="form-control">
                                 </div>
                             </div>
                         </form>

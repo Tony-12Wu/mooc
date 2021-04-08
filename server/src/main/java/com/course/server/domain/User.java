@@ -9,8 +9,6 @@ public class User {
 
     private String password;
 
-    private Integer power;
-
     public String getId() {
         return id;
     }
@@ -43,14 +41,6 @@ public class User {
         this.password = password;
     }
 
-    public Integer getPower() {
-        return power;
-    }
-
-    public void setPower(Integer power) {
-        this.power = power;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -61,7 +51,6 @@ public class User {
         sb.append(", name=").append(name);
         sb.append(", loginName=").append(loginName);
         sb.append(", password=").append(password);
-        sb.append(", power=").append(power);
         sb.append("]");
         return sb.toString();
     }

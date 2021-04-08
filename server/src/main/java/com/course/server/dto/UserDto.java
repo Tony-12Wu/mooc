@@ -37,12 +37,6 @@ public class UserDto {
      */
     private String imageCodeToken;
 
-    /**
-     * 权限 | 0为超级管理员，1位普通管理员
-     */
-    private Integer power;
-
-
     public String getImageCode() {
         return imageCode;
     }
@@ -91,15 +85,6 @@ public class UserDto {
         this.password = password;
     }
 
-    public Integer getPower() {
-        return power;
-    }
-
-    public void setPower(Integer power) {
-        this.power = power;
-    }
-
-
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("UserDto{");
@@ -109,7 +94,6 @@ public class UserDto {
         sb.append(", password='").append(password).append('\'');
         sb.append(", imageCode='").append(imageCode).append('\'');
         sb.append(", imageCodeToken='").append(imageCodeToken).append('\'');
-        sb.append(", power=").append(power);
         sb.append('}');
         return sb.toString();
     }

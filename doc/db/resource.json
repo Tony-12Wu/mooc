@@ -5,7 +5,7 @@
   "children": [{
     "id": "0101", "name": "用户管理", "page": "system/user",
     "children": [
-      {"id": "010101", "name": "查询/保存", "request": ["/system/admin/user/list", "/system/user/admin/save"]},
+      {"id": "010101", "name": "查询/保存", "request": ["/system/admin/user/list", "/system/admin/user/save"]},
       {"id": "010102", "name": "删除", "request": ["/system/admin/user/delete"]},
       {"id": "010103", "name": "重置密码", "request": ["/system/admin/user/save-password"]}
     ]

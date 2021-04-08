@@ -383,66 +383,6 @@ public class UserExample {
             addCriterion("`password` not between", value1, value2, "password");
             return (Criteria) this;
         }
-
-        public Criteria andPowerIsNull() {
-            addCriterion("`power` is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPowerIsNotNull() {
-            addCriterion("`power` is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPowerEqualTo(Integer value) {
-            addCriterion("`power` =", value, "power");
-            return (Criteria) this;
-        }
-
-        public Criteria andPowerNotEqualTo(Integer value) {
-            addCriterion("`power` <>", value, "power");
-            return (Criteria) this;
-        }
-
-        public Criteria andPowerGreaterThan(Integer value) {
-            addCriterion("`power` >", value, "power");
-            return (Criteria) this;
-        }
-
-        public Criteria andPowerGreaterThanOrEqualTo(Integer value) {
-            addCriterion("`power` >=", value, "power");
-            return (Criteria) this;
-        }
-
-        public Criteria andPowerLessThan(Integer value) {
-            addCriterion("`power` <", value, "power");
-            return (Criteria) this;
-        }
-
-        public Criteria andPowerLessThanOrEqualTo(Integer value) {
-            addCriterion("`power` <=", value, "power");
-            return (Criteria) this;
-        }
-
-        public Criteria andPowerIn(List<Integer> values) {
-            addCriterion("`power` in", values, "power");
-            return (Criteria) this;
-        }
-
-        public Criteria andPowerNotIn(List<Integer> values) {
-            addCriterion("`power` not in", values, "power");
-            return (Criteria) this;
-        }
-
-        public Criteria andPowerBetween(Integer value1, Integer value2) {
-            addCriterion("`power` between", value1, value2, "power");
-            return (Criteria) this;
-        }
-
-        public Criteria andPowerNotBetween(Integer value1, Integer value2) {
-            addCriterion("`power` not between", value1, value2, "power");
-            return (Criteria) this;
-        }
     }
 
     public static class Criteria extends GeneratedCriteria {
