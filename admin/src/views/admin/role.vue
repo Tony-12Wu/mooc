@@ -338,6 +338,7 @@
                 }).then((response)=>{
                     let resp = response.data;
                     if (resp.success) {
+                        $("#resource-modal").modal("hide");
                         Toast.success("保存成功!");
                     } else {
                         Toast.warning(resp.message);
@@ -436,6 +437,7 @@
                     console.log("保存角色用户结果：", response);
                     let resp = response.data;
                     if (resp.success) {
+                        $("#user-modal").modal("hide");
                         Toast.success("保存成功!");
                     } else {
                         Toast.warning(resp.message);

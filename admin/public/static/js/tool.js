@@ -118,7 +118,7 @@ Tool = {
   },
 
   /**
-   * 查找是否有权限
+   * 查找是否有权限，用于前端权限过滤
    * @param id 资源id
    */
   hasResource: function (id) {
