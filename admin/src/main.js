@@ -25,7 +25,23 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (response) {
     console.log("返回结果：", response);
     return response;
-}, error => {});
+}, error => {
+    let token = Tool.getLoginUser().token;
+    if (error.response) {
+        switch (error.response.status) {
+            case 401:
+                let path = error.response.config.url;
+                //Toast.error("接口没有权限");
+                console.log("接口: "+path+" 没有权限或token："+token+"已过期");
+                // 跳出提示框，清除会话token信息并跳转到登录页面
+                alert ('没有权限或token已过期，请重新登陆')
+                Tool.setLoginUser(null);
+                router.push("/login")
+                location.reload()
+        }
+    }
+    return Promise.reject(error.response)   // 返回接口返回的错误信息
+});
 
 // 全局过滤器
 Object.keys(filter).forEach(key => {

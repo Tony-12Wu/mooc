@@ -1,5 +1,8 @@
 package com.course.gateway.filter;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -53,6 +56,32 @@ public class LoginAdminGatewayFilter implements GatewayFilter, Ordered {
             return exchange.getResponse().setComplete();
         } else {
             LOG.info("已登录：{}", object);
+
+            // 增加权限校验，gateway里没有LoginUserDto，所以全部用JSON操作
+            LOG.info("接口权限校验，请求地址：{}", path);
+            boolean exist = false;
+            JSONObject loginUserDto = JSON.parseObject(String.valueOf(object));
+            JSONArray requests = loginUserDto.getJSONArray("requests");
+            // 遍历所有【权限请求】，判断当前请求的地址是否在【权限请求】里
+            for (int i = 0, l = requests.size(); i < l; i++) {
+                String request = (String) requests.get(i);
+                //判断path请求是否包含权限路径，则返回true
+                //如 path=/system/admin/user/list, request=/system/admin/user, 则path包含request
+                if (path.contains(request)) {
+                    exist = true;
+                    break;
+                }
+            }
+            if (exist) {
+                LOG.info("权限校验通过");
+            } else {
+                LOG.warn("权限校验未通过");
+                exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+                // 清除token并重新跳转至登陆界面
+                redisTemplate.delete(token);
+                return exchange.getResponse().setComplete();
+            }
+            // 请求继续往下走
             return chain.filter(exchange);
         }
     }

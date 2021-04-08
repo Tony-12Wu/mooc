@@ -339,7 +339,7 @@
                     let resp = response.data;
                     if (resp.success) {
                         $("#resource-modal").modal("hide");
-                        Toast.success("保存成功!");
+                        Toast.success("保存成功，重新登陆权限才能生效!");
                     } else {
                         Toast.warning(resp.message);
                     }
@@ -438,7 +438,7 @@
                     let resp = response.data;
                     if (resp.success) {
                         $("#user-modal").modal("hide");
-                        Toast.success("保存成功!");
+                        Toast.success("保存成功，重新登陆权限才能生效!");
                     } else {
                         Toast.warning(resp.message);
                     }
