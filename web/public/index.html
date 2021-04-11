@@ -1,17 +1,43 @@
 <!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <link rel="stylesheet" href="<%= BASE_URL %>bootstrap-4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>static/css/album.css">
+<!--  <link rel="stylesheet" href="<%= BASE_URL %>static/css/style.css">-->
+<!--
+  &lt;!&ndash;  阿里云播放器  &ndash;&gt;
+  <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.8.2/skins/default/aliplayer-min.css"/>
+
+  <script src="<%= BASE_URL %>static/js/enums.js"></script>
+  <script src="<%= BASE_URL %>static/js/tool.js"></script>-->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="<%= BASE_URL %>bootstrap-4/js/bootstrap.bundle.min.js"></script>
+<!--  <script src="https://use.fontawesome.com/ed8edb616a.js"></script>-->
+
+<!--  &lt;!&ndash;  阿里云播放器  &ndash;&gt;
+  <script charset="utf-8" type="text/javascript" src="https://g.alicdn.com/de/prismplayer/2.8.2/aliplayer-min.js"></script>
+
+  &lt;!&ndash;  确认框和提示框  &ndash;&gt;
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <script src="<%= BASE_URL %>static/js/toast.js"></script>
+
+  &lt;!&ndash;  md5工具类  &ndash;&gt;
+  <script src="<%= BASE_URL %>static/js/md5.js"></script>
+
+  &lt;!&ndash;  h5缓存  &ndash;&gt;
+  <script src="<%= BASE_URL %>static/js/session-storage.js"></script>
+  <script src="<%= BASE_URL %>static/js/local-storage.js"></script>
+
+  &lt;!&ndash;  正则表达式校验  &ndash;&gt;
+  <script src="<%= BASE_URL %>static/js/pattern.js"></script>-->
+
+  <title>岭师在线视频课程系统</title>
+</head>
+<body>
+<div id="app"></div>
+</body>
 </html>
