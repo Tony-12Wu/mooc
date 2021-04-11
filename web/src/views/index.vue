@@ -3,11 +3,10 @@
 
     <section class="jumbotron text-center">
       <div class="container">
-        <h1>Album example</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+        <h1>岭师在线视频课程平台</h1>
+        <p class="lead text-muted">&nbsp;岭师在线MOOC，欢迎岭师学子和教师使用！在这里可以学习所有线上视频课程，希望能对大家有所帮助！如没有找到相关课程，请联系老师或者教务处慕课管理员，谢谢！</p>
         <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+          <a href="#" class="btn btn-primary my-2 p-3 font-weight-bold">点击进入所有课程</a>
         </p>
       </div>
     </section>
