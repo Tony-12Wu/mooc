@@ -1,6 +1,7 @@
 package com.course.business.controller.web;
 
 import com.course.server.dto.CourseDto;
+import com.course.server.dto.CoursePageDto;
 import com.course.server.dto.PageDto;
 import com.course.server.dto.ResponseDto;
 import com.course.server.enums.CourseStatusEnum;
@@ -40,9 +41,9 @@ public class CourseController {
         return responseDto;
     }
 
-   /* *//**
+   /**
      * 列表查询
-     *//*
+     */
     @PostMapping("/list")
     public ResponseDto list(@RequestBody CoursePageDto pageDto) {
         ResponseDto responseDto = new ResponseDto();
@@ -52,7 +53,7 @@ public class CourseController {
         return responseDto;
     }
 
-    @GetMapping("/find/{id}")
+/*    @GetMapping("/find/{id}")
     public ResponseDto findCourse(@PathVariable String id) {
         LOG.info("查找课程开始：{}", id);
         ResponseDto responseDto = new ResponseDto();

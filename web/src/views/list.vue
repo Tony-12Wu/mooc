@@ -1,56 +1,38 @@
 <template>
   <main role="main">
-
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1>岭师在线视频课程平台</h1>
-        <p class="lead text-muted">&nbsp;岭师在线MOOC，欢迎岭师学子和教师使用！在这里可以学习所有线上视频课程，希望能对大家有所帮助！如没有找到相关课程，请联系老师或者教务处慕课管理员，谢谢！</p>
-        <p>
-          <router-link to="/list" class="btn btn-primary my-2 p-3 font-weight-bold">点击进入所有课程</router-link>
-        </p>
-      </div>
-    </section>
-
     <div class="album py-5 bg-light">
       <div class="container">
-        <div class="title1">最新上线</div>
           <div class="row">
-              <div v-for="o in news" class="col-md-4">
+              <div v-for="o in courses" class="col-md-4">
                   <the-course v-bind:course="o"></the-course>
               </div>
+              <h3 v-show="courses.length===0">课程还未上架</h3>
           </div>
-        <hr>
-        <div class="title2">好课推荐</div>
-        <div class="row">
-            <div v-for="o in news" class="col-md-4">
-                <the-course v-bind:course="o"></the-course>
-            </div>
-        </div>
-        </div>
+      </div>
     </div>
-
   </main>
 </template>
 
 <script>
     import TheCourse from "../components/the-course";
     export default {
-        name: "index",
+        name: "list",
         components: {TheCourse},
         data: function () {
             return {
-                news: [],
+                courses: [],
             }
         },
         mounted() {
             let _this = this;
-            _this.listNew();
+            _this.listCourse();
         },
         methods: {
+
             /**
-             * 查询新上好课
+             * 查询课程
              */
-            listNew() {
+            listCourse() {
                 let _this = this;
 
                 // 新上好课不经常变，又经常被访问，适合用缓存
@@ -61,11 +43,15 @@
                     return;
                 }*/
 
-                _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/web/course/list-new').then((response)=>{
+                _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/web/course/list',{
+                    page: 1,
+                    size: 5,
+                }).then((response)=>{
+
                     console.log("查询新上好课结果：", response);
                     let resp = response.data;
                     if (resp.success) {
-                        _this.news = resp.content;
+                        _this.courses = resp.content;
                         // 保存到缓存
                         //SessionStorage.set("news", _this.news);
                     }
