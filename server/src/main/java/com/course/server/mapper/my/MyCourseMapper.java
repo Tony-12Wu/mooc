@@ -1,8 +1,12 @@
 package com.course.server.mapper.my;
 
 
+import com.course.server.dto.CourseDto;
+import com.course.server.dto.CoursePageDto;
 import com.course.server.dto.SortDto;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 
 /**
@@ -10,7 +14,7 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface MyCourseMapper {
 
-    //List<CourseDto> list(@Param("pageDto") CoursePageDto pageDto);
+    List<CourseDto> list(@Param("pageDto") CoursePageDto pageDto);
 
     /**
      * 根据courseId更新课程时长

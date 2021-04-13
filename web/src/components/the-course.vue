@@ -25,7 +25,7 @@
     },
     data: function () {
       return {
-          COURSE_ONLINE: COURSE_ONLINE
+          COURSE_ONLINE:COURSE_ONLINE
       }
     },
   }

@@ -40,7 +40,7 @@
       </div>
     </nav>
 
-    <the-login ref="loginComponent"></the-login>
+<!--    <the-login ref="loginComponent"></the-login>-->
   </header>
 </template>
 
