@@ -34,13 +34,13 @@
           width: '100%',
           autoplay: false,
           source: url,
-          cover: 'http://liveroom-img.oss-cn-qingdao.aliyuncs.com/logo.png',
+          cover: 'http://lingnan-imooc.oss-cn-guangzhou.aliyuncs.com/teacher/57E7aHrGPy84McQqC0iuEq.jpg',
         }, function (player) {
           console.log('播放器创建好了。')
         });
       },
 
-      playVod (vod) {
+/*      playVod (vod) {
         let _this = this;
         _this.$ajax.get(process.env.VUE_APP_SERVER + '/file/web/get-auth/' + vod).then((response)=>{
           let resp = response.data;
@@ -70,7 +70,7 @@
           }
         })
 
-      }
+      }*/
     }
   }
 </script>

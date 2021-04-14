@@ -127,7 +127,7 @@
           _this.sections = _this.course.sections || [];
 
           // 获取报名信息
-          _this.getEnroll();
+          //_this.getEnroll();
 
           // 将所有的节放入对应的章中
           for (let i = 0; i < _this.chapters.length; i++) {
@@ -162,7 +162,7 @@
        */
       play(section) {
         let _this = this;
-        if (section.charge === _this.SECTION_CHARGE.CHARGE.key ) {
+/*        if (section.charge === _this.SECTION_CHARGE.CHARGE.key ) {
           let loginMember = Tool.getLoginMember();
           if (Tool.isEmpty(loginMember)) {
             Toast.warning("请先登录");
@@ -173,13 +173,13 @@
               return;
             }
           }
-        }
-        _this.$refs.modalPlayer.playVod(section.vod);
+        }*/
+        _this.$refs.modalPlayer.playUrl(section.video);
       },
 
-      /**
+   /*   /!**
        * 报名
-       */
+       *!/
       enroll() {
         let _this = this;
         let loginMember = Tool.getLoginMember();
@@ -201,9 +201,9 @@
         });
       },
 
-      /**
+      /!**
        * 获取报名
-       */
+       *!/
       getEnroll() {
         let _this = this;
         let loginMember = Tool.getLoginMember();
@@ -220,7 +220,7 @@
             _this.memberCourse = resp.content || {};
           }
         });
-      },
+      },*/
     }
   }
 </script>
