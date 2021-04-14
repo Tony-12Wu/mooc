@@ -1,7 +1,8 @@
 package com.course.server.dto;
 
-import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
 
 /**
  * @author JT
@@ -14,11 +15,6 @@ public class MemberDto {
     private String id;
 
     /**
-     * 昵称
-     */
-    private String name;
-
-    /**
      * 手机号
      */
     private String mobile;
@@ -27,6 +23,11 @@ public class MemberDto {
      * 密码
      */
     private String password;
+
+    /**
+     * 昵称
+     */
+    private String name;
 
     /**
      * 头像url
@@ -39,20 +40,27 @@ public class MemberDto {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date registerTime;
 
+    /**
+     * 图片验证码
+     */
+    private String imageCode;
+
+    /**
+     * 图片验证码token
+     */
+    private String imageCodeToken;
+
+    /**
+     * 短信验证码
+     */
+    private String smsCode;
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getMobile() {
@@ -71,6 +79,14 @@ public class MemberDto {
         this.password = password;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getPhoto() {
         return photo;
     }
@@ -87,21 +103,43 @@ public class MemberDto {
         this.registerTime = registerTime;
     }
 
+    public String getImageCode() {
+        return imageCode;
+    }
+
+    public void setImageCode(String imageCode) {
+        this.imageCode = imageCode;
+    }
+
+    public String getImageCodeToken() {
+        return imageCodeToken;
+    }
+
+    public void setImageCodeToken(String imageCodeToken) {
+        this.imageCodeToken = imageCodeToken;
+    }
+
+    public String getSmsCode() {
+        return smsCode;
+    }
+
+    public void setSmsCode(String smsCode) {
+        this.smsCode = smsCode;
+    }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", mobile=").append(mobile);
-        sb.append(", password=").append(password);
-        sb.append(", photo=").append(photo);
+        final StringBuffer sb = new StringBuffer("MemberDto{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", mobile='").append(mobile).append('\'');
+        sb.append(", password='").append(password).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", photo='").append(photo).append('\'');
         sb.append(", registerTime=").append(registerTime);
-        sb.append("]");
+        sb.append(", imageCode='").append(imageCode).append('\'');
+        sb.append(", imageCodeToken='").append(imageCodeToken).append('\'');
+        sb.append(", smsCode='").append(smsCode).append('\'');
+        sb.append('}');
         return sb.toString();
     }
-
 }

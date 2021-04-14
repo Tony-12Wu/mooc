@@ -1,5 +1,8 @@
 package com.course.server.exception;
 
+/**
+ * @author JT
+ */
 public class BusinessException extends RuntimeException{
 
     private BusinessExceptionCode code;
