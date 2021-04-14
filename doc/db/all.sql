@@ -242,3 +242,19 @@ create table `role_user` (
 )engine = innodb default charset = utf8mb4 comment ='角色用户关联表';
 
 insert into role_user values ('00000000', '00000000', '10000000');
+
+
+-- 会员表
+drop table if exists `member`;
+create table `member` (
+   `id` char(8) not null default '' comment 'id',
+   `name` varchar(50) comment '昵称',
+   `mobile` varchar(11) not null comment '手机号',
+   `password` char(32) not null comment '密码',
+   `photo` varchar(200) comment '头像url',
+   `register_time` datetime(3) comment '注册时间',
+   primary key (`id`),
+   unique key `mobile_unique` (`mobile`)
+)engine = innodb default charset = utf8mb4 comment ='会员';
+
+insert into member values ('00000001','测试','15802079428','123456','',now());
