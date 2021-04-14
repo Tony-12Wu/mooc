@@ -32,7 +32,8 @@
     "children": [
       {"id": "020201", "name": "增删查改", "request": ["/business/admin/course", "/business/admin/category/all"]},
       {"id": "020202", "name": "大章管理", "page": "business/chapter","request": ["/business/admin/chapter"]},
-      {"id": "020203", "name": "小节管理", "page": "business/section","request": ["/business/admin/section"]}
+      {"id": "020203", "name": "小节管理", "page": "business/section","request": ["/business/admin/section"]},
+      {"id": "020204", "name": "内容管理", "page": "business/content","request": ["/business/admin/content"]}
     ]
   },{
     "id": "0203", "name": "讲师管理", "page": "business/teacher",

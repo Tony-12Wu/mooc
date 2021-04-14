@@ -92,7 +92,7 @@ public class SmsService {
         criteria.andMobileEqualTo(smsDto.getMobile())
                 .andUseEqualTo(smsDto.getUse())
                 .andStatusEqualTo(SmsStatusEnum.NOT_USED.getCode())
-                .andAtGreaterThan(new Date(new Date().getTime() - 1 * 60 * 1000));
+                .andAtGreaterThan(new Date(System.currentTimeMillis() - 1 * 60 * 1000));
         List<Sms> smsList = smsMapper.selectByExample(example);
 
         if (smsList == null || smsList.size() == 0) {

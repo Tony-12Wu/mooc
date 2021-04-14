@@ -278,11 +278,16 @@
 
         // 提交之前，先校验所有输入框
         // 注意：当有一个文本框校验为false时，其它不校验
-        let validateResult = _this.onRegisterMobileBlur() &&
-          _this.onRegisterMobileCodeBlur() &&
-          _this.onRegisterNameBlur() &&
-          _this.onRegisterPasswordBlur() &&
-          _this.onRegisterConfirmPasswordBlur();
+        let validateResult1 = _this.onRegisterMobileBlur();
+        let validateResult2 = _this.onRegisterMobileCodeBlur();
+        let validateResult3 = _this.onRegisterNameBlur();
+        let validateResult4 = _this.onRegisterPasswordBlur();
+        let validateResult5 = _this.onRegisterConfirmPasswordBlur();
+          let validateResult = validateResult1 &&
+              validateResult2 &&
+              validateResult3 &&
+              validateResult4 &&
+              validateResult5;
         if (!validateResult) {
           return;
         }

@@ -127,7 +127,7 @@
           _this.sections = _this.course.sections || [];
 
           // 获取报名信息
-          //_this.getEnroll();
+          _this.getEnroll();
 
           // 将所有的节放入对应的章中
           for (let i = 0; i < _this.chapters.length; i++) {
@@ -177,9 +177,9 @@
         _this.$refs.modalPlayer.playUrl(section.video);
       },
 
-   /*   /!**
+      /**
        * 报名
-       *!/
+       */
       enroll() {
         let _this = this;
         let loginMember = Tool.getLoginMember();
@@ -201,9 +201,9 @@
         });
       },
 
-      /!**
+      /**
        * 获取报名
-       *!/
+       */
       getEnroll() {
         let _this = this;
         let loginMember = Tool.getLoginMember();
@@ -220,7 +220,7 @@
             _this.memberCourse = resp.content || {};
           }
         });
-      },*/
+      },
     }
   }
 </script>

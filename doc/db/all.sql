@@ -272,3 +272,15 @@ create table `sms` (
 )engine = innodb default charset = utf8mb4 comment ='短信验证码';
 
 insert into sms values ('00000000', '15802079428', '123456', 'F', now(),'U');
+
+-- 成员课程报名表
+drop table if exists `member_course`;
+create table `member_course` (
+   `id` char(8) not null default '' comment 'id',
+   `member_id` varchar(8) not null comment '会员id',
+   `course_id` varchar(8) not null comment '验证码',
+   `at` datetime(3) not null comment '报名时间',
+   primary key (`id`),
+   unique key `member_course_unique` (`member_id`,`course_id`)
+)engine = innodb default charset = utf8mb4 comment ='成员课程报名表';
+

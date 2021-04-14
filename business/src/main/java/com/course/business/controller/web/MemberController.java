@@ -56,14 +56,13 @@ public class MemberController {
 
         // 密码加密
         memberDto.setPassword(DigestUtils.md5DigestAsHex(memberDto.getPassword().getBytes()));
-/*
         // 校验短信验证码
         SmsDto smsDto = new SmsDto();
         smsDto.setMobile(memberDto.getMobile());
         smsDto.setCode(memberDto.getSmsCode());
         smsDto.setUse(SmsUseEnum.REGISTER.getCode());
         smsService.validCode(smsDto);
-        LOG.info("短信验证码校验通过");*/
+        LOG.info("短信验证码校验通过");
 
         ResponseDto responseDto = new ResponseDto();
         memberService.save(memberDto);
