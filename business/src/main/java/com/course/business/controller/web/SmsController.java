@@ -1,13 +1,13 @@
-package com.course.business.controller.admin;
+package com.course.business.controller.web;
 
-import com.course.server.dto.PageDto;
 import com.course.server.dto.ResponseDto;
+import com.course.server.dto.SmsDto;
 import com.course.server.service.SmsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -15,8 +15,8 @@ import javax.annotation.Resource;
 /**
  * @author JT
  */
-@RestController
-@RequestMapping("/admin/sms")
+@RestController("webSmsController")
+@RequestMapping("/web/sms")
 public class SmsController {
 
     private static final Logger LOG = LoggerFactory.getLogger(SmsController.class);
@@ -25,14 +25,12 @@ public class SmsController {
     @Resource
     private SmsService smsService;
 
-    /**
-     * 列表查询
-     */
-    @PostMapping("/list")
-    public ResponseDto list(@RequestBody PageDto pageDto) {
+    @RequestMapping(value = "/send", method = RequestMethod.POST)
+    public ResponseDto send(@RequestBody SmsDto smsDto) {
+        LOG.info("发送短信请求开始: {}", smsDto);
         ResponseDto responseDto = new ResponseDto();
-        smsService.list(pageDto);
-        responseDto.setContent(pageDto);
+        smsService.sendCode(smsDto);
+        LOG.info("发送短信请求结束");
         return responseDto;
     }
 }

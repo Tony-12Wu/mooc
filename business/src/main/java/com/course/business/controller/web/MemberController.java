@@ -6,10 +6,12 @@ import com.course.server.dto.LoginMemberDto;
 import com.course.server.dto.MemberDto;
 import com.course.server.dto.ResponseDto;
 
+import com.course.server.dto.SmsDto;
 import com.course.server.enums.SmsUseEnum;
 import com.course.server.exception.BusinessException;
 import com.course.server.service.MemberService;
 
+import com.course.server.service.SmsService;
 import com.course.server.util.UuidUtil;
 import com.course.server.util.ValidatorUtil;
 import org.slf4j.Logger;
@@ -37,9 +39,8 @@ public class MemberController {
 
     @Resource(name = "redisTemplate")
     private RedisTemplate redisTemplate;
-/*
     @Resource
-    private SmsService smsService;*/
+    private SmsService smsService;
 
     /**
      * 保存，id有值时更新，无值时新增
@@ -121,7 +122,7 @@ public class MemberController {
      * 校验手机号是否存在
      * 存在则success=true，不存在则success=false
      */
-/*    @GetMapping(value = "/is-mobile-exist/{mobile}")
+    @GetMapping(value = "/is-mobile-exist/{mobile}")
     public ResponseDto isMobileExist(@PathVariable(value = "mobile") String mobile) throws BusinessException {
         LOG.info("查询手机号是否存在开始");
         ResponseDto responseDto = new ResponseDto();
@@ -152,5 +153,5 @@ public class MemberController {
         memberService.resetPassword(memberDto);
 
         return responseDto;
-    }*/
+    }
 }
