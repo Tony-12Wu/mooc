@@ -1,12 +1,12 @@
 <template>
     <div>
         <p>
-            <button v-on:click="add()" class="btn btn-white btn-default btn-round">
+            <button v-show="hasResource('020201')" v-on:click="add()" class="btn btn-white btn-default btn-round">
                 <i class="ace-icon fa fa-edit"></i>
                 新增
             </button>
             &nbsp;
-            <button v-on:click="list(1)" class="btn btn-white btn-default btn-round">
+            <button v-show="hasResource('020201')" v-on:click="list(1)" class="btn btn-white btn-default btn-round">
                 <i class="ace-icon fa fa-refresh"></i>
                 刷新
             </button>
@@ -56,19 +56,19 @@
                   <span class="badge badge-info">排序：{{course.sort}}</span>
                 </p>
                 <p>
-                  <button v-on:click="toChapter(course)" class="btn btn-white btn-xs btn-info btn-round">
+                  <button v-show="hasResource('020201')" v-on:click="toChapter(course)" class="btn btn-white btn-xs btn-info btn-round">
                     大章
                   </button>&nbsp;
-                  <button v-on:click="toContent(course)" class="btn btn-white btn-xs btn-info btn-round">
+                  <button v-show="hasResource('020201')" v-on:click="toContent(course)" class="btn btn-white btn-xs btn-info btn-round">
                     内容
                   </button>&nbsp;
-                  <button v-on:click="openSortModal(course)" class="btn btn-white btn-xs btn-info btn-round">
+                  <button v-show="hasResource('020201')" v-on:click="openSortModal(course)" class="btn btn-white btn-xs btn-info btn-round">
                     排序
                   </button>&nbsp;
-                  <button v-on:click="edit(course)" class="btn btn-white btn-xs btn-info btn-round">
+                  <button v-show="hasResource('020201')" v-on:click="edit(course)" class="btn btn-white btn-xs btn-info btn-round">
                     编辑
                   </button>&nbsp;
-                  <button v-on:click="del(course.id)" class="btn btn-white btn-xs btn-warning btn-danger">
+                  <button v-show="hasResource('020201')" v-on:click="del(course.id)" class="btn btn-white btn-xs btn-warning btn-danger">
                     删除
                   </button>
                 </p>
@@ -275,6 +275,14 @@
 
         },
         methods: {
+
+            /**
+             * 查找是否有权限
+             * @param id
+             */
+            hasResource(id) {
+                return Tool.hasResource(id);
+            },
             /**
              * 点击【新增】
              */

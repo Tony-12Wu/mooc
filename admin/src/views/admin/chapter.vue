@@ -11,12 +11,12 @@
         返回课程
       </router-link>
       &nbsp;
-      <button v-on:click="add()" class="btn btn-white btn-default btn-round">
+      <button v-show="hasResource('020202')" v-on:click="add()" class="btn btn-white btn-default btn-round">
         <i class="ace-icon fa fa-edit"></i>
         新增
       </button>
       &nbsp;
-      <button v-on:click="list(1)" class="btn btn-white btn-default btn-round">
+      <button v-show="hasResource('020202')" v-on:click="list(1)" class="btn btn-white btn-default btn-round">
         <i class="ace-icon fa fa-refresh"></i>
         刷新
       </button>
@@ -115,7 +115,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-            <button v-on:click="save()" type="button" class="btn btn-primary">保存</button>
+            <button v-show="hasResource('020202')" v-on:click="save()" type="button" class="btn btn-primary">保存</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -149,6 +149,15 @@
 
         },
         methods: {
+
+            /**
+             * 查找是否有权限
+             * @param id
+             */
+            hasResource(id) {
+                return Tool.hasResource(id);
+            },
+
             /**
              * 点击【新增】按钮
              */
