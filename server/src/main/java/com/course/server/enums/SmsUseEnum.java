@@ -1,9 +1,13 @@
 package com.course.server.enums;
 
+/**
+ * @author JT
+ */
+
 public enum SmsUseEnum {
 
     REGISTER("R", "注册"),
-    FORGET("F", "忘记密码");
+    FORGET("F", "找回密码");
 
     private String code;
 

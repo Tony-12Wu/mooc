@@ -258,3 +258,17 @@ create table `member` (
 )engine = innodb default charset = utf8mb4 comment ='会员';
 
 insert into member values ('00000001','测试','15802079428','123456','',now());
+
+-- 短信验证表
+drop table if exists `sms`;
+create table `sms` (
+  `id` char(8) not null default '' comment 'id',
+  `mobile` varchar(11) not null comment '手机号',
+  `code` varchar(6) not null comment '验证码',
+  `use` char(1) not null comment '用途|枚举[SmsUseEnum]: REGISTER("R", "注册"), FORGET("F", "找回密码")',
+  `at` datetime(3) comment '生成时间',
+  `status` char(1) not null comment '状态|枚举[SmsStatusEnum]: USED("U", "已使用"), NOT_USED("N", "未使用")',
+  primary key (`id`)
+)engine = innodb default charset = utf8mb4 comment ='短信验证码';
+
+insert into sms values ('00000000', '15802079428', '123456', 'F', now(),'U');

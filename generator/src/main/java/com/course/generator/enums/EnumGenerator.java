@@ -13,9 +13,9 @@ import java.util.regex.Pattern;
  */
 public class EnumGenerator {
 
-    static String path = "web\\public\\static\\js\\enums.js";
+    //static String path = "web\\public\\static\\js\\enums.js";
 
-    //static String path = "admin\\public\\static\\js\\enums.js";
+    static String path = "admin\\public\\static\\js\\enums.js";
 
     public static void main(String[] args) {
         StringBuffer bufferObject = new StringBuffer();
@@ -29,8 +29,8 @@ public class EnumGenerator {
             toJson(CourseCategoryEnum.class, bufferObject, bufferArray);
             //toJson(YesNoEnum.class, bufferObject, bufferArray);
             toJson(FileUseEnum.class, bufferObject, bufferArray);
-            //toJson(SmsUseEnum.class, bufferObject, bufferArray);
-            //toJson(SmsStatusEnum.class, bufferObject, bufferArray);
+            toJson(SmsUseEnum.class, bufferObject, bufferArray);
+            toJson(SmsStatusEnum.class, bufferObject, bufferArray);
 
             StringBuffer buffer = bufferObject.append("\r\n").append(bufferArray);
             writeJs(buffer);
