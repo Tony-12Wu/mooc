@@ -9,12 +9,22 @@ public class CoursePageDto extends PageDto {
 
     private String categoryId;
 
+    private String teacherId;
+
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
     }
 
     public String getCategoryId() {
@@ -30,10 +40,7 @@ public class CoursePageDto extends PageDto {
         final StringBuffer sb = new StringBuffer("CoursePageDto{");
         sb.append("status='").append(status).append('\'');
         sb.append(", categoryId='").append(categoryId).append('\'');
-        sb.append(", page=").append(page);
-        sb.append(", size=").append(size);
-        sb.append(", total=").append(total);
-        sb.append(", list=").append(list);
+        sb.append(", teacherId='").append(teacherId).append('\'');
         sb.append('}');
         return sb.toString();
     }

@@ -1,14 +1,14 @@
 package com.course.server.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * @author JT
  */
-
 public class CourseDto {
 
     /**
@@ -37,17 +37,17 @@ public class CourseDto {
     private String image;
 
     /**
-     * 线上|枚举[CourseOnlineEnum]: ONLINE("0","线上"), Offline("1","线下")
-     */
-    private String online;
-
-    /**
-     * 状态|枚举[CourseStatusEnum]: PUBLISH("P","发布"), DRAFT("D","草稿")
+     * 状态|PUBLISH("P", "发布"),DRAFT("D", "草稿")
      */
     private String status;
 
     /**
-     * 类别|枚举[CourseCategoryEnum]: PUBLIC_ELECTIVE("0","校公选课"), PUBLIC_COMPULSORY("2","校公共必修课"), MAJOR_REQUIRED("3","专业必修课"),DEGREE("4","学位课")
+     * 线上|ONLINE("0", "线上"),Offline("1", "线下")
+     */
+    private String online;
+
+    /**
+     * 类别
      */
     private String category;
 
@@ -65,42 +65,28 @@ public class CourseDto {
      * 创建时间
      */
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    private Date createAt;
+    private Date createdAt;
 
     /**
      * 修改时间
      */
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    private Date updateAt;
+    private Date updatedAt;
 
-    /**
-     * 分类
-     */
     private List<CategoryDto> categorys;
 
-    /**
-     * 讲师Id
-     */
+    private List<ChapterDto> chapters;
+
+    private List<SectionDto> sections;
+
+    private String content;
+
+    private TeacherDto teacher;
+
     private String teacherId;
 
     public String getId() {
         return id;
-    }
-
-    public List<CategoryDto> getCategorys() {
-        return categorys;
-    }
-
-    public void setCategorys(List<CategoryDto> categorys) {
-        this.categorys = categorys;
-    }
-
-    public String getTeacherId() {
-        return teacherId;
-    }
-
-    public void setTeacherId(String teacherId) {
-        this.teacherId = teacherId;
     }
 
     public void setId(String id) {
@@ -113,6 +99,14 @@ public class CourseDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getSummary() {
@@ -131,6 +125,7 @@ public class CourseDto {
         this.time = time;
     }
 
+
     public String getImage() {
         return image;
     }
@@ -139,13 +134,6 @@ public class CourseDto {
         this.image = image;
     }
 
-    public String getOnline() {
-        return online;
-    }
-
-    public void setOnline(String online) {
-        this.online = online;
-    }
 
     public String getStatus() {
         return status;
@@ -153,14 +141,6 @@ public class CourseDto {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public Integer getEnroll() {
@@ -179,20 +159,76 @@ public class CourseDto {
         this.sort = sort;
     }
 
-    public Date getCreateAt() {
-        return createAt;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getUpdateAt() {
-        return updateAt;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdateAt(Date updateAt) {
-        this.updateAt = updateAt;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public List<CategoryDto> getCategorys() {
+        return categorys;
+    }
+
+    public void setCategorys(List<CategoryDto> categorys) {
+        this.categorys = categorys;
+    }
+
+    public String getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
+    }
+
+    public List<ChapterDto> getChapters() {
+        return chapters;
+    }
+
+    public void setChapters(List<ChapterDto> chapters) {
+        this.chapters = chapters;
+    }
+
+    public List<SectionDto> getSections() {
+        return sections;
+    }
+
+    public void setSections(List<SectionDto> sections) {
+        this.sections = sections;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public TeacherDto getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(TeacherDto teacher) {
+        this.teacher = teacher;
+    }
+
+    public String getOnline() {
+        return online;
+    }
+
+    public void setOnline(String online) {
+        this.online = online;
     }
 
     @Override
@@ -203,17 +239,20 @@ public class CourseDto {
         sb.append(", summary='").append(summary).append('\'');
         sb.append(", time=").append(time);
         sb.append(", image='").append(image).append('\'');
-        sb.append(", online='").append(online).append('\'');
         sb.append(", status='").append(status).append('\'');
+        sb.append(", online='").append(online).append('\'');
         sb.append(", category='").append(category).append('\'');
         sb.append(", enroll=").append(enroll);
         sb.append(", sort=").append(sort);
-        sb.append(", createAt=").append(createAt);
-        sb.append(", updateAt=").append(updateAt);
+        sb.append(", createdAt=").append(createdAt);
+        sb.append(", updatedAt=").append(updatedAt);
         sb.append(", categorys=").append(categorys);
+        sb.append(", chapters=").append(chapters);
+        sb.append(", sections=").append(sections);
+        sb.append(", content='").append(content).append('\'');
+        sb.append(", teacher=").append(teacher);
         sb.append(", teacherId='").append(teacherId).append('\'');
         sb.append('}');
         return sb.toString();
     }
-
 }

@@ -53,13 +53,14 @@ public class CourseController {
         return responseDto;
     }
 
-/*    @GetMapping("/find/{id}")
+
+    @GetMapping("/find/{id}")
     public ResponseDto findCourse(@PathVariable String id) {
         LOG.info("查找课程开始：{}", id);
         ResponseDto responseDto = new ResponseDto();
-        CourseDto courseDto = courseService.findCourse(id);
+        CourseDto courseDto = courseService.findCourseById(id);
         responseDto.setContent(courseDto);
         LOG.info("查找课程结束：{}", responseDto);
         return responseDto;
-    }*/
+    }
 }
