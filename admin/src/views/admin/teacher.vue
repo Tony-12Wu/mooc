@@ -1,12 +1,12 @@
 <template>
     <div>
         <p>
-            <button v-on:click="add()" class="btn btn-white btn-default btn-round">
+            <button v-show="hasResource('020301')" v-on:click="add()" class="btn btn-white btn-default btn-round">
                 <i class="ace-icon fa fa-edit"></i>
                 新增
             </button>
             &nbsp;
-            <button v-on:click="list(1)" class="btn btn-white btn-default btn-round">
+            <button v-show="hasResource('020302')" v-on:click="list(1)" class="btn btn-white btn-default btn-round">
                 <i class="ace-icon fa fa-refresh"></i>
                 刷新
             </button>
@@ -45,11 +45,11 @@
                 <div class="space-6"></div>
 
                 <div class="profile-social-links align-center">
-                    <button v-on:click="edit(teacher)" class="btn btn-xs btn-info">
+                    <button v-show="hasResource('020301')" v-on:click="edit(teacher)" class="btn btn-xs btn-info">
                         <i class="ace-icon fa fa-pencil bigger-120"></i>
                     </button>
                     &nbsp;
-                    <button v-on:click="del(teacher.id)" class="btn btn-xs btn-danger">
+                    <button v-show="hasResource('020301')" v-on:click="del(teacher.id)" class="btn btn-xs btn-danger">
                         <i class="ace-icon fa fa-trash-o bigger-120"></i>
                     </button>
                 </div>
@@ -150,6 +150,15 @@
 
         },
         methods: {
+
+            /**
+             * 查找是否有权限
+             * @param id
+             */
+            hasResource(id) {
+                return Tool.hasResource(id);
+            },
+
             /**
              * 点击【新增】
              */

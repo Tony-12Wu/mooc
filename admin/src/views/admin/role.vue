@@ -119,7 +119,7 @@
                                 <table id="user-table" class="table table-hover">
                                     <tbody>
                                     <tr v-for="user in users">
-                                        <td>{{user.loginName}}</td>
+                                        <td>{{user.name}}</td>
                                         <td class="text-right">
                                             <a v-on:click="addUser(user)" href="javascript:;" class="">
                                                 <i class="ace-icon fa fa-arrow-circle-right blue"></i>
@@ -133,7 +133,7 @@
                                 <table id="role-user-table" class="table table-hover">
                                     <tbody>
                                     <tr v-for="user in roleUsers">
-                                        <td>{{user.loginName}}</td>
+                                        <td>{{user.name}}</td>
                                         <td class="text-right">
                                             <a v-on:click="deleteUser(user)" href="javascript:;" class="">
                                                 <i class="ace-icon fa fa-trash blue"></i>

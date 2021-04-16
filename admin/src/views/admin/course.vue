@@ -6,7 +6,7 @@
                 新增
             </button>
             &nbsp;
-            <button v-show="hasResource('020201')" v-on:click="list(1)" class="btn btn-white btn-default btn-round">
+            <button v-show="hasResource('020202')" v-on:click="list(1)" class="btn btn-white btn-default btn-round">
                 <i class="ace-icon fa fa-refresh"></i>
                 刷新
             </button>
@@ -56,10 +56,10 @@
                   <span class="badge badge-info">排序：{{course.sort}}</span>
                 </p>
                 <p>
-                  <button v-show="hasResource('020201')" v-on:click="toChapter(course)" class="btn btn-white btn-xs btn-info btn-round">
+                  <button v-show="hasResource('020203')" v-on:click="toChapter(course)" class="btn btn-white btn-xs btn-info btn-round">
                     大章
                   </button>&nbsp;
-                  <button v-show="hasResource('020201')" v-on:click="toContent(course)" class="btn btn-white btn-xs btn-info btn-round">
+                  <button v-show="hasResource('020205')" v-on:click="toContent(course)" class="btn btn-white btn-xs btn-info btn-round">
                     内容
                   </button>&nbsp;
                   <button v-show="hasResource('020201')" v-on:click="openSortModal(course)" class="btn btn-white btn-xs btn-info btn-round">
