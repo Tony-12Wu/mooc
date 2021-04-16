@@ -194,6 +194,8 @@
           let resp = response.data;
           if (resp.success) {
             _this.memberCourse = resp.content;
+            _this.findCourse();
+            location.reload();
             Toast.success("报名成功！");
           } else {
             Toast.warning(resp.message);

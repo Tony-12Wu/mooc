@@ -42,5 +42,7 @@
         update course set `sort`= (`sort`-1) where `sort` <= #{newSort} and `sort` >= #{oldSort} and id != #{id}
         ]]>
     </update>
-
+    <update id="updateEnroll">
+        update course set courseimooc.course.`enroll`= #{enroll} where id = #{courseId}
+    </update>
 </mapper>

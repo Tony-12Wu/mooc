@@ -280,7 +280,8 @@ create table `member_course` (
    `member_id` varchar(8) not null comment '会员id',
    `course_id` varchar(8) not null comment '课程id',
    `at` datetime(3) not null comment '报名时间',
-   primary key (`id`),
-   unique key `member_course_unique` (`member_id`,`course_id`)
+   primary key (`id`)
 )engine = innodb default charset = utf8mb4 comment ='成员课程报名表';
 
+insert into member_course values ('I4oFpSW5','JCVNuGzl','00000001',now());
+insert into member_course values ('I4oFpSW3','JCVNuGz2','00000001',now());

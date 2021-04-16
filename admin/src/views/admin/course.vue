@@ -175,7 +175,7 @@
                           <div class="form-group">
                               <label class="col-sm-2 control-label">报名数</label>
                               <div class="col-sm-10">
-                                  <input v-model="course.enroll" class="form-control">
+                                  <input v-model="course.enroll" class="form-control" disabled>
                               </div>
                           </div>
                           <div class="form-group">

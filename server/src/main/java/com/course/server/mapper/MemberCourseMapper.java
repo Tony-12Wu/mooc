@@ -5,6 +5,9 @@ import com.course.server.domain.MemberCourseExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+/**
+ * @author JT
+ */
 public interface MemberCourseMapper {
     long countByExample(MemberCourseExample example);
 

@@ -25,6 +25,8 @@ public interface MyCourseMapper {
 
     int updateSort(SortDto sortDto);
 
+    int updateEnroll(int enroll, String courseId);
+
     int moveSortsBackward(SortDto sortDto);
 
     int moveSortsForward(SortDto sortDto);

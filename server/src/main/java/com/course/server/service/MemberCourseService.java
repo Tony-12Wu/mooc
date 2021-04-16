@@ -4,12 +4,16 @@ import com.course.server.domain.MemberCourse;
 import com.course.server.domain.MemberCourseExample;
 import com.course.server.dto.MemberCourseDto;
 import com.course.server.dto.PageDto;
+import com.course.server.mapper.CourseMapper;
 import com.course.server.mapper.MemberCourseMapper;
+import com.course.server.mapper.my.MyCourseMapper;
+import com.course.server.mapper.my.MyMemberCourseMapper;
 import com.course.server.util.CopyUtil;
 import com.course.server.util.UuidUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
@@ -25,6 +29,12 @@ public class MemberCourseService {
 
     @Resource
     private MemberCourseMapper memberCourseMapper;
+
+    @Resource
+    private MyMemberCourseMapper myMemberCourseMapper;
+
+    @Resource
+    private MyCourseMapper myCourseMapper;
 
     /**
      * 列表查询
@@ -111,8 +121,12 @@ public class MemberCourseService {
     /**
      * 获取报名信息
      */
+    @Transactional(rollbackFor = Exception.class)
     public MemberCourseDto getEnroll(MemberCourseDto memberCourseDto) {
         MemberCourse memberCourse = this.select(memberCourseDto.getMemberId(), memberCourseDto.getCourseId());
+        // 统计课程报名数并更新
+        int count = myMemberCourseMapper.countByCourseId(memberCourseDto.getCourseId());
+        myCourseMapper.updateEnroll(count,memberCourseDto.getCourseId());
         return CopyUtil.copy(memberCourse, MemberCourseDto.class);
     }
 }
