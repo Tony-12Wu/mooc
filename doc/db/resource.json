@@ -45,11 +45,6 @@
     "children": [
       {"id": "020401", "name": "增删查改", "request": ["/business/admin/member"]}
     ]
-  },{
-    "id": "0205", "name": "短信管理", "page": "business/sms",
-    "children": [
-      {"id": "020501", "name": "增删查改", "request": ["/business/admin/sms"]}
-    ]
   }]
 },{
   "id": "03", "name": "文件管理",
@@ -57,6 +52,13 @@
     "id": "0301", "name": "文件管理", "page": "file/file",
     "children": [
       {"id": "030101", "name": "文件查看", "request": ["/file/admin/file","/file/admin/check","/file/admin/oss-append"]}
+    ]}
+  ]},{
+  "id": "04", "name": "短信管理",
+  "children": [{
+    "id": "0401", "name": "短信管理", "page": "business/sms",
+    "children": [
+      {"id": "040101", "name": "短信查看", "request": ["/business/admin/sms"]}
     ]}
   ]}
 ]

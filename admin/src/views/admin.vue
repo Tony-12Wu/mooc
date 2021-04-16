@@ -437,14 +437,6 @@
 
                 <b class="arrow"></b>
               </li>
-              <li v-show="hasResource('0205')" class="" id="business-sms-sidebar">
-                <router-link to="/business/sms">
-                  <i class="menu-icon fa fa-caret-right"></i>
-                  短信管理
-                </router-link>
-
-                <b class="arrow"></b>
-              </li>
 
             </ul>
           </li>
@@ -464,6 +456,28 @@
                 <router-link to="/file/file">
                   <i class="menu-icon fa fa-caret-right"></i>
                   文件管理
+                </router-link>
+                <b class="arrow"></b>
+              </li>
+
+            </ul>
+          </li>
+          <!-- 短信管理 -->
+          <li v-show="hasResource('04')" class="">
+            <a href="#" class="dropdown-toggle">
+              <i class="menu-icon fa fa-list"></i>
+              <span class="menu-text"> 短信管理 </span>
+
+              <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+              <li  v-show="hasResource('0401')" class="" id = "business-sms-sidebar">
+                <router-link to="/business/sms">
+                  <i class="menu-icon fa fa-caret-right"></i>
+                  短信管理
                 </router-link>
                 <b class="arrow"></b>
               </li>

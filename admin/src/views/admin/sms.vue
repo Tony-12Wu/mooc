@@ -2,7 +2,7 @@
     <div>
         <p>
             &nbsp;
-            <button v-on:click="list(1)" class="btn btn-white btn-default btn-round">
+            <button v-show="hasResource('040101')" v-on:click="list(1)" class="btn btn-white btn-default btn-round">
                 <i class="ace-icon fa fa-refresh"></i>
                 刷新
             </button>
@@ -61,6 +61,14 @@
 
         },
         methods: {
+
+            /**
+             * 查找是否有权限
+             * @param id
+             */
+            hasResource(id) {
+                return Tool.hasResource(id);
+            },
 
             /**
              * 列表查询
