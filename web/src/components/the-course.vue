@@ -10,6 +10,7 @@
         </div>
         <div class="text-muted">
           <span class="badge badge-info">{{COURSE_ONLINE | optionKV(course.online)}}</span>
+          <span class="badge badge-info">{{COURSE_CATEGORY | optionKV(course.category)}}</span>
           <span class="badge badge-info"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;{{course.enroll}}</span>&nbsp;
         </div>
       </div>
@@ -25,7 +26,8 @@
     },
     data: function () {
       return {
-          COURSE_ONLINE:COURSE_ONLINE
+          COURSE_ONLINE:COURSE_ONLINE,
+          COURSE_CATEGORY:COURSE_CATEGORY
       }
     },
   }

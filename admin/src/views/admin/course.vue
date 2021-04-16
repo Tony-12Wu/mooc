@@ -136,7 +136,7 @@
                           <div class="form-group">
                               <label class="col-sm-2 control-label">时长</label>
                               <div class="col-sm-10">
-                                  <input v-model="course.time" class="form-control">
+                                  <input v-model="course.time" class="form-control" disabled>
                               </div>
                           </div>
                           <div class="form-group">
