@@ -101,7 +101,7 @@ public class MemberController {
         LoginMemberDto loginMemberDto = memberService.login(memberDto);
         String token = UuidUtil.getShortUuid();
         loginMemberDto.setToken(token);
-        redisTemplate.opsForValue().set(token, JSON.toJSONString(loginMemberDto), 3600, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(token, JSON.toJSONString(loginMemberDto), 10, TimeUnit.HOURS);
         responseDto.setContent(loginMemberDto);
         return responseDto;
     }
