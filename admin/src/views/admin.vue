@@ -282,7 +282,7 @@
               <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                 <i class="ace-icon glyphicon glyphicon-user"></i>
                 <span class="user-info" >
-									<small>&ensp;管理员</small>
+									<small>&ensp;{{loginUser.name}}</small>
                    &ensp;{{loginUser.loginName}}
 								</span>
 

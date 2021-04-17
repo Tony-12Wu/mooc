@@ -25,6 +25,23 @@ public class RoleUserService {
     private RoleUserMapper roleUserMapper;
 
     /**
+     * 判断该用户是否为讲师管理员
+     * @param teacherId
+     * @return
+     */
+    public boolean isTeacherAdmin(String teacherId){
+        RoleUserExample roleUserExample = new RoleUserExample();
+        roleUserExample.createCriteria().andUserIdEqualTo(teacherId);
+        List<RoleUser> roleUserList = roleUserMapper.selectByExample(roleUserExample);
+        for(RoleUser roleUser: roleUserList){
+            if ("00000003".equals(roleUser.getRoleId())){
+               return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * 列表查询
      */
     public void list(PageDto pageDto) {

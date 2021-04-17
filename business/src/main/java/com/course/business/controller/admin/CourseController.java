@@ -33,7 +33,7 @@ public class CourseController {
     @PostMapping("/list")
     public ResponseDto list(@RequestBody CoursePageDto pageDto) {
         ResponseDto responseDto = new ResponseDto();
-        courseService.list(pageDto);
+        courseService.listByCourseId(pageDto);
         responseDto.setContent(pageDto);
         return responseDto;
     }

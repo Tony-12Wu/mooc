@@ -1,12 +1,11 @@
 package com.course.server.service;
 
-import com.course.server.domain.Course;
-import com.course.server.domain.CourseContent;
-import com.course.server.domain.CourseExample;
+import com.course.server.domain.*;
 import com.course.server.dto.*;
 import com.course.server.enums.CourseStatusEnum;
 import com.course.server.mapper.CourseContentMapper;
 import com.course.server.mapper.CourseMapper;
+import com.course.server.mapper.RoleUserMapper;
 import com.course.server.mapper.my.MyCourseMapper;
 import com.course.server.util.CopyUtil;
 import com.course.server.util.UuidUtil;
@@ -48,6 +47,25 @@ public class CourseService {
     @Resource
     private SectionService sectionService;
 
+    @Resource
+    private RoleUserService roleUserService;
+
+    /**
+     * 新课列表查询，只查询已发布的，按创建日期倒序
+     */
+    public List<CourseDto> listByCourseId(CoursePageDto pageDto) {
+        PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
+        CourseExample courseExample = new CourseExample();
+        // 判断teacherId是否为讲师管理员，是的话则只查询讲师id的课程
+        String teacherId = pageDto.getTeacherId();
+        boolean isTeacherAdmin = roleUserService.isTeacherAdmin(teacherId);
+        if (isTeacherAdmin){
+            courseExample.createCriteria().andTeacherIdEqualTo(pageDto.getTeacherId());
+        }
+        List<Course> courseList = courseMapper.selectByExample(courseExample);
+        pageDto.setList(courseList);
+        return CopyUtil.copyList(courseList, CourseDto.class);
+    }
 
     /**
      * 列表查询

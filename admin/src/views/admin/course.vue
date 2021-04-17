@@ -262,6 +262,7 @@
                 saveContentLabel: "",
                 teachers: [],
                 FILE_USE: FILE_USE,
+                loginUser: []
             }
         },
         mounted: function () {
@@ -310,10 +311,12 @@
              */
             list(page) {
                 let _this = this;
+                let loginUser = Tool.getLoginUser();
                 Loading.show();
                 _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/list', {
                     page: page,
                     size: _this.$refs.pagination.size,
+                    teacherId: loginUser.id
                 }).then((response) => {
                     Loading.hide();
                     let resp = response.data;
