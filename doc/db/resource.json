@@ -34,7 +34,8 @@
       {"id": "020202", "name": "课程查看", "request": ["/business/admin/course/list","/business/admin/teacher/all","/business/admin/category/all"]},
       {"id": "020203", "name": "大章管理", "page": "business/chapter","request": ["/business/admin/chapter"]},
       {"id": "020204", "name": "小节管理", "page": "business/section","request": ["/business/admin/section"]},
-      {"id": "020205", "name": "内容管理", "page": "business/content","request": ["/business/admin/content"]}
+      {"id": "020205", "name": "内容管理", "page": "business/content","request": ["/business/admin/content"]},
+      {"id": "020206", "name": "资源管理", "page": "business/courseResource","request": ["/business/admin/courseResource"]}
     ]
   },{
     "id": "0203", "name": "讲师管理", "page": "business/teacher",

@@ -15,6 +15,7 @@ import Resource from './views/admin/resource'
 import Role from './views/admin/role'
 import Member from './views/admin/member'
 import Sms from './views/admin/sms'
+import CourseResource from './views/admin/courseResource'
 
 Vue.use(Router);
 
@@ -73,6 +74,10 @@ export default new Router({
             path: 'business/sms',
             name: 'business/sms',
             component: Sms
+        },{
+            path: 'business/courseResource',
+            name: 'business/courseResource',
+            component: CourseResource
         },{
             path: 'file/file',
             name: 'file/file',

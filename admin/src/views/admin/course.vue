@@ -68,6 +68,9 @@
                   <button v-show="hasResource('020201')" v-on:click="edit(course)" class="btn btn-white btn-xs btn-info btn-round">
                     编辑
                   </button>&nbsp;
+                  <button v-show="hasResource('020206')" v-on:click="toResource(course)" class="btn btn-white btn-xs btn-info btn-round">
+                    资源
+                  </button>&nbsp;
                   <button v-show="hasResource('020201')" v-on:click="del(course.id)" class="btn btn-white btn-xs btn-warning btn-danger">
                     删除
                   </button>
@@ -388,6 +391,15 @@
                 let _this = this;
                 SessionStorage.set(SESSION_KEY_COURSE, course);
                 _this.$router.push("/business/chapter");
+            },
+
+            /**
+             * 点击【大章】跳转到对应的大章页面
+             */
+            toResource(course) {
+                let _this = this;
+                SessionStorage.set(SESSION_KEY_COURSE, course);
+                _this.$router.push("/business/courseResource");
             },
 
             allCategory() {
