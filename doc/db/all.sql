@@ -285,3 +285,16 @@ create table `member_course` (
 
 insert into member_course values ('I4oFpSW5','JCVNuGzl','00000001',now());
 insert into member_course values ('I4oFpSW3','JCVNuGz2','00000001',now());
+
+-- 课程资源表
+drop table if exists `course_resource`;
+create table `course_resource` (
+   `id` char(8) not null default '' comment 'id',
+   `course_id` varchar(100) not null comment '课程id',
+   `url` varchar(100) comment '相对地址',
+   `name` varchar(100) comment '文件名',
+   `size` int comment '大小|字节B',
+   `downLoadPath` varchar(100) comment '下载地址',
+   `frequency` int default 0 comment '下载次数',
+   primary key (`id`)
+)engine = innodb default charset = utf8mb4 comment ='课程资源表';
