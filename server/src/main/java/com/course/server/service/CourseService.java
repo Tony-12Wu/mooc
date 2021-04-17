@@ -51,7 +51,7 @@ public class CourseService {
     private RoleUserService roleUserService;
 
     /**
-     * 新课列表查询，只查询已发布的，按创建日期倒序
+     * 管理员为讲师管理员时，查询该讲师用户的课程
      */
     public List<CourseDto> listByCourseId(CoursePageDto pageDto) {
         PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
@@ -63,6 +63,8 @@ public class CourseService {
             courseExample.createCriteria().andTeacherIdEqualTo(pageDto.getTeacherId());
         }
         List<Course> courseList = courseMapper.selectByExample(courseExample);
+        PageInfo<Course> pageInfo = new PageInfo<>(courseList);
+        pageDto.setTotal(pageInfo.getTotal());
         pageDto.setList(courseList);
         return CopyUtil.copyList(courseList, CourseDto.class);
     }

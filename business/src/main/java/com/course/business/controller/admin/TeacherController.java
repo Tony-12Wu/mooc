@@ -1,5 +1,6 @@
 package com.course.business.controller.admin;
 
+import com.course.server.dto.CoursePageDto;
 import com.course.server.dto.TeacherDto;
 import com.course.server.dto.PageDto;
 import com.course.server.dto.ResponseDto;
@@ -27,9 +28,10 @@ public class TeacherController {
 
     /**
      * 列表查询
+     * 管理员为讲师管理员时，查询该讲师用户的信息
      */
     @PostMapping("/list")
-    public ResponseDto list(@RequestBody PageDto pageDto) {
+    public ResponseDto list(@RequestBody CoursePageDto pageDto) {
         ResponseDto responseDto = new ResponseDto();
         teacherService.list(pageDto);
         responseDto.setContent(pageDto);
@@ -38,12 +40,13 @@ public class TeacherController {
 
     /**
      * 查询所有
+     * 管理员为讲师管理员时，查询该讲师用户的信息
      */
-    @GetMapping("/all")
-    public ResponseDto all() {
+    @PostMapping("/all")
+    public ResponseDto all(@RequestBody CoursePageDto pageDto) {
         ResponseDto responseDto = new ResponseDto();
-        List<TeacherDto> teacherDtoList =  teacherService.all();
-        responseDto.setContent(teacherDtoList);
+        teacherService.all(pageDto);
+        responseDto.setContent(pageDto);
         return responseDto;
     }
 

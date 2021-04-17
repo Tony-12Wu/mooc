@@ -4,6 +4,7 @@ import com.course.server.domain.Teacher;
 import com.course.server.domain.TeacherExample;
 import com.course.server.domain.Teacher;
 import com.course.server.domain.TeacherExample;
+import com.course.server.dto.CoursePageDto;
 import com.course.server.dto.TeacherDto;
 import com.course.server.dto.TeacherDto;
 import com.course.server.dto.PageDto;
@@ -27,12 +28,22 @@ public class TeacherService {
     @Resource
     private TeacherMapper teacherMapper;
 
+    @Resource
+    private RoleUserService roleUserService;
+
     /**
      * 列表查询
+     * 管理员为讲师管理员时，查询该讲师用户的信息
      */
-    public void list(PageDto pageDto) {
+    public void list(CoursePageDto pageDto) {
         PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
         TeacherExample teacherExample = new TeacherExample();
+        // 判断teacherId是否为讲师管理员，是的话则只查询讲师id的课程
+        String teacherId = pageDto.getTeacherId();
+        boolean isTeacherAdmin = roleUserService.isTeacherAdmin(teacherId);
+        if (isTeacherAdmin){
+            teacherExample.createCriteria().andIdEqualTo(pageDto.getTeacherId());
+        }
         List<Teacher> teacherList = teacherMapper.selectByExample(teacherExample);
         PageInfo<Teacher> pageInfo = new PageInfo<>(teacherList);
         pageDto.setTotal(pageInfo.getTotal());
@@ -42,10 +53,18 @@ public class TeacherService {
 
     /**
      * 查询所有
+     * 管理员为讲师管理员时，查询该讲师用户的信息
      */
-    public List<TeacherDto> all( ) {
-        TeacherExample categoryExample = new TeacherExample();
-        List<Teacher> teacherList = teacherMapper.selectByExample(categoryExample);
+    public List<TeacherDto> all(CoursePageDto pageDto) {
+        TeacherExample teacherExample = new TeacherExample();
+        // 判断teacherId是否为讲师管理员，是的话则只查询讲师id的课程
+        String teacherId = pageDto.getTeacherId();
+        boolean isTeacherAdmin = roleUserService.isTeacherAdmin(teacherId);
+        if (isTeacherAdmin){
+            teacherExample.createCriteria().andIdEqualTo(pageDto.getTeacherId());
+        }
+        List<Teacher> teacherList = teacherMapper.selectByExample(teacherExample);
+        pageDto.setList(teacherList);
         return CopyUtil.copyList(teacherList, TeacherDto.class);
     }
 

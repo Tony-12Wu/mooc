@@ -488,11 +488,14 @@
              */
             allTeacher() {
                 let _this = this;
+                let loginUser = Tool.getLoginUser();
                 Loading.show();
-                _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/admin/teacher/all').then((response)=>{
+                _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/teacher/all',{
+                    teacherId: loginUser.id
+                }).then((response)=>{
                     Loading.hide();
                     let resp = response.data;
-                    _this.teachers = resp.content;
+                    _this.teachers = resp.content.list;
                 })
             },
 
