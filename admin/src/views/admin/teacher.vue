@@ -24,7 +24,7 @@
                     <div class="space-4"></div>
                     <div class="width-85 label label-info label-xlg arrowed-in arrowed-in-right">
                         <div class="inline position-relative">
-                            <a href="javascript:;" class="user-title-label dropdown-toggle" data-toggle="dropdown">
+                            <a href="javascript:;" class="user-title-label dropdown-toggle" data-toggle="dropdown" v-bind:title="teacher.motto">
                                 <i class="ace-icon fa fa-circle light-green"></i>
                                 &nbsp;
                                 <span class="white">{{teacher.position}}</span>
@@ -36,7 +36,7 @@
                 <div class="space-6"></div>
 
                 <div class="text-center">
-                    <a href="javascript:;" class="text-info bigger-110" v-bind:title="teacher.motto">
+                    <a href="javascript:;" class="text-info bigger-110" v-bind:title="teacher.id">
                         <i class="ace-icon fa fa-user"></i>
                         {{teacher.name}}【{{teacher.department}}】
                     </a>
@@ -69,6 +69,12 @@
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">id</label>
+                                <div class="col-sm-10">
+                                    <input v-model="teacher.id" class="form-control" disabled>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">姓名</label>
                                 <div class="col-sm-10">

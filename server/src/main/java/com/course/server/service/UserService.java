@@ -52,15 +52,26 @@ public class UserService {
         pageDto.setList(userDtoList);
     }
 
+
     /**
-     * 保存，id有值时更新，无值时新增
+     * 新增，id由前端传入
      */
-    public void save(UserDto userDto) {
+    public boolean insert(UserDto userDto) {
+        User user = CopyUtil.copy(userDto, User.class);
+        this.insert(user);
+        return true;
+    }
+
+    /**
+     * 更新, 根据id找不到对象时返回false，
+     */
+    public boolean update(UserDto userDto) {
         User user = CopyUtil.copy(userDto, User.class);
         if (StringUtils.isEmpty(userDto.getId())) {
-            this.insert(user);
+            return false;
         } else {
             this.update(user);
+            return true;
         }
     }
 
@@ -68,7 +79,6 @@ public class UserService {
      * 新增
      */
     private void insert(User user) {
-        user.setId(UuidUtil.getShortUuid());
         User userDb = this.selectByLoginName(user.getLoginName());
         if (userDb != null) {
             throw new BusinessException(BusinessExceptionCode.USER_LOGIN_NAME_EXIST);

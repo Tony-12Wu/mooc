@@ -44,21 +44,30 @@ public class UserController {
     }
 
     /**
-     * 保存，id有值时更新，无值时新增
+     * 新增，id由前端传入
      */
-    @PostMapping("/save")
-    public ResponseDto save(@RequestBody UserDto userDto) {
-        //二次md5加密
-        userDto.setPassword(DigestUtils.md5DigestAsHex(userDto.getPassword().getBytes()));
-        // 保存校验
-        ValidatorUtil.length(userDto.getName(), "昵称", 1, 50);
-        ValidatorUtil.require(userDto.getLoginName(), "账号名");
-        ValidatorUtil.length(userDto.getLoginName(), "账号名", 1, 50);
-        ValidatorUtil.require(userDto.getPassword(), "密码");
-
+    @PostMapping("/insert")
+    public ResponseDto insert(@RequestBody UserDto userDto) {
+        mdAndValidator(userDto);
         ResponseDto responseDto = new ResponseDto();
-        userService.save(userDto);
+        userService.insert(userDto);
         responseDto.setContent(userDto);
+        return responseDto;
+    }
+
+    /**
+     * 更新，如果id的对象找不到则返回失败
+     */
+    @PostMapping("/update")
+    public ResponseDto update(@RequestBody UserDto userDto) {
+        mdAndValidator(userDto);
+        ResponseDto responseDto = new ResponseDto();
+        boolean result = userService.update(userDto);
+        if(result){
+            responseDto.setContent(userDto);
+        }else {
+            responseDto.setSuccess(false);
+        }
         return responseDto;
     }
 
@@ -134,5 +143,20 @@ public class UserController {
         redisTemplate.delete(token);
         LOG.info("从redis中删除token:{}", token);
         return responseDto;
+    }
+
+
+    /**
+     * 公共加密和字段校验方法
+     * @param userDto
+     */
+    private void mdAndValidator (UserDto userDto){
+        //二次md5加密
+        userDto.setPassword(DigestUtils.md5DigestAsHex(userDto.getPassword().getBytes()));
+        // 保存校验
+        ValidatorUtil.length(userDto.getName(), "昵称", 1, 50);
+        ValidatorUtil.require(userDto.getLoginName(), "账号名");
+        ValidatorUtil.length(userDto.getLoginName(), "账号名", 1, 50);
+        ValidatorUtil.require(userDto.getPassword(), "密码");
     }
 }

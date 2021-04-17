@@ -79,7 +79,7 @@
                     if (resp.success) {
                         $("#form-modal").modal("hide");
                         _this.list(1);
-                        Toast.success("保存成功！");
+                        Toast.success("保存成功,重新登录资源权限才能生效！");
                     } else {
                         Toast.warning(resp.message)
                     }

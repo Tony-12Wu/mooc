@@ -47,7 +47,51 @@
             </tr>
             </tbody>
         </table>
-
+        <!-- 新增框 -->
+        <div id="insert-modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                          aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">表单</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">id</label>
+                                <div class="col-sm-10">
+                                    <input v-model="user.id"  class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">昵称</label>
+                                <div class="col-sm-10">
+                                    <input v-model="user.name" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">账号名</label>
+                                <div class="col-sm-10">
+                                    <input v-model="user.loginName" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">密码</label>
+                                <div class="col-sm-10">
+                                    <input v-model="user.password" type="password" class="form-control">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button v-on:click="insert()" type="button" class="btn btn-primary">新增</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!--编辑框-->
         <div id="form-modal" class="modal fade" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -58,6 +102,12 @@
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">id</label>
+                                <div class="col-sm-10">
+                                    <input v-model="user.id" v-bind:disabled="user.id" class="form-control">
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">昵称</label>
                                 <div class="col-sm-10">
@@ -80,7 +130,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button v-on:click="save()" type="button" class="btn btn-primary">保存</button>
+                        <button v-on:click="update()" type="button" class="btn btn-primary">更新</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -157,7 +207,7 @@
             add() {
                 let _this = this;
                 _this.user = {};
-                $("#form-modal").modal("show");
+                $("#insert-modal").modal("show");
             },
 
             /**
@@ -198,9 +248,38 @@
             },
 
             /**
-             * 点击【保存】
+             * 点击【新增】
              */
-            save() {
+            insert() {
+                let _this = this;
+                // 保存校验
+                if (1 != 1
+                  || !Validator.length(_this.user.name, "昵称", 1, 50)
+                  || !Validator.require(_this.user.loginName, "账号名")
+                  || !Validator.length(_this.user.loginName, "账号名", 1, 50)
+                  || !Validator.require(_this.user.password, "密码")
+                ) {
+                    return;
+                }
+                _this.user.password = hex_md5(_this.user.password + KEY);
+                Loading.show();
+                _this.$ajax.post(process.env.VUE_APP_SERVER + '/system/admin/user/insert', _this.user).then((response) => {
+                    Loading.hide();
+                    let resp = response.data;
+                    if (resp.success) {
+                        $("#insert-modal").modal("hide");
+                        _this.list(1);
+                        Toast.success("新增成功！");
+                    } else {
+                        Toast.warning(resp.message)
+                    }
+                })
+            },
+
+            /**
+             * 点击【更新】
+             */
+            update() {
                 let _this = this;
 
                 // 保存校验
@@ -214,13 +293,13 @@
                 }
                 _this.user.password = hex_md5(_this.user.password + KEY);
                 Loading.show();
-                _this.$ajax.post(process.env.VUE_APP_SERVER + '/system/admin/user/save', _this.user).then((response) => {
+                _this.$ajax.post(process.env.VUE_APP_SERVER + '/system/admin/user/update', _this.user).then((response) => {
                     Loading.hide();
                     let resp = response.data;
                     if (resp.success) {
                         $("#form-modal").modal("hide");
                         _this.list(1);
-                        Toast.success("保存成功！");
+                        Toast.success("更新成功！");
                     } else {
                         Toast.warning(resp.message)
                     }
