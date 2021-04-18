@@ -1,6 +1,8 @@
 package com.course.server.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 /**
@@ -41,6 +43,7 @@ public class CourseResourceDto {
     /**
      *  上传时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date at;
 
     public Date getAt() {
