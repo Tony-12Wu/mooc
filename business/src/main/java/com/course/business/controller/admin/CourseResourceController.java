@@ -45,7 +45,6 @@ public class CourseResourceController {
         ValidatorUtil.length(courseResourceDto.getCourseId(), "课程id", 1, 100);
         ValidatorUtil.length(courseResourceDto.getUrl(), "相对地址", 1, 100);
         ValidatorUtil.length(courseResourceDto.getName(), "文件名", 1, 100);
-        ValidatorUtil.length(courseResourceDto.getDownloadpath(), "下载地址", 1, 100);
 
         ResponseDto responseDto = new ResponseDto();
         courseResourceService.save(courseResourceDto);

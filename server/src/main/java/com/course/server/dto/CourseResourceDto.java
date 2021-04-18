@@ -32,11 +32,6 @@ public class CourseResourceDto {
     private Integer size;
 
     /**
-     * 下载地址
-     */
-    private String downloadpath;
-
-    /**
      * 下载次数
      */
     private Integer frequency;
@@ -81,14 +76,6 @@ public class CourseResourceDto {
         this.size = size;
     }
 
-    public String getDownloadpath() {
-        return downloadpath;
-    }
-
-    public void setDownloadpath(String downloadpath) {
-        this.downloadpath = downloadpath;
-    }
-
     public Integer getFrequency() {
         return frequency;
     }
@@ -109,7 +96,6 @@ public class CourseResourceDto {
         sb.append(", url=").append(url);
         sb.append(", name=").append(name);
         sb.append(", size=").append(size);
-        sb.append(", downloadpath=").append(downloadpath);
         sb.append(", frequency=").append(frequency);
         sb.append("]");
         return sb.toString();

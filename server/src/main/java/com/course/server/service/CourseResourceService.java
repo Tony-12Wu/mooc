@@ -42,11 +42,8 @@ public class CourseResourceService {
      */
     public void save(CourseResourceDto courseResourceDto) {
         CourseResource courseResource = CopyUtil.copy(courseResourceDto, CourseResource.class);
-        if (StringUtils.isEmpty(courseResourceDto.getId())) {
-            this.insert(courseResource);
-        } else {
-            this.update(courseResource);
-        }
+        this.insert(courseResource);
+
     }
 
     /**

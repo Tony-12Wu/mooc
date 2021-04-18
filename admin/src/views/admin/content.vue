@@ -186,7 +186,8 @@
         console.log("开始保存文件记录");
         let file = response.content;
         file.courseId = _this.course.id;
-        file.url = file.path;
+        file.url = file.path,
+        file.id = null,
         _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course-content-file/save', file).then((response)=>{
           let resp = response.data;
           if (resp.success) {

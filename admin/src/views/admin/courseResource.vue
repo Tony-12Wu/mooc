@@ -1,32 +1,25 @@
 <template>
     <div>
-        <p>
-            <router-link to="/business/course" class="btn btn-white btn-default btn-round">
-                <i class="ace-icon fa fa-arrow-left"></i>
-                返回课程
-            </router-link>
-            <button v-show="hasResource('020206')" v-on:click="add()" class="btn btn-white btn-default btn-round">
-                <i class="ace-icon fa fa-edit"></i>
-                新增
-            </button>
-            &nbsp;
-            <button v-show="hasResource('020206')" v-on:click="list(1)" class="btn btn-white btn-default btn-round">
-                <i class="ace-icon fa fa-refresh"></i>
-                刷新
-            </button>
-        </p>
-
+        <h4 class="lighter">
+            <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
+            <router-link to="/business/course" class="pink"> {{course.name}}</router-link>
+        </h4>
+        <hr>
+        <big-file v-bind:input-id="'resource-file-upload'"
+                  v-bind:text="'上传资源'"
+                  v-bind:suffixs="['jpg', 'jpeg', 'png', 'mp4', 'word', 'excel', 'pdf', 'pptx','md']"
+                  v-bind:use="FILE_USE.COURSE.key"
+                  v-bind:after-upload="afterUploadResourceFile"></big-file>
+        <br>
         <pagination ref="pagination" v-bind:list="list" v-bind:itemCount="8"></pagination>
 
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
             <tr>
-                <th>id</th>
                 <th>课程id</th>
                 <th>相对地址</th>
                 <th>文件名</th>
                 <th>大小</th>
-                <th>下载地址</th>
                 <th>下载次数</th>
                 <th>操作</th>
             </tr>
@@ -34,22 +27,16 @@
 
             <tbody>
             <tr v-for="courseResource in courseResources">
-                <td>{{courseResource.id}}</td>
                 <td>{{courseResource.courseId}}</td>
                 <td>{{courseResource.url}}</td>
                 <td>{{courseResource.name}}</td>
-                <td>{{courseResource.size}}</td>
-                <td>{{courseResource.downloadpath}}</td>
+                <td>{{courseResource.size | formatFileSize}}</td>
                 <td>{{courseResource.frequency}}</td>
                 <td>
-                    <div class="hidden-sm hidden-xs btn-group">
-                        <button v-on:click="edit(courseResource)" class="btn btn-xs btn-info">
-                            <i class="ace-icon fa fa-pencil bigger-120"></i>
-                        </button>
-                        <button v-on:click="del(courseResource.id)" class="btn btn-xs btn-danger">
-                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                        </button>
-                    </div>
+                    <button v-on:click="del(courseResource.id)" class="btn btn-white btn-xs btn-warning btn-round">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        删除
+                    </button>
                 </td>
             </tr>
             </tbody>
@@ -109,21 +96,24 @@
 
 <script>
     import Pagination from "../../components/pagination";
+    import BigFile from "../../components/big-file";
 
     export default {
-        components: {Pagination},
+        components: {Pagination, BigFile},
         name: "business-courseResource",
         data: function () {
             return {
                 courseResource: {},
                 courseResources: [],
-                course: []
+                course: [],
+                FILE_USE: FILE_USE
             }
         },
         mounted: function () {
             let _this = this;
             // 设置初始页面条数
             _this.$refs.pagination.size = 10;
+            _this.course = SessionStorage.get(SESSION_KEY_COURSE) || {};
             _this.list(1);
             // sidebar激活样式方法一
             // this.$parent.activeSidebar("business-courseResource-sidebar");
@@ -137,23 +127,6 @@
              */
             hasResource(id) {
                 return Tool.hasResource(id);
-            },
-            /**
-             * 点击【新增】
-             */
-            add() {
-                let _this = this;
-                _this.courseResource = {};
-                $("#form-modal").modal("show");
-            },
-
-            /**
-             * 点击【编辑】
-             */
-            edit(courseResource) {
-                let _this = this;
-                _this.courseResource = $.extend({}, courseResource);
-                $("#form-modal").modal("show");
             },
 
             /**
@@ -175,42 +148,11 @@
             },
 
             /**
-             * 点击【保存】
-             */
-            save() {
-                let _this = this;
-                let course = SessionStorage.get(SESSION_KEY_COURSE) || {};
-
-                // 保存校验
-                if (1 != 1
-                    || !Validator.length(_this.courseResource.courseId, "课程id", 1, 100)
-                    || !Validator.length(_this.courseResource.url, "相对地址", 1, 100)
-                    || !Validator.length(_this.courseResource.name, "文件名", 1, 100)
-                    || !Validator.length(_this.courseResource.downloadpath, "下载地址", 1, 100)
-                ) {
-                    return;
-                }
-                _this.courseResource.courseId = course.id;
-                Loading.show();
-                _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/courseResource/save', _this.courseResource).then((response) => {
-                    Loading.hide();
-                    let resp = response.data;
-                    if (resp.success) {
-                        $("#form-modal").modal("hide");
-                        _this.list(1);
-                        Toast.success("保存成功！");
-                    } else {
-                        Toast.warning(resp.message)
-                    }
-                })
-            },
-
-            /**
              * 点击【删除】
              */
             del(id) {
                 let _this = this;
-                Confirm.show("删除课程资源表后不可恢复，确认删除？", function () {
+                Confirm.show("删除课程资源后不可恢复，确认删除？", function () {
                     Loading.show();
                     _this.$ajax.delete(process.env.VUE_APP_SERVER + '/business/admin/courseResource/delete/' + id).then((response) => {
                         Loading.hide();
@@ -221,7 +163,24 @@
                         }
                     })
                 });
-            }
+            },
+
+            /**
+             * 上传课程资源文件后，保存课程资源记录
+             */
+            afterUploadResourceFile(response) {
+                let _this = this;
+                console.log("开始保课程资源记录");
+                let file = response.content;
+                file.courseId = _this.course.id;
+                _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/courseResource/save', file).then((response)=>{
+                    let resp = response.data;
+                    if (resp.success) {
+                        Toast.success("上传课程资源和保存记录成功");
+                        _this.list(1);
+                    }
+                });
+            },
         }
     }
 </script>

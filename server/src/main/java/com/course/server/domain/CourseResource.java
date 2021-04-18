@@ -11,8 +11,6 @@ public class CourseResource {
 
     private Integer size;
 
-    private String downloadpath;
-
     private Integer frequency;
 
     public String getId() {
@@ -55,14 +53,6 @@ public class CourseResource {
         this.size = size;
     }
 
-    public String getDownloadpath() {
-        return downloadpath;
-    }
-
-    public void setDownloadpath(String downloadpath) {
-        this.downloadpath = downloadpath;
-    }
-
     public Integer getFrequency() {
         return frequency;
     }
@@ -82,7 +72,6 @@ public class CourseResource {
         sb.append(", url=").append(url);
         sb.append(", name=").append(name);
         sb.append(", size=").append(size);
-        sb.append(", downloadpath=").append(downloadpath);
         sb.append(", frequency=").append(frequency);
         sb.append("]");
         return sb.toString();

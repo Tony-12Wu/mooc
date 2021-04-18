@@ -179,6 +179,7 @@ public class UploadController {
         ResponseDto responseDto = new ResponseDto();
         FileDto fileDto = fileService.findByKey(key);
         if(fileDto != null && fileDto.getShardIndex().equals(fileDto.getShardTotal())){
+            fileDto.setUrl(fileDto.getPath());
             fileDto.setPath(OSS_DOMAIN + fileDto.getPath());
         }
         responseDto.setContent(fileDto);

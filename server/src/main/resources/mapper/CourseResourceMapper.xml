@@ -7,7 +7,6 @@
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="size" jdbcType="INTEGER" property="size" />
-    <result column="downLoadPath" jdbcType="VARCHAR" property="downloadpath" />
     <result column="frequency" jdbcType="INTEGER" property="frequency" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -69,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, course_id, url, `name`, `size`, downLoadPath, frequency
+    id, course_id, url, `name`, `size`, frequency
   </sql>
   <select id="selectByExample" parameterType="com.course.server.domain.CourseResourceExample" resultMap="BaseResultMap">
     select
@@ -103,11 +102,11 @@
   </delete>
   <insert id="insert" parameterType="com.course.server.domain.CourseResource">
     insert into course_resource (id, course_id, url, 
-      `name`, `size`, downLoadPath, 
-      frequency)
+      `name`, `size`, frequency
+      )
     values (#{id,jdbcType=CHAR}, #{courseId,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, #{downloadpath,jdbcType=VARCHAR}, 
-      #{frequency,jdbcType=INTEGER})
+      #{name,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, #{frequency,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.course.server.domain.CourseResource">
     insert into course_resource
@@ -126,9 +125,6 @@
       </if>
       <if test="size != null">
         `size`,
-      </if>
-      <if test="downloadpath != null">
-        downLoadPath,
       </if>
       <if test="frequency != null">
         frequency,
@@ -149,9 +145,6 @@
       </if>
       <if test="size != null">
         #{size,jdbcType=INTEGER},
-      </if>
-      <if test="downloadpath != null">
-        #{downloadpath,jdbcType=VARCHAR},
       </if>
       <if test="frequency != null">
         #{frequency,jdbcType=INTEGER},
@@ -182,9 +175,6 @@
       <if test="record.size != null">
         `size` = #{record.size,jdbcType=INTEGER},
       </if>
-      <if test="record.downloadpath != null">
-        downLoadPath = #{record.downloadpath,jdbcType=VARCHAR},
-      </if>
       <if test="record.frequency != null">
         frequency = #{record.frequency,jdbcType=INTEGER},
       </if>
@@ -200,7 +190,6 @@
       url = #{record.url,jdbcType=VARCHAR},
       `name` = #{record.name,jdbcType=VARCHAR},
       `size` = #{record.size,jdbcType=INTEGER},
-      downLoadPath = #{record.downloadpath,jdbcType=VARCHAR},
       frequency = #{record.frequency,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -221,9 +210,6 @@
       <if test="size != null">
         `size` = #{size,jdbcType=INTEGER},
       </if>
-      <if test="downloadpath != null">
-        downLoadPath = #{downloadpath,jdbcType=VARCHAR},
-      </if>
       <if test="frequency != null">
         frequency = #{frequency,jdbcType=INTEGER},
       </if>
@@ -236,7 +222,6 @@
       url = #{url,jdbcType=VARCHAR},
       `name` = #{name,jdbcType=VARCHAR},
       `size` = #{size,jdbcType=INTEGER},
-      downLoadPath = #{downloadpath,jdbcType=VARCHAR},
       frequency = #{frequency,jdbcType=INTEGER}
     where id = #{id,jdbcType=CHAR}
   </update>
