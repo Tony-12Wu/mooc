@@ -86,9 +86,9 @@ public class OssController {
         ossClient.shutdown();
         LOG.info("保存文件记录开始");
         fileDto.setUrl(path);
+        fileDto.setPath(ossDomain + path);
         fileService.save(fileDto);
         ResponseDto responseDto = new ResponseDto();
-        fileDto.setPath(ossDomain + path);
         responseDto.setContent(fileDto);
         return responseDto;
     }

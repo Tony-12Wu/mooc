@@ -7,8 +7,8 @@
         <hr>
         <big-file v-bind:input-id="'resource-file-upload'"
                   v-bind:text="'上传资源'"
-                  v-bind:suffixs="['jpg', 'jpeg', 'png', 'mp4', 'word', 'excel', 'pdf', 'pptx','md']"
-                  v-bind:use="FILE_USE.COURSE.key"
+                  v-bind:suffixs="['jpg', 'jpeg', 'png', 'mp4', 'doc','docx','excel', 'pdf', 'pptx','md']"
+                  v-bind:use="FILE_USE.RESOURCE.key"
                   v-bind:after-upload="afterUploadResourceFile"></big-file>
         <br>
         <pagination ref="pagination" v-bind:list="list" v-bind:itemCount="8"></pagination>

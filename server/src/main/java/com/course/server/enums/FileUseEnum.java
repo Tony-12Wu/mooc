@@ -7,7 +7,8 @@ package com.course.server.enums;
 public enum FileUseEnum {
 
     COURSE("C", "课程"),
-    TEACHER("T", "讲师");
+    TEACHER("T", "讲师"),
+    RESOURCE("R", "课程资源");
 
     private String code;
 
