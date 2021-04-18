@@ -20,6 +20,7 @@
                 <th>相对地址</th>
                 <th>文件名</th>
                 <th>大小</th>
+                <th>上传时间</th>
                 <th>下载次数</th>
                 <th>操作</th>
             </tr>
@@ -31,6 +32,7 @@
                 <td>{{courseResource.url}}</td>
                 <td>{{courseResource.name}}</td>
                 <td>{{courseResource.size | formatFileSize}}</td>
+                <td>{{courseResource.at}}</td>
                 <td>{{courseResource.frequency}}</td>
                 <td>
                     <button v-on:click="del(courseResource.id)" class="btn btn-white btn-xs btn-warning btn-round">

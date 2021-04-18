@@ -1,5 +1,7 @@
 package com.course.server.domain;
 
+import java.util.Date;
+
 public class CourseResource {
     private String id;
 
@@ -12,6 +14,8 @@ public class CourseResource {
     private Integer size;
 
     private Integer frequency;
+
+    private Date at;
 
     public String getId() {
         return id;
@@ -61,6 +65,14 @@ public class CourseResource {
         this.frequency = frequency;
     }
 
+    public Date getAt() {
+        return at;
+    }
+
+    public void setAt(Date at) {
+        this.at = at;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -73,6 +85,7 @@ public class CourseResource {
         sb.append(", name=").append(name);
         sb.append(", size=").append(size);
         sb.append(", frequency=").append(frequency);
+        sb.append(", at=").append(at);
         sb.append("]");
         return sb.toString();
     }

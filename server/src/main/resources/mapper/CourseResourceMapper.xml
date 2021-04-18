@@ -8,6 +8,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="size" jdbcType="INTEGER" property="size" />
     <result column="frequency" jdbcType="INTEGER" property="frequency" />
+    <result column="at" jdbcType="TIMESTAMP" property="at" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, course_id, url, `name`, `size`, frequency
+    id, course_id, url, `name`, `size`, frequency, `at`
   </sql>
   <select id="selectByExample" parameterType="com.course.server.domain.CourseResourceExample" resultMap="BaseResultMap">
     select
@@ -102,11 +103,11 @@
   </delete>
   <insert id="insert" parameterType="com.course.server.domain.CourseResource">
     insert into course_resource (id, course_id, url, 
-      `name`, `size`, frequency
-      )
+      `name`, `size`, frequency, 
+      `at`)
     values (#{id,jdbcType=CHAR}, #{courseId,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, #{frequency,jdbcType=INTEGER}
-      )
+      #{name,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, #{frequency,jdbcType=INTEGER}, 
+      #{at,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.course.server.domain.CourseResource">
     insert into course_resource
@@ -129,6 +130,9 @@
       <if test="frequency != null">
         frequency,
       </if>
+      <if test="at != null">
+        `at`,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -148,6 +152,9 @@
       </if>
       <if test="frequency != null">
         #{frequency,jdbcType=INTEGER},
+      </if>
+      <if test="at != null">
+        #{at,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -178,6 +185,9 @@
       <if test="record.frequency != null">
         frequency = #{record.frequency,jdbcType=INTEGER},
       </if>
+      <if test="record.at != null">
+        `at` = #{record.at,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -190,7 +200,8 @@
       url = #{record.url,jdbcType=VARCHAR},
       `name` = #{record.name,jdbcType=VARCHAR},
       `size` = #{record.size,jdbcType=INTEGER},
-      frequency = #{record.frequency,jdbcType=INTEGER}
+      frequency = #{record.frequency,jdbcType=INTEGER},
+      `at` = #{record.at,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -213,6 +224,9 @@
       <if test="frequency != null">
         frequency = #{frequency,jdbcType=INTEGER},
       </if>
+      <if test="at != null">
+        `at` = #{at,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=CHAR}
   </update>
@@ -222,7 +236,8 @@
       url = #{url,jdbcType=VARCHAR},
       `name` = #{name,jdbcType=VARCHAR},
       `size` = #{size,jdbcType=INTEGER},
-      frequency = #{frequency,jdbcType=INTEGER}
+      frequency = #{frequency,jdbcType=INTEGER},
+      `at` = #{at,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=CHAR}
   </update>
 </mapper>

@@ -1,6 +1,8 @@
 package com.course.server.dto;
 
 
+import java.util.Date;
+
 /**
  * @author JT
  */
@@ -35,6 +37,19 @@ public class CourseResourceDto {
      * 下载次数
      */
     private Integer frequency;
+
+    /**
+     *  上传时间
+     */
+    private Date at;
+
+    public Date getAt() {
+        return at;
+    }
+
+    public void setAt(Date at) {
+        this.at = at;
+    }
 
     public String getId() {
         return id;
@@ -87,17 +102,15 @@ public class CourseResourceDto {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", courseId=").append(courseId);
-        sb.append(", url=").append(url);
-        sb.append(", name=").append(name);
+        final StringBuffer sb = new StringBuffer("CourseResourceDto{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", courseId='").append(courseId).append('\'');
+        sb.append(", url='").append(url).append('\'');
+        sb.append(", name='").append(name).append('\'');
         sb.append(", size=").append(size);
         sb.append(", frequency=").append(frequency);
-        sb.append("]");
+        sb.append(", at=").append(at);
+        sb.append('}');
         return sb.toString();
     }
 

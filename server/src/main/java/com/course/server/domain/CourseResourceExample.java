@@ -1,6 +1,7 @@
 package com.course.server.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CourseResourceExample {
@@ -501,6 +502,66 @@ public class CourseResourceExample {
 
         public Criteria andFrequencyNotBetween(Integer value1, Integer value2) {
             addCriterion("frequency not between", value1, value2, "frequency");
+            return (Criteria) this;
+        }
+
+        public Criteria andAtIsNull() {
+            addCriterion("`at` is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAtIsNotNull() {
+            addCriterion("`at` is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAtEqualTo(Date value) {
+            addCriterion("`at` =", value, "at");
+            return (Criteria) this;
+        }
+
+        public Criteria andAtNotEqualTo(Date value) {
+            addCriterion("`at` <>", value, "at");
+            return (Criteria) this;
+        }
+
+        public Criteria andAtGreaterThan(Date value) {
+            addCriterion("`at` >", value, "at");
+            return (Criteria) this;
+        }
+
+        public Criteria andAtGreaterThanOrEqualTo(Date value) {
+            addCriterion("`at` >=", value, "at");
+            return (Criteria) this;
+        }
+
+        public Criteria andAtLessThan(Date value) {
+            addCriterion("`at` <", value, "at");
+            return (Criteria) this;
+        }
+
+        public Criteria andAtLessThanOrEqualTo(Date value) {
+            addCriterion("`at` <=", value, "at");
+            return (Criteria) this;
+        }
+
+        public Criteria andAtIn(List<Date> values) {
+            addCriterion("`at` in", values, "at");
+            return (Criteria) this;
+        }
+
+        public Criteria andAtNotIn(List<Date> values) {
+            addCriterion("`at` not in", values, "at");
+            return (Criteria) this;
+        }
+
+        public Criteria andAtBetween(Date value1, Date value2) {
+            addCriterion("`at` between", value1, value2, "at");
+            return (Criteria) this;
+        }
+
+        public Criteria andAtNotBetween(Date value1, Date value2) {
+            addCriterion("`at` not between", value1, value2, "at");
             return (Criteria) this;
         }
     }

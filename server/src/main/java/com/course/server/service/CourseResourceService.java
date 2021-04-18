@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,6 +31,7 @@ public class CourseResourceService {
     public void list(PageDto pageDto) {
         PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
         CourseResourceExample courseResourceExample = new CourseResourceExample();
+        courseResourceExample.setOrderByClause("at desc");
         List<CourseResource> courseResourceList = courseResourceMapper.selectByExample(courseResourceExample);
         PageInfo<CourseResource> pageInfo = new PageInfo<>(courseResourceList);
         pageDto.setTotal(pageInfo.getTotal());
@@ -42,6 +44,8 @@ public class CourseResourceService {
      */
     public void save(CourseResourceDto courseResourceDto) {
         CourseResource courseResource = CopyUtil.copy(courseResourceDto, CourseResource.class);
+        Date now = new Date();
+        courseResource.setAt(now);
         this.insert(courseResource);
 
     }

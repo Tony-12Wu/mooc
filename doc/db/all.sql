@@ -297,3 +297,5 @@ create table `course_resource` (
    `frequency` int default 0 comment '下载次数',
    primary key (`id`)
 )engine = innodb default charset = utf8mb4 comment ='课程资源表';
+
+alter table `course_resource` add column (`at` datetime(3) not null comment '上传时间');
