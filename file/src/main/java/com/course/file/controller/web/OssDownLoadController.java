@@ -4,10 +4,11 @@ import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.model.*;
 import com.course.file.controller.admin.FileController;
+import com.course.server.dto.CourseResourceDto;
 import com.course.server.dto.FileDto;
 import com.course.server.dto.ResponseDto;
 import com.course.server.enums.FileUseEnum;
-import com.course.server.service.FileService;
+import com.course.server.service.CourseResourceService;
 import com.course.server.util.UuidUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,37 +44,38 @@ public class OssDownLoadController {
     @Value("${oss.domain}")
     private String ossDomain;
 
-    private String targetDir = "D:\\毕设\\file\\download";
+    private String targetDir = "D:\\imooc\\file\\download\\";
 
     public static final String BUSINESS_NAME = "文件下载";
 
     @Resource
-    private FileService fileService;
+    private CourseResourceService courseResourceService;
 
     @GetMapping("/oss-download")
-    public ResponseDto fileDownload(@RequestParam String filePath, @RequestParam String fileName) throws Throwable {
+    public ResponseDto fileDownload(@RequestParam String filePath, @RequestParam String fileName, @RequestParam String id) throws Throwable {
         LOG.info("文件下载开始");
         // 填写Bucket名称。
         String bucketName = bucket;
         String objectName = filePath;
+        //如果文件夹不存在则创建
+        File fullDir = new File(targetDir);
+        if (!fullDir.exists()) {
+            fullDir.mkdirs();
+        }
         // 创建OSSClient实例。
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
         // 下载Object到本地文件，并保存到指定的本地路径中。如果指定的本地文件存在会覆盖，不存在则新建。
         // 如果未指定本地路径，则下载后的文件默认保存到示例程序所属项目对应本地路径中。
-        ossClient.getObject(new GetObjectRequest(bucketName, objectName), new File(targetDir+fileName));
+        ossClient.getObject(new GetObjectRequest(bucketName, objectName), new File(fullDir+"/"+fileName));
 
-// 关闭OSSClient。
+        // 关闭OSSClient。
         ossClient.shutdown();
 
         LOG.info("文件下载完成");
-/*        LOG.info("保存文件记录开始");
-        fileDto.setPath(path);
-        fileService.save(fileDto);
+        LOG.info("下载次数更新完成");
+        CourseResourceDto courseResourceDto = courseResourceService.updateFrequency(id);
         ResponseDto responseDto = new ResponseDto();
-        fileDto.setPath(ossDomain + path);
-        responseDto.setContent(fileDto);*/
-        ResponseDto responseDto = new ResponseDto();
-        responseDto.setSuccess(true);
+        responseDto.setContent(courseResourceDto);
         return responseDto;
     }
 

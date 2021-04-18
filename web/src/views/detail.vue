@@ -34,14 +34,19 @@
               <li class="nav-item">
                 <a class="nav-link" href="#chapter" data-toggle="tab">章节目录</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#resource" data-toggle="tab">课程资源</a>
+              </li>
             </ul>
 
             <br>
 
             <!-- Tab panes -->
             <div class="tab-content">
+              <!-- 课程内容-->
               <div class="tab-pane active" id="info" v-html="course.content">
               </div>
+              <!-- 课程大章小节-->
               <div class="tab-pane" id="chapter">
                 <div v-for="(chapter, i) in chapters" class="chapter">
                   <div v-on:click="doFolded(chapter, i)" class="chapter-chapter">
@@ -68,6 +73,35 @@
                     </table>
                   </div>
                 </div>
+              </div>
+              <!-- 课程资源-->
+              <div class="tab-pane" id="resource">
+                <table id="simple-table" class="table  table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>文件名</th>
+                    <th>大小</th>
+                    <th>上传时间</th>
+                    <th>下载次数</th>
+                    <th>操作</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <tr v-for="courseResource in courseResources">
+                    <td>{{courseResource.name}}</td>
+                    <td>{{courseResource.size | formatFileSize}}</td>
+                    <td>{{courseResource.at}}</td>
+                    <td>{{courseResource.frequency}}</td>
+                    <td>
+                      <button v-on:click="download(courseResource)" class="btn btn-white btn-xs btn-warning btn-round">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        下载
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
 
@@ -108,7 +142,9 @@
         sections: [],
         memberCourse: {},
         COURSE_ONLINE:COURSE_ONLINE,
-        COURSE_CATEGORY:COURSE_CATEGORY
+        COURSE_CATEGORY:COURSE_CATEGORY,
+        courseResource: {},
+        courseResources: []
       }
     },
     mounted() {
@@ -125,6 +161,7 @@
           _this.teacher = _this.course.teacher || {};
           _this.chapters = _this.course.chapters || [];
           _this.sections = _this.course.sections || [];
+          _this.courseResources = _this.course.courseResources || [];
 
           // 获取报名信息
           _this.getEnroll();
@@ -223,6 +260,22 @@
           }
         });
       },
+        /**
+         * 文件资源下载
+         */
+        download(courseResource){
+            let _this = this;
+            _this.$ajax.get(process.env.VUE_APP_SERVER + '/file/web/oss-download?filePath='
+                +courseResource.url+'&fileName='+courseResource.name+'&id='+courseResource.id
+            ).then((response)=>{
+                let resp = response.data;
+                if (resp.success) {
+                    Toast.success("课程资源下载成功！路径为：D:\\imooc\\file\\download\\");
+                }
+            });
+
+        }
+
     }
   }
 </script>

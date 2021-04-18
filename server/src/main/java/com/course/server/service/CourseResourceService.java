@@ -2,8 +2,11 @@ package com.course.server.service;
 
 import com.course.server.domain.CourseResource;
 import com.course.server.domain.CourseResourceExample;
+import com.course.server.domain.Section;
+import com.course.server.domain.SectionExample;
 import com.course.server.dto.CourseResourceDto;
 import com.course.server.dto.PageDto;
+import com.course.server.dto.SectionDto;
 import com.course.server.mapper.CourseResourceMapper;
 import com.course.server.util.CopyUtil;
 import com.course.server.util.UuidUtil;
@@ -65,9 +68,33 @@ public class CourseResourceService {
     }
 
     /**
+     * 更新下载次数
+     */
+    public CourseResourceDto updateFrequency(String id) {
+        CourseResource courseResource = courseResourceMapper.selectByPrimaryKey(id);
+        if (courseResource.getFrequency() == null){
+            courseResource.setFrequency(0);
+        }
+        courseResource.setFrequency(courseResource.getFrequency()+1);
+        courseResourceMapper.updateByPrimaryKey(courseResource);
+        return CopyUtil.copy(courseResource, CourseResourceDto.class);
+    }
+
+    /**
      * 删除
      */
     public void delete(String id) {
         courseResourceMapper.deleteByPrimaryKey(id);
+    }
+
+    /**
+     * 查询某一课程下的所有资源
+     */
+    public List<CourseResourceDto> listByCourse(String courseId) {
+        CourseResourceExample example = new CourseResourceExample();
+        example.createCriteria().andCourseIdEqualTo(courseId);
+        List<CourseResource> courseResourceList = courseResourceMapper.selectByExample(example);
+        List<CourseResourceDto> courseResourceDtoList = CopyUtil.copyList(courseResourceList, CourseResourceDto.class);
+        return courseResourceDtoList;
     }
 }

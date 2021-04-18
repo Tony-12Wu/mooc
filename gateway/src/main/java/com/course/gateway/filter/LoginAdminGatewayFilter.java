@@ -91,6 +91,7 @@ public class LoginAdminGatewayFilter implements GatewayFilter, Ordered {
                     || path.contains("/web/member/logout")
                     || path.contains("/web/member/is-mobile-exist")
                     || path.contains("/web/member/reset-password")
+                    || path.contains("/web/course/list-new")
                     || path.contains("/web/kaptcha")
                     || path.contains("/web/sms")) {
                 LOG.info("不需要学生端登录验证：{}", path);

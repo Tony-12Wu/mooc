@@ -50,6 +50,9 @@ public class CourseService {
     @Resource
     private RoleUserService roleUserService;
 
+    @Resource
+    private CourseResourceService courseResourceService;
+
     /**
      * 管理员为讲师管理员时，查询该讲师用户的课程
      */
@@ -215,6 +218,10 @@ public class CourseService {
         // 查找节信息
         List<SectionDto> sectionDtoList = sectionService.listByCourse(id);
         courseDto.setSections(sectionDtoList);
+
+        // 查找资源信息
+        List<CourseResourceDto> courseResourceList = courseResourceService.listByCourse(id);
+        courseDto.setCourseResources(courseResourceList);
 
         return courseDto;
     }

@@ -79,6 +79,8 @@ public class CourseDto {
 
     private List<SectionDto> sections;
 
+    private List<CourseResourceDto> courseResources;
+
     private String content;
 
     private TeacherDto teacher;
@@ -231,6 +233,14 @@ public class CourseDto {
         this.online = online;
     }
 
+    public List<CourseResourceDto> getCourseResources() {
+        return courseResources;
+    }
+
+    public void setCourseResources(List<CourseResourceDto> courseResources) {
+        this.courseResources = courseResources;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("CourseDto{");
@@ -249,6 +259,7 @@ public class CourseDto {
         sb.append(", categorys=").append(categorys);
         sb.append(", chapters=").append(chapters);
         sb.append(", sections=").append(sections);
+        sb.append(", courseResources=").append(courseResources);
         sb.append(", content='").append(content).append('\'');
         sb.append(", teacher=").append(teacher);
         sb.append(", teacherId='").append(teacherId).append('\'');
