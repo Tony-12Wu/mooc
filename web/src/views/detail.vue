@@ -95,7 +95,6 @@
                     <td>{{courseResource.frequency}}</td>
                     <td>
                       <button v-on:click="download(courseResource)" class="btn btn-white btn-xs btn-warning btn-round">
-                        <i class="ace-icon fa fa-times red2"></i>
                         下载
                       </button>
                     </td>

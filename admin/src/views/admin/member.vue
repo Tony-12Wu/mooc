@@ -21,7 +21,6 @@
                 <th>昵称</th>
                 <th>手机号</th>
                 <th>密码</th>
-                <th>头像url</th>
                 <th>注册时间</th>
                 <th>操作</th>
             </tr>
@@ -33,7 +32,6 @@
                 <td>{{member.name}}</td>
                 <td>{{member.mobile}}</td>
                 <td>{{member.password}}</td>
-                <td>{{member.photo}}</td>
                 <td>{{member.registerTime}}</td>
                 <td>
                     <div class="hidden-sm hidden-xs btn-group">

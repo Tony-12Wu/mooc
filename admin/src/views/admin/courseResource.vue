@@ -178,8 +178,8 @@
                 _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/courseResource/save', file).then((response)=>{
                     let resp = response.data;
                     if (resp.success) {
-                        Toast.success("上传课程资源和保存记录成功");
                         _this.list(1);
+                        Toast.success("上传课程资源和保存记录成功");
                     }
                 });
             },

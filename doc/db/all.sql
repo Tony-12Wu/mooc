@@ -290,7 +290,7 @@ insert into member_course values ('I4oFpSW3','JCVNuGz2','00000001',now());
 drop table if exists `course_resource`;
 create table `course_resource` (
    `id` char(8) not null default '' comment 'id',
-   `course_id` varchar(100) not null comment '课程id',
+   `course_id` char(8) not null comment '课程id',
    `url` varchar(100) comment '相对地址',
    `name` varchar(100) comment '文件名',
    `size` int comment '大小|字节B',
