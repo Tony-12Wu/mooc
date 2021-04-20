@@ -17,15 +17,17 @@
             </div>
         </div>
 
+        <loading ref="loading"></loading>
     </main>
 </template>
 
 <script>
 import TheCourse from "../components/the-course";
 import Pagination from "../components/pagination";
+import Loading from "../components/loading";
 
 export default {
-    components: {Pagination, TheCourse},
+    components: {Pagination, TheCourse, Loading},
     name: 'search',
     data: function () {
         return {
@@ -45,11 +47,13 @@ export default {
          */
         SearchCourse(page) {
             let _this = this;
+            _this.$refs.loading.showModel();
             _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/web/course/search', {
                 page: page,
                 size: _this.$refs.pagination.size,
                 courseName:_this.name
             }).then((response) => {
+                _this.$refs.loading.hideModel();
                 let resp = response.data;
                 if (resp.success) {
                     _this.courses = resp.content.list;
