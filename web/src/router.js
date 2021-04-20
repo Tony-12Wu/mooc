@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Index from './views/index.vue'
 import List from './views/list.vue'
 import Detail from './views/detail.vue'
+import Search from './views/search.vue'
 
 Vue.use(Router);
 
@@ -21,5 +22,8 @@ export default new Router({
     },{
         path: '/detail',
         component: Detail
+    },{
+        path: '/search',
+        component: Search
     }]
 })
