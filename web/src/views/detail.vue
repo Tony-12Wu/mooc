@@ -121,8 +121,15 @@
         </div>
       </div>
     </div>
-
     <modal-player ref="modalPlayer"></modal-player>
+    <!--等待模态框-->
+      <div class="modal fade" id="loading-modal" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+              <div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
+                <img src="../../public/static/image/loading.gif">
+              </div>
+          </div>
+      </div>
   </main>
 </template>
 
@@ -154,7 +161,9 @@
     methods: {
       findCourse() {
         let _this = this;
+         $('#loading-modal').modal('show');
         _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/web/course/find/' + _this.id).then((response)=>{
+          $('#loading-modal').modal('hide');
           let resp = response.data;
           _this.course = resp.content;
           _this.teacher = _this.course.teacher || {};
@@ -264,9 +273,11 @@
          */
         download(courseResource){
             let _this = this;
+            $('#loading-modal').modal('show');
             _this.$ajax.get(process.env.VUE_APP_SERVER + '/file/web/oss-download?filePath='
                 +courseResource.url+'&fileName='+courseResource.name+'&id='+courseResource.id
             ).then((response)=>{
+                $('#loading-modal').modal('hide');
                 let resp = response.data;
                 if (resp.success) {
                     Toast.success("课程资源下载成功！路径为：D:\\imooc\\file\\download\\");
@@ -280,6 +291,25 @@
 </script>
 
 <style>
+.loading {
+    width: 160px;
+    height: 56px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    line-height: 56px;
+    color: #fff;
+    padding-left: 60px;
+    font-size: 15px;
+    background: #000 url(../../public/static/image/loading.gif) no-repeat 10px 50%;
+    opacity: 0.7;
+    z-index: 9999;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);
+}
+
   /* 课程信息 */
   .course-head {
   }

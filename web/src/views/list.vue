@@ -40,16 +40,17 @@
                 </div>
             </div>
         </div>
-
+        <loading ref="loading"></loading>
     </main>
 </template>
 
 <script>
 import TheCourse from "../components/the-course";
 import Pagination from "../components/pagination";
+import Loading from "../components/loading";
 
 export default {
-    components: {Pagination, TheCourse},
+    components: {Pagination, TheCourse, Loading},
     name: 'list',
     data: function () {
         return {
@@ -73,11 +74,13 @@ export default {
          */
         listCourse(page) {
             let _this = this;
+            _this.$refs.loading.showModel();
             _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/web/course/list', {
                 page: page,
                 size: _this.$refs.pagination.size,
                 categoryId: _this.level2Id || _this.level1Id || "", // 优先取level2Id
             }).then((response) => {
+                _this.$refs.loading.hideModel();
                 let resp = response.data;
                 if (resp.success) {
                     _this.courses = resp.content.list;
@@ -93,7 +96,9 @@ export default {
          */
         allCategory() {
             let _this = this;
+            _this.$refs.loading.showModel();
             _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/web/category/all').then((response)=>{
+                _this.$refs.loading.hideModel();
                 let resp = response.data;
                 let categorys = resp.content;
                 _this.categorys = categorys;
@@ -186,6 +191,24 @@ export default {
 }
 </script>
 <style>
+.loading {
+    width: 160px;
+    height: 56px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    line-height: 56px;
+    color: #fff;
+    padding-left: 60px;
+    font-size: 15px;
+    background: #000 url(../../public/static/image/loading.gif) no-repeat 10px 50%;
+    opacity: 0.7;
+    z-index: 9999;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);
+}
 /* 头部 一级分类 */
 .header-nav {
     height: auto;

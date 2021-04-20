@@ -28,15 +28,17 @@
         </div>
         </div>
     </div>
+    <loading ref="loading"></loading>
 
   </main>
 </template>
 
 <script>
     import TheCourse from "../components/the-course";
+    import Loading from "../components/loading";
     export default {
         name: "index",
-        components: {TheCourse},
+        components: {Loading, TheCourse},
         data: function () {
             return {
                 news: [],
@@ -52,16 +54,18 @@
              */
             listNew() {
                 let _this = this;
-
+                _this.$refs.loading.showModel();
                 // 新上好课不经常变，又经常被访问，适合用缓存
                 // 判断是否有缓存
                 let news = SessionStorage.get("news");
                 if (!Tool.isEmpty(news)) {
                     _this.news = news;
+                    _this.$refs.loading.hideModel();
                     return;
                 }
 
                 _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/web/course/list-new').then((response)=>{
+                    _this.$refs.loading.hideModel();
                     console.log("查询新上好课结果：", response);
                     let resp = response.data;
                     if (resp.success) {
