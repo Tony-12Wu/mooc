@@ -1,8 +1,10 @@
 <template>
   <div class="card mb-4 shadow-sm course">
-    <img class="img-fluid" v-bind:src="course.image">
+    <a href="javascript:;" class="text-info bigger-110" v-bind:title="course.teacherName">
+      <img class="img-fluid" v-bind:src="course.image">
+    </a>
     <div class="card-body">
-      <h4 class="">{{course.name}}</h4>
+      <h4 class="">{{course.name}} {{course.teacherName}}</h4>
       <p class="card-text">{{course.summary}}</p>
       <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">

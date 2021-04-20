@@ -14,6 +14,11 @@ import java.util.List;
  */
 public interface MyCourseMapper {
 
+    /**
+     *
+     * @param pageDto
+     * @return
+     */
     List<CourseDto> list(@Param("pageDto") CoursePageDto pageDto);
 
     /**
@@ -31,5 +36,10 @@ public interface MyCourseMapper {
 
     int moveSortsForward(SortDto sortDto);
 
+    /**
+     * 根据课程名模糊搜索，根据老师名精确搜索
+     * @param teacherName
+     * @return
+     */
     List<CourseDto> search(@Param("teacherName") String teacherName);
 }

@@ -87,6 +87,43 @@ public class CourseDto {
 
     private String teacherId;
 
+    private String teacherName;
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("CourseDto{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", summary='").append(summary).append('\'');
+        sb.append(", time=").append(time);
+        sb.append(", image='").append(image).append('\'');
+        sb.append(", status='").append(status).append('\'');
+        sb.append(", online='").append(online).append('\'');
+        sb.append(", category='").append(category).append('\'');
+        sb.append(", enroll=").append(enroll);
+        sb.append(", sort=").append(sort);
+        sb.append(", createdAt=").append(createdAt);
+        sb.append(", updatedAt=").append(updatedAt);
+        sb.append(", categorys=").append(categorys);
+        sb.append(", chapters=").append(chapters);
+        sb.append(", sections=").append(sections);
+        sb.append(", courseResources=").append(courseResources);
+        sb.append(", content='").append(content).append('\'');
+        sb.append(", teacher=").append(teacher);
+        sb.append(", teacherId='").append(teacherId).append('\'');
+        sb.append(", teacherName='").append(teacherName).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
+
     public String getId() {
         return id;
     }
@@ -241,29 +278,4 @@ public class CourseDto {
         this.courseResources = courseResources;
     }
 
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("CourseDto{");
-        sb.append("id='").append(id).append('\'');
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", summary='").append(summary).append('\'');
-        sb.append(", time=").append(time);
-        sb.append(", image='").append(image).append('\'');
-        sb.append(", status='").append(status).append('\'');
-        sb.append(", online='").append(online).append('\'');
-        sb.append(", category='").append(category).append('\'');
-        sb.append(", enroll=").append(enroll);
-        sb.append(", sort=").append(sort);
-        sb.append(", createdAt=").append(createdAt);
-        sb.append(", updatedAt=").append(updatedAt);
-        sb.append(", categorys=").append(categorys);
-        sb.append(", chapters=").append(chapters);
-        sb.append(", sections=").append(sections);
-        sb.append(", courseResources=").append(courseResources);
-        sb.append(", content='").append(content).append('\'');
-        sb.append(", teacher=").append(teacher);
-        sb.append(", teacherId='").append(teacherId).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
 }

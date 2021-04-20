@@ -4,14 +4,14 @@
 
     <!-- web端【全部课程】页面，查询课程列表 -->
     <select id="list" resultType="com.course.server.dto.CourseDto">
-        select c.id, c.name, c.summary, time, image, online,
+        select c.id, c.name, c.summary, time, c.image, online,
                 status, category, enroll, sort, create_at as createdAt,
-               update_at as updatedAt, teacher_id as teacherId
-        from `course` c
+               update_at as updatedAt, teacher_id as teacherId, t.name as teacherName
+        from `course` c, courseimooc.`teacher` t
         <if test="pageDto.categoryId != null and pageDto.categoryId != ''">
             , course_category cc
         </if>
-        where 1 = 1
+        where c.teacher_id = t.id
         <if test="pageDto.categoryId != null and pageDto.categoryId != ''">
             and c.id = cc.course_id
             and cc.category_id = #{pageDto.categoryId}
