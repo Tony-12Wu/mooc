@@ -14,9 +14,11 @@ import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.util.StringUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
@@ -239,6 +241,9 @@ public class CourseService {
         courseExample.setOrderByClause("create_at desc");
         List<Course> courseList = courseMapper.selectByExample(courseExample);
         List<CourseDto> courseDtoList = CopyUtil.copyList(courseList, CourseDto.class);
+        if (CollectionUtils.isEmpty(courseList)){
+            courseDtoList = myCourseMapper.search(pageDto.getCourseName());
+        }
         PageInfo<CourseDto> pageInfo = new PageInfo<>(courseDtoList);
         pageDto.setTotal(pageInfo.getTotal());
         pageDto.setList(courseDtoList);

@@ -30,4 +30,6 @@ public interface MyCourseMapper {
     int moveSortsBackward(SortDto sortDto);
 
     int moveSortsForward(SortDto sortDto);
+
+    List<CourseDto> search(@Param("teacherName") String teacherName);
 }

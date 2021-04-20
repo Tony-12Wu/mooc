@@ -21,6 +21,9 @@
         </if>
         order by c.sort asc
     </select>
+    <select id="search" resultType="com.course.server.dto.CourseDto">
+        select * from course where teacher_id = (select id from teacher where name = #{teacherName})
+    </select>
 
     <update id="updateTime">
         update course c set `time` = (select sum(`time`) from `section` where course_id = #{courseId})
