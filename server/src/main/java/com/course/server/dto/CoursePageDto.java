@@ -11,6 +11,26 @@ public class CoursePageDto extends PageDto {
 
     private String teacherId;
 
+    private String courseName;
+
+    private String teacherName;
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -37,11 +57,12 @@ public class CoursePageDto extends PageDto {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("CoursePageDto{");
-        sb.append("status='").append(status).append('\'');
-        sb.append(", categoryId='").append(categoryId).append('\'');
-        sb.append(", teacherId='").append(teacherId).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return "CoursePageDto{" +
+                "status='" + status + '\'' +
+                ", categoryId='" + categoryId + '\'' +
+                ", teacherId='" + teacherId + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", teacherName='" + teacherName + '\'' +
+                '}';
     }
 }

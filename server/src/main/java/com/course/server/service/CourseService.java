@@ -226,5 +226,25 @@ public class CourseService {
         return courseDto;
     }
 
+    /**
+     * 搜索课程, 目前只根据课程名称
+     * @param pageDto
+     * @return
+     */
+    public List<CourseDto> searchCourse(CoursePageDto pageDto){
+        PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
+        CourseExample courseExample = new CourseExample();
+        courseExample.createCriteria().andNameEqualTo(pageDto.getCourseName()).
+                andStatusEqualTo(CourseStatusEnum.PUBLISH.getCode());
+        courseExample.setOrderByClause("create_at desc");
+        List<Course> courseList = courseMapper.selectByExample(courseExample);
+        List<CourseDto> courseDtoList = CopyUtil.copyList(courseList, CourseDto.class);
+        PageInfo<CourseDto> pageInfo = new PageInfo<>(courseDtoList);
+        pageDto.setTotal(pageInfo.getTotal());
+        pageDto.setList(courseDtoList);
+        return courseDtoList;
+
+    }
+
 
 }

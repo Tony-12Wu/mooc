@@ -45,9 +45,10 @@ export default {
          */
         SearchCourse(page) {
             let _this = this;
-            _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/web/course/search/'+ _this.name, {
+            _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/web/course/search', {
                 page: page,
                 size: _this.$refs.pagination.size,
+                courseName:_this.name
             }).then((response) => {
                 let resp = response.data;
                 if (resp.success) {

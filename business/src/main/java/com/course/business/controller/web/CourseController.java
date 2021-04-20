@@ -53,7 +53,11 @@ public class CourseController {
         return responseDto;
     }
 
-
+    /**
+     * 根据id查询课程
+     * @param id
+     * @return
+     */
     @GetMapping("/find/{id}")
     public ResponseDto findCourse(@PathVariable String id) {
         LOG.info("查找课程开始：{}", id);
@@ -63,4 +67,20 @@ public class CourseController {
         LOG.info("查找课程结束：{}", responseDto);
         return responseDto;
     }
+
+    /**
+     * 根据课程名称或讲师名称搜索课程
+     * @param pageDto
+     * @return
+     */
+    @PostMapping("/search")
+    public ResponseDto searchCourse(@RequestBody CoursePageDto pageDto) {
+        LOG.info("搜索课程开始：{}", pageDto.getCourseName());
+        ResponseDto responseDto = new ResponseDto();
+        courseService.searchCourse(pageDto);
+        responseDto.setContent(pageDto);
+        LOG.info("搜索课程结束：{}", responseDto);
+        return responseDto;
+    }
+
 }
