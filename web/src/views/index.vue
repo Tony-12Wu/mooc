@@ -22,7 +22,7 @@
         <hr>
         <div class="title2">好课推荐</div>
         <div class="row">
-            <div v-for="o in news" class="col-md-4">
+            <div v-for="o in goods" class="col-md-4">
                 <the-course v-bind:course="o"></the-course>
             </div>
         </div>
@@ -42,11 +42,13 @@
         data: function () {
             return {
                 news: [],
+                goods: []
             }
         },
         mounted() {
             let _this = this;
             _this.listNew();
+            _this.listRecommend();
         },
         methods: {
             /**
@@ -63,7 +65,6 @@
                     _this.$refs.loading.hideModel();
                     return;
                 }
-
                 _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/web/course/list-new').then((response)=>{
                     _this.$refs.loading.hideModel();
                     console.log("查询新上好课结果：", response);
@@ -72,6 +73,24 @@
                         _this.news = resp.content;
                         // 保存到缓存
                         SessionStorage.set("news", _this.news);
+                    }
+                }).catch((response)=>{
+                    console.log("error：", response);
+                })
+            },
+
+            /**
+             * 查询好课推荐
+             */
+            listRecommend() {
+                let _this = this;
+                _this.$refs.loading.showModel();
+                _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/web/course/list-recommend').then((response)=>{
+                    _this.$refs.loading.hideModel();
+                    console.log("查询好课推荐结果：", response);
+                    let resp = response.data;
+                    if (resp.success) {
+                        _this.goods = resp.content;
                     }
                 }).catch((response)=>{
                     console.log("error：", response);

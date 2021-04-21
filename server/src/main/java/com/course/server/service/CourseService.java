@@ -86,17 +86,16 @@ public class CourseService {
     }
 
     /**
-     * 新课列表查询，只查询已发布的，按创建日期倒序
+     * 列表查询，只查询已发布的，按order参数倒序
      */
-    public List<CourseDto> listNew(PageDto pageDto) {
+    public List<CourseDto> listByOrder(PageDto pageDto, String order) {
         PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
         CourseExample courseExample = new CourseExample();
         courseExample.createCriteria().andStatusEqualTo(CourseStatusEnum.PUBLISH.getCode());
-        courseExample.setOrderByClause("create_at desc");
+        courseExample.setOrderByClause(order+" desc");
         List<Course> courseList = courseMapper.selectByExample(courseExample);
         return CopyUtil.copyList(courseList, CourseDto.class);
     }
-
 
     /**
      * 保存，id有值时更新，无值时新增

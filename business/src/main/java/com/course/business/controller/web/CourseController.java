@@ -28,7 +28,7 @@ public class CourseController {
     private CourseService courseService;
 
     /**
-     * 列表查询，查询最新的3门已发布的课程
+     * 新课查询，查询最新的3门已发布的课程
      */
     @GetMapping("/list-new")
     public ResponseDto listNew() {
@@ -36,7 +36,21 @@ public class CourseController {
         pageDto.setPage(1);
         pageDto.setSize(3);
         ResponseDto responseDto = new ResponseDto();
-        List<CourseDto> courseDtoList = courseService.listNew(pageDto);
+        List<CourseDto> courseDtoList = courseService.listByOrder(pageDto, "create_at");
+        responseDto.setContent(courseDtoList);
+        return responseDto;
+    }
+
+    /**
+     * 好课查询，查询最新的3门已发布的课程
+     */
+    @GetMapping("/list-recommend")
+    public ResponseDto listRecommend() {
+        PageDto pageDto = new PageDto();
+        pageDto.setPage(1);
+        pageDto.setSize(3);
+        ResponseDto responseDto = new ResponseDto();
+        List<CourseDto> courseDtoList = courseService.listByOrder(pageDto, "enroll");
         responseDto.setContent(courseDtoList);
         return responseDto;
     }
