@@ -32,14 +32,27 @@ export default {
     data: function () {
         return {
             courses: [],
-            course: {}
+            course: {},
+            name:'',
         }
     },
     mounted() {
         let _this = this;
         _this.$refs.pagination.size = 3;
         _this.name = _this.$route.query.name;
+        console.log("搜索课程，入参："+_this.$route.query.name)
         _this.SearchCourse(1);
+    },
+    computed:{
+        listenName:function () {
+            return this.$route.query.name;
+        }
+    },
+    watch:{
+        listenName:function () {
+            this.name = this.listenName;
+            this.SearchCourse(1);
+        }
     },
     methods: {
         /**

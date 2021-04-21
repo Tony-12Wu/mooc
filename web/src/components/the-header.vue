@@ -34,8 +34,8 @@
 
       </div>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search"  v-model="course.name"  placeholder="Search" aria-label="Search">
-          <router-link v-bind:to="'/search?name=' + course.name" class="btn btn-outline-success my-2 my-sm-0">搜索</router-link>
+        <input class="form-control mr-sm-2" type="search"  v-model="courseName"  placeholder="Search" aria-label="Search">
+          <router-link v-bind:to="'/search?name=' + courseName" class="btn btn-outline-success my-2 my-sm-0">搜索</router-link>
       </form>
       &nbsp;
       <span v-show="loginMember.id" class="text-white pr-2">您好：{{loginMember.name}}</span>&nbsp;
@@ -56,7 +56,7 @@
         data: function () {
             return {
                 loginMember: {},
-                course: {}
+                courseName: ''
             }
         },
         mounted() {
