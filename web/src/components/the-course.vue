@@ -1,7 +1,8 @@
 <template>
   <div class="card mb-4 shadow-sm course">
     <a href="javascript:;" class="text-info bigger-110" v-bind:title="course.teacherName">
-      <img class="img-fluid" v-bind:src="course.image">
+      <img v-show="!course.image" class="img-fluid" src="/static/image/demo-course.jpg"/>
+      <img v-bind:src="course.image" class="img-fluid">
     </a>
     <div class="card-body">
       <h4 class="">{{course.name}} {{course.teacherName}}</h4>

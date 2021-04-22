@@ -64,7 +64,7 @@ export default {
     },
     mounted() {
         let _this = this;
-        _this.$refs.pagination.size = 2;
+        _this.$refs.pagination.size = 3;
         _this.listCourse(1);
         _this.allCategory();
     },

@@ -76,12 +76,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">头像url</label>
-                                <div class="col-sm-10">
-                                    <input v-model="member.photo" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="col-sm-2 control-label">注册时间</label>
                                 <div class="col-sm-10">
                                     <input v-model="member.registerTime" class="form-control">
