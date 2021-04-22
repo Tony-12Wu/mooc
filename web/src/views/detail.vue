@@ -4,7 +4,8 @@
       <div class="container">
         <div class="row course-head">
           <div class="col-sm-6" id="cover-video-div">
-            <img class="img-fluid" v-bind:src="course.image">
+            <img v-show="!course.image" class="img-fluid" src="/static/image/demo-course.jpg"/>
+            <img v-bind:src="course.image" class="img-fluid">
           </div>
           <div class="col-sm-6">
             <h1>{{course.name}}</h1>
@@ -109,6 +110,7 @@
           <!-- 讲师信息 -->
           <div class="col-md-3">
             <div class="card" style="width: 18rem;">
+              <img v-show="!teacher.image" class="card-img-top" src="/static/image/头像1.jpg">
               <img v-bind:src="teacher.image" class="card-img-top">
               <div class="card-body">
                 <h5 class="card-title">{{teacher.name}}</h5>

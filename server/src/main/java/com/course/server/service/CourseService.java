@@ -67,6 +67,7 @@ public class CourseService {
         if (isTeacherAdmin){
             courseExample.createCriteria().andTeacherIdEqualTo(pageDto.getTeacherId());
         }
+        courseExample.setOrderByClause("enroll desc");
         List<Course> courseList = courseMapper.selectByExample(courseExample);
         PageInfo<Course> pageInfo = new PageInfo<>(courseList);
         pageDto.setTotal(pageInfo.getTotal());
