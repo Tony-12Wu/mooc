@@ -3,6 +3,8 @@ package com.course.server.service;
 import com.course.server.domain.*;
 import com.course.server.dto.PageDto;
 import com.course.server.dto.RoleDto;
+import com.course.server.exception.BusinessException;
+import com.course.server.exception.BusinessExceptionCode;
 import com.course.server.mapper.RoleMapper;
 import com.course.server.mapper.RoleResourceMapper;
 import com.course.server.mapper.RoleUserMapper;
@@ -76,10 +78,12 @@ public class RoleService {
      * 删除
      */
     public void delete(String id) {
+        //如果是包含0000000前缀的id为系统默认角色，不可删除
+        if(id.contains("0000000")){
+            throw new BusinessException(BusinessExceptionCode.ROLE_NOT_DELETE);
+        }
         roleMapper.deleteByPrimaryKey(id);
     }
-
-
 
     /**
      * 按角色保存资源
