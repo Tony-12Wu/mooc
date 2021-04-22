@@ -146,7 +146,7 @@
         },
         mounted: function () {
             let _this = this;
-            _this.$refs.pagination.size = 5;
+            _this.$refs.pagination.size = 10;
             let course = SessionStorage.get(SESSION_KEY_COURSE) || {};
             let chapter = SessionStorage.get(SESSION_KEY_CHAPTER) || {};
             if (Tool.isEmpty(course) || Tool.isEmpty(chapter)) {
@@ -174,7 +174,9 @@
              */
             add() {
                 let _this = this;
-                _this.section = {};
+                _this.section = {
+                    sort: _this.$refs.pagination.total + 1
+                };
                 $("#form-modal").modal("show");
             },
 
