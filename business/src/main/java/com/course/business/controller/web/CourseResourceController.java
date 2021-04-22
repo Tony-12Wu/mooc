@@ -1,6 +1,7 @@
 package com.course.business.controller.web;
 
 import com.course.server.dto.CourseResourceDto;
+import com.course.server.dto.CourseResourcePageDto;
 import com.course.server.dto.PageDto;
 import com.course.server.dto.ResponseDto;
 import com.course.server.service.CourseResourceService;
@@ -28,7 +29,7 @@ public class CourseResourceController {
      * 列表查询
      */
     @PostMapping("/list")
-    public ResponseDto list(@RequestBody PageDto pageDto) {
+    public ResponseDto list(@RequestBody CourseResourcePageDto pageDto) {
         ResponseDto responseDto = new ResponseDto();
         courseResourceService.list(pageDto);
         responseDto.setContent(pageDto);

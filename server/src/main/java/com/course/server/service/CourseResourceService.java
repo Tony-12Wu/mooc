@@ -5,6 +5,7 @@ import com.course.server.domain.CourseResourceExample;
 import com.course.server.domain.Section;
 import com.course.server.domain.SectionExample;
 import com.course.server.dto.CourseResourceDto;
+import com.course.server.dto.CourseResourcePageDto;
 import com.course.server.dto.PageDto;
 import com.course.server.dto.SectionDto;
 import com.course.server.mapper.CourseResourceMapper;
@@ -30,9 +31,10 @@ public class CourseResourceService {
     /**
      * 列表查询
      */
-    public void list(PageDto pageDto) {
+    public void list(CourseResourcePageDto pageDto) {
         PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
         CourseResourceExample courseResourceExample = new CourseResourceExample();
+        courseResourceExample.createCriteria().andCourseIdEqualTo(pageDto.getCourseId());
         courseResourceExample.setOrderByClause("at desc");
         List<CourseResource> courseResourceList = courseResourceMapper.selectByExample(courseResourceExample);
         PageInfo<CourseResource> pageInfo = new PageInfo<>(courseResourceList);

@@ -93,7 +93,8 @@
                     <td>{{courseResource.name}}</td>
                     <td>{{courseResource.size | formatFileSize}}</td>
                     <td>{{courseResource.at}}</td>
-                    <td>{{courseResource.frequency}}</td>
+                    <td v-show="!courseResource.frequency">0</td>
+                    <td v-show="courseResource.frequency">{{courseResource.frequency}}</td>
                     <td>
                       <button v-on:click="download(courseResource)" class="btn btn-white btn-xs btn-warning btn-round">
                         下载
