@@ -16,7 +16,7 @@
         <div class="row">
           <div v-for="course in courses" class="col-md-4">
             <div class="thumbnail search-thumbnail">
-              <img v-show="!course.image" class="media-object" src="/static/image/demo-course.jpg"/>
+              <img v-show="!course.image" class="media-object" src="http://lingnan-imooc.oss-cn-guangzhou.aliyuncs.com/course/3xzByd6GCMOocGK0qIa0kI.jpg"/>
               <img v-show="course.image" class="media-object" v-bind:src="course.image" />
               <div class="caption">
                 <div class="clearfix">
@@ -37,7 +37,7 @@
 
                 <div v-for="teacher in teachers.filter(t=>{return t.id===course.teacherId})" class="profile-activity clearfix">
                   <div>
-                    <img v-show="!teacher.image" class="pull-left" src="/static/image/讲师头像/头像1.jpg">
+                    <img v-show="!teacher.image" class="pull-left" src="http://lingnan-imooc.oss-cn-guangzhou.aliyuncs.com/course/6BPkUgoO3Km8UeSyCSkEk.jpg">
                     <img v-show="teacher.image" class="pull-left" v-bind:src="teacher.image">
                     <a class="user" href="#"> {{teacher.name}} </a>
                     <br>

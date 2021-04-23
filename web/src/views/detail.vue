@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row course-head">
           <div class="col-sm-6" id="cover-video-div">
-            <img v-show="!course.image" class="img-fluid" src="/static/image/demo-course.jpg"/>
+            <img v-show="!course.image" class="img-fluid" src="http://lingnan-imooc.oss-cn-guangzhou.aliyuncs.com/course/3xzByd6GCMOocGK0qIa0kI.jpg"/>
             <img v-bind:src="course.image" class="img-fluid">
           </div>
           <div class="col-sm-6">
@@ -111,7 +111,7 @@
           <!-- 讲师信息 -->
           <div class="col-md-3">
             <div class="card" style="width: 18rem;">
-              <img v-show="!teacher.image" class="card-img-top" src="/static/image/头像1.jpg">
+              <img v-show="!teacher.image" class="card-img-top" src="http://lingnan-imooc.oss-cn-guangzhou.aliyuncs.com/course/6BPkUgoO3Km8UeSyCSkEk.jpg">
               <img v-bind:src="teacher.image" class="card-img-top">
               <div class="card-body">
                 <h5 class="card-title">{{teacher.name}}</h5>
@@ -129,7 +129,7 @@
       <div class="modal fade" id="loading-modal" tabindex="-1">
           <div class="modal-dialog modal-dialog-centered">
               <div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
-                <img src="../../public/static/image/loading.gif">
+                <img src="http://lingnan-imooc.oss-cn-guangzhou.aliyuncs.com/teacher/6xZK3Z4C8UUAU4S6kW8y.gif">
               </div>
           </div>
       </div>

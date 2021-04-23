@@ -1,7 +1,7 @@
 <template>
   <div class="card mb-4 shadow-sm course">
     <a href="javascript:;" class="text-info bigger-110" v-bind:title="course.teacherName">
-      <img v-show="!course.image" class="img-fluid" src="/static/image/demo-course.jpg"/>
+      <img v-show="!course.image" class="img-fluid" src="http://lingnan-imooc.oss-cn-guangzhou.aliyuncs.com/course/3xzByd6GCMOocGK0qIa0kI.jpg"/>
       <img v-bind:src="course.image" class="img-fluid">
     </a>
     <div class="card-body">

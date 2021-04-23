@@ -81,7 +81,7 @@
                               <div class="col-sm-10">
                                 <big-file v-bind:input-id="'video-upload'"
                                       v-bind:text="'上传大视频'"
-                                      v-bind:suffixs="['mp4']"
+                                      v-bind:suffixs="['mp4','avi']"
                                       v-bind:use="FILE_USE.COURSE.key"
                                       v-bind:after-upload="afterUpload"></big-file>
                                 <div v-show="section.video" class="row">

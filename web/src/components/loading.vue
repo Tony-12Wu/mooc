@@ -3,7 +3,7 @@
     <div class="modal fade" id="loading-modal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
-                <img src="../../public/static/image/loading.gif">
+                <img src="http://lingnan-imooc.oss-cn-guangzhou.aliyuncs.com/teacher/6xZK3Z4C8UUAU4S6kW8y.gif">
             </div>
         </div>
     </div>
