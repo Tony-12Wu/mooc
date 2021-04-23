@@ -63,6 +63,6 @@
 <!--        <table tableName="member" domainObjectName="Member"/>-->
 <!--        <table tableName="sms" domainObjectName="Sms"/>-->
 <!--        <table tableName="member_course" domainObjectName="MemberCourse"/>-->
-        <table tableName="course_resource" domainObjectName="CourseResource"/>
+<!--        <table tableName="course_resource" domainObjectName="CourseResource"/>-->
     </context>
 </generatorConfiguration>

@@ -254,9 +254,11 @@
                 let _this = this;
                 // 保存校验
                 if (1 != 1
+                  || !Validator.require(_this.user.id, "id")
+                  || !Validator.length(_this.user.id, "id", 8, 8)
                   || !Validator.length(_this.user.name, "昵称", 1, 50)
                   || !Validator.require(_this.user.loginName, "账号名")
-                  || !Validator.length(_this.user.loginName, "账号名", 1, 50)
+                  || !Validator.length(_this.user.loginName, "账号名", 3, 50)
                   || !Validator.require(_this.user.password, "密码")
                 ) {
                     return;
@@ -340,6 +342,8 @@
                         if (resp.success) {
                             _this.list(1);
                             Toast.success("删除成功！");
+                        }else {
+                            Toast.warning(resp.message)
                         }
                     })
                 });

@@ -264,6 +264,8 @@
                         if (resp.success) {
                             _this.list(1);
                             Toast.success("删除成功！");
+                        }else {
+                            Toast.warning(resp.message);
                         }
                     })
                 });

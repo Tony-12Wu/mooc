@@ -7,6 +7,8 @@ public class Chapter {
 
     private String name;
 
+    private Integer sort;
+
     public String getId() {
         return id;
     }
@@ -31,6 +33,14 @@ public class Chapter {
         this.name = name;
     }
 
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -40,6 +50,7 @@ public class Chapter {
         sb.append(", id=").append(id);
         sb.append(", courseId=").append(courseId);
         sb.append(", name=").append(name);
+        sb.append(", sort=").append(sort);
         sb.append("]");
         return sb.toString();
     }

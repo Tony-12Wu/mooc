@@ -33,7 +33,8 @@
                 <td>{{courseResource.name}}</td>
                 <td>{{courseResource.size | formatFileSize}}</td>
                 <td>{{courseResource.at}}</td>
-                <td>{{courseResource.frequency}}</td>
+                <td v-show="!courseResource.frequency">0</td>
+                <td v-show="courseResource.frequency">{{courseResource.frequency}}</td>
                 <td>
                     <button v-on:click="del(courseResource.id)" class="btn btn-white btn-xs btn-warning btn-round">
                         <i class="ace-icon fa fa-times red2"></i>
@@ -140,6 +141,7 @@
                 _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/courseResource/list', {
                     page: page,
                     size: _this.$refs.pagination.size,
+                    courseId: _this.course.id
                 }).then((response) => {
                     Loading.hide();
                     let resp = response.data;

@@ -157,7 +157,7 @@
           if (resp.success) {
             // Toast.success("内容保存成功");
             // let now = Tool.dateFormat("yyyy-MM-dd hh:mm:ss");
-            let now = Tool.dateFormat("mm:ss");
+            let now = Tool.dateFormat("hh:mm:ss");
             _this.saveContentLabel = "最后保存时间：" + now;
           } else {
             Toast.warning(resp.message);

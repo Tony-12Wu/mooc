@@ -98,6 +98,10 @@ public class UserService {
      * 删除
      */
     public void delete(String id) {
+        //如果是包含0000000前缀的id为初始管理员，不可删除
+        if(id.contains("0000000")){
+            throw new BusinessException(BusinessExceptionCode.ADMIN_NOT_DELETE);
+        }
         userMapper.deleteByPrimaryKey(id);
     }
 

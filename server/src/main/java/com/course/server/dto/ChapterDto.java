@@ -10,6 +10,16 @@ public class ChapterDto {
 
     private String name;
 
+    private Integer sort;
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
+
     public String getId() {
         return id;
     }
@@ -36,14 +46,11 @@ public class ChapterDto {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", courseId=").append(courseId);
-        sb.append(", name=").append(name);
-        sb.append("]");
-        return sb.toString();
+        return "ChapterDto{" +
+                "id='" + id + '\'' +
+                ", courseId='" + courseId + '\'' +
+                ", name='" + name + '\'' +
+                ", sort=" + sort +
+                '}';
     }
 }

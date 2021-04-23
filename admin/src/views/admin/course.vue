@@ -37,7 +37,7 @@
 
                 <div v-for="teacher in teachers.filter(t=>{return t.id===course.teacherId})" class="profile-activity clearfix">
                   <div>
-                    <img v-show="!teacher.image" class="pull-left" src="/ace/assets/images/avatars/avatar5.png">
+                    <img v-show="!teacher.image" class="pull-left" src="/static/image/讲师头像/头像1.jpg">
                     <img v-show="teacher.image" class="pull-left" v-bind:src="teacher.image">
                     <a class="user" href="#"> {{teacher.name}} </a>
                     <br>
@@ -133,7 +133,7 @@
                           <div class="form-group">
                               <label class="col-sm-2 control-label">概述</label>
                               <div class="col-sm-10">
-                                  <input v-model="course.summary" class="form-control">
+                                  <textarea v-model="course.summary" class="form-control" rows="3"></textarea>
                               </div>
                           </div>
                           <div class="form-group">
@@ -184,7 +184,7 @@
                           <div class="form-group">
                               <label class="col-sm-2 control-label">顺序</label>
                               <div class="col-sm-10">
-                                  <input v-model="course.sort" class="form-control" disabled>
+                                  <input v-model="course.sort" class="form-control">
                               </div>
                           </div>
                         </form>
@@ -270,7 +270,7 @@
         },
         mounted: function () {
             let _this = this;
-            _this.$refs.pagination.size = 5;
+            _this.$refs.pagination.size = 10;
             _this.list(1);
             _this.allCategory();
             _this.allTeacher();
