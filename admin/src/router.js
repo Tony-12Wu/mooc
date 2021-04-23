@@ -20,8 +20,9 @@ import CourseResource from './views/admin/courseResource'
 Vue.use(Router);
 
 export default new Router({
+    //基本路径
+    base: process.env.NODE_ENV === 'prod' ? '/mooc/' : '/',
     mode: 'history',
-    base: process.env.BASE_URL,
     routes : [{
         path: '*',
         redirect: "/login",
